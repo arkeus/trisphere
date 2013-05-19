@@ -1,1 +1,6 @@
-This is my home.
+<section class="padded">
+	<% if flash[:error] %>
+		<div><%= flash[:error] %></div>
+	<% end %>
+	Home page text comes later.
+</section>
