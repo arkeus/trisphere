@@ -17,6 +17,9 @@
 				<%= navigation_tag({ controller: "character", action: "home" }, "orb", "Market")%>
 				<%= navigation_tag({ controller: "character", action: "home" }, "scroll", "Forums")%>
 			</div>
+			<div class="float-right">
+				<%= navigation_tag({ controller: "character", action: "home" }, "gear", "", class: "nopad")%>
+			</div>
 		<% else %>
 			<div class="float-left">
 				<%= navigation_tag({ controller: "index", action: "index" }, "home", "Home")%>
