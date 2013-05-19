@@ -20,7 +20,7 @@ class CreateBase < ActiveRecord::Migration
     user.save!
     
     create_table :characters do |t|
-    	t.integer :account_id, null: false
+    	t.integer :user_id, null: false
     	t.boolean :active, default: false
     	t.string :name, null: false, limit: 16
     	
@@ -32,7 +32,7 @@ class CreateBase < ActiveRecord::Migration
     	t.integer :agility, default: 10
     	t.integer :wisdom, default: 10
     	
-    	t.string :class, default: "Peasant"
+    	t.string :mainclass, default: "Peasant"
     	t.string :subclass, default: "Peasant"
     	
     	t.integer :wins, default: 0
@@ -73,20 +73,10 @@ class CreateBase < ActiveRecord::Migration
     	t.integer :enchanting_xpm, default: 100
     end
     
-    p "WHAT"
-    
     # Test character
     # TODO: remove
-    begin
-    	p "before"
-    	character = Character.new(:account_id => 1, :active => true, :name => "Arkeus")
-    	p "after"
-    rescue Exception => e
-    	puts "POOP #{e.message} #{e.backtrace.join("\n")}"
-   	end
-    #character.save!
-    
-    p "WHAT2"
+    character = Character.new(:user_id => 1, :active => true, :name => "Arkeus")
+    character.save!
   end
   
   def down

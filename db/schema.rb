@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20130519100444) do
 
   create_table "characters", force: true do |t|
-    t.integer "account_id",                                         null: false
+    t.integer "user_id",                                            null: false
     t.boolean "active",                         default: false
     t.string  "name",                limit: 16,                     null: false
     t.integer "energy",                         default: 1000
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20130519100444) do
     t.integer "defense",                        default: 10
     t.integer "agility",                        default: 10
     t.integer "wisdom",                         default: 10
-    t.string  "class",                          default: "Peasant"
+    t.string  "mainclass",                      default: "Peasant"
     t.string  "subclass",                       default: "Peasant"
     t.integer "wins",                           default: 0
     t.integer "losses",                         default: 0
