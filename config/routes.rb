@@ -1,7 +1,12 @@
 Trisphere::Application.routes.draw do
   root "index#index"
   
-  post "login" => "index#login"
+  # Index
+  post "/login" => "index#login"
+  get "/logout" => "index#logout"
+  
+  # Character
+  get "/character" => "character#home"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

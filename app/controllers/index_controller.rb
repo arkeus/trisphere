@@ -11,4 +11,9 @@ class IndexController < ApplicationController
 			redirect_to action: :index and return
 		end
 	end
+	
+	def logout
+		reset_session
+		redirect_to action: :index and return
+	end
 end

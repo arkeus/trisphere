@@ -6,6 +6,12 @@ class ApplicationController < ActionController::Base
   before_filter :set_user
   
   def set_user
-    @user = User.new
+  	if session[:user_id]
+  		@user = User.find(session[:user_id])
+  		@user.logged_in = true
+  		@character = Character.where(user_id: @user.id, active: true).first
+  	else
+  		@user = User.new
+  	end
   end
 end
