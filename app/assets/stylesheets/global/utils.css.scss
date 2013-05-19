@@ -1,0 +1,22 @@
+$layout-width: 990px;
+
+/* Global Helpers */
+.float-left { float: left; }
+.float-right { float: right; }
+.left { text-align: left; }
+.right { text-align: right; }
+.center { text-align: center; }
+
+/* Clearfix */
+.cf {
+	&:before, &:after {
+		content: " ";
+		display: table;
+	}
+	
+	&:after {
+		clear: both;
+	}
+	
+	*zoom: 1;
+}
