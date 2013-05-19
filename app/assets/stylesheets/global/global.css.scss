@@ -160,3 +160,11 @@ header, footer {
 	width: $layout-width;
 	margin: 0px auto 0px auto;
 }
+
+#sidebar {
+	.separator {
+		margin: 6px 6px 6px 0;
+		height: 1px;
+		background: #eee;
+	}
+}

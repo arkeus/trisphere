@@ -1,6 +1,6 @@
-class CreateUsers < ActiveRecord::Migration
+class CreateBase < ActiveRecord::Migration
 	# All basic database changes here so we launch with a single migration
-  def change
+  def up
     create_table :users do |t|
     	t.string :username, null: false, limit: 16
     	t.string :password_digest, null: false
@@ -73,8 +73,24 @@ class CreateUsers < ActiveRecord::Migration
     	t.integer :enchanting_xpm, default: 100
     end
     
+    p "WHAT"
+    
     # Test character
     # TODO: remove
-    character = Character.new(account_id: 1, active: true, name: "Arkeus")
+    begin
+    	p "before"
+    	character = Character.new(:account_id => 1, :active => true, :name => "Arkeus")
+    	p "after"
+    rescue Exception => e
+    	puts "POOP #{e.message} #{e.backtrace.join("\n")}"
+   	end
+    #character.save!
+    
+    p "WHAT2"
+  end
+  
+  def down
+  	drop_table :characters
+  	drop_table :users
   end
 end
