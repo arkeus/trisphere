@@ -32,7 +32,7 @@ class CreateBase < ActiveRecord::Migration
     	t.integer :agility, default: 10
     	t.integer :wisdom, default: 10
     	
-    	t.string :mainclass, default: "Peasant"
+    	t.string :surclass, default: "Peasant"
     	t.string :subclass, default: "Peasant"
     	
     	t.integer :wins, default: 0

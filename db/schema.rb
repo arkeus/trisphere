@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20130519100444) do
     t.integer "defense",                        default: 10
     t.integer "agility",                        default: 10
     t.integer "wisdom",                         default: 10
-    t.string  "mainclass",                      default: "Peasant"
+    t.string  "surclass",                       default: "Peasant"
     t.string  "subclass",                       default: "Peasant"
     t.integer "wins",                           default: 0
     t.integer "losses",                         default: 0
