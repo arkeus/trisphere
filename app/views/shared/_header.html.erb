@@ -1,0 +1,33 @@
+<header>
+	<div id="title-bar"><div class="bounds">
+		<div id="notifications">notifications</div>
+		<%= image_tag("layout/logo.png", id: "logo") -%>
+	</div></div>
+	<div class="color-bar"></div>
+	<nav><div class="bounds cf">
+		<% if @user.logged_in? %>
+			<div class="float-left">
+				<%= navigation_tag({ action: "index" }, "home", "Character")%>
+				<%= navigation_tag({ action: "index" }, "axe", "Inventory")%>
+				<%= navigation_tag({ action: "index" }, "crystal", "Skills")%>
+				<%= navigation_tag({ action: "index" }, "shield", "Quests")%>
+				<%= navigation_tag({ action: "index" }, "sword", "Explore")%>
+				<%= navigation_tag({ action: "index" }, "orb", "Market")%>
+				<%= navigation_tag({ action: "index" }, "scroll", "Forums")%>
+			</div>
+		<% else %>
+			<div class="float-left">
+				<%= navigation_tag({ action: "index" }, "home", "Home")%>
+				<%= navigation_tag({ action: "index" }, "scroll", "Contact Us")%>
+				<%= navigation_tag({ action: "index" }, "orb", "Register")%>
+			</div>
+			<div class="float-right" id="login">
+				<%= form_tag({ action: :login }, method: :post) do |f| %>
+					<%= text_field_tag "username", nil, placeholder: "username", autofocus: true %>
+					<%= password_field_tag "password", nil, placeholder: "password" %>
+					<%= submit_tag "Login" %>
+				<% end %>
+			</div>
+		<% end %>
+	</div></nav>
+</header>
