@@ -1,15 +1,17 @@
 @import "global/utils";
 
+// TODO: Make it work outside of chrome dev at some point
 html {
 	height: 100%;
 	
 	body {
 		background: #fff;
+		overflow-y: scroll;
 	}
 	
 	body, input, textarea {
-		font-weight: verdana, sans-serif;
-		font-size: 12px;
+		font-family: verdana, sans-serif;
+		font-size: 11px;
 	}
 	
 	a, input[type="submit"] {
@@ -77,12 +79,12 @@ header {
 		}
 		
 		.nav-tag {
-			padding: 4px 0 4px 28px;
+			padding: 4px 0 0 28px;
 			margin: 2px 16px 0 0;
 			background-repeat: no-repeat;
 			background-position: 0 0;
 			display: inline-block;
-			font-size: 15px;
+			font-size: 14px;
 			font-weight: bold;
 			color: #666;
 			text-shadow: 1px 1px 0 #fff;
@@ -103,16 +105,15 @@ header {
 			}
 			
 			input[type="submit"] {
-				padding: 3px 6px 4px 6px;
+				padding: 2px 6px 3px 6px;
 				color: #ffffff;
 				text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
 				background-color: #ca3434;
 				background-image: linear-gradient(to bottom, #ca3434, #971e1e);
-				background-repeat: repeat-x;
-  			border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  			border-color: rgba(0, 0, 0, 0.2);
   			font-size: 10px;
   			vertical-align: top;
-  			box-shadow: inset 0 1px 0 #e97373, 0 0px 1px rgba(0, 0, 0, 0.05);
+  			box-shadow: inset 0 1px 0 #e76060, 0 0px 1px rgba(0, 0, 0, 0.05);
   			
   			&:hover {
   				box-shadow: inset 0 1px 0 #ffaaaa, 0 0px 1px rgba(0, 0, 0, 0.05);
@@ -165,12 +166,307 @@ header, footer {
 .bounds {
 	width: $layout-width;
 	margin: 0px auto 0px auto;
+  box-sizing: border-box;
+  vertical-align: top;
 }
 
-#sidebar {
-	.separator {
-		margin: 6px 6px 6px 0;
-		height: 1px;
-		background: #eee;
+#content {
+	#sidebar {
+		display: inline-block;
+		width: 224px;
+		border-right: 1px solid #ddd;
+		min-height: 300px;
+	  box-sizing: border-box;
+	  vertical-align: top;
+	  margin-top: 4px;
+		
+		.separator {
+			margin: 6px 6px 6px 0;
+			height: 1px;
+			background: #eee;
+		}
+		
+		.switch-button {
+			color: #fff;
+			font-size: 8px;
+			font-weight: bold;
+			background: #ddd;
+			padding: 1px 4px;
+			border-radius: 3px;
+			cursor: pointer;
+			vertical-align: top;
+			margin-top: 3px;
+		}
+		
+		#character-panel {
+			margin: 2px 0 6px 0;
+			
+			#avatar {
+				vertical-align: middle;
+				float: left;
+			}
+			
+			.row {
+				float: right;
+				width: 182px;
+				margin: 0 3px 2px 0;
+			}
+			
+			#name {
+				font-size: 14px;
+				font-weight: bold;
+				display: inline-block;
+			}
+			
+			#switch {
+				margin-right: 4px;
+				float: right;
+			}
+			
+			#class {
+				font-size: 11px;
+				font-weight: bold;
+				display: inline-block;
+				color: #c46f00;
+			}
+			
+			#classes {
+				margin-right: 4px;
+				color: #999;
+				font-size: 9px;
+				font-weight: bold;
+				float: right;
+			}
+			
+			#companion {
+				margin-right: 4px;
+				color: #555;
+				font-size: 9px;
+				font-weight: bold;
+			}
+			
+			#companion-level {
+					margin-right: 4px;
+					color: #666;
+					font-size: 9px;
+					font-weight: bold;
+					float: right;
+			}
+		}
+		
+		.character-bar {
+			border: {
+				top: 1px solid #999;
+				left: 1px solid #999;
+				right: 1px solid #ddd;
+				bottom: 1px solid #ddd;
+			}
+			background: #fff;
+			width: 216px;
+			height: 17px;
+			margin-bottom: 4px;
+			position: relative;
+			font-size: 10px;
+			
+			&.short {
+				width: 105px;
+				float: left;
+				margin-right: 4px;
+				
+				.fill {
+					width: 63px;
+				}
+				
+				.unfill {
+					width: 103px;
+				}
+			}
+			
+			.text, .label {
+				position: absolute;
+				top: 2px;
+				z-index: 15;
+				font-weight: bold;
+				text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+				color: #fff;
+			}
+			
+			.text {
+				right: 4px;
+			}
+			
+			.label {
+				left: 16px;
+			}
+			
+			.icon {
+				position: absolute;
+				top: 4px;
+				left: 4px;
+				z-index: 15;
+			}
+			
+			.unfill {
+				border: {
+					top: 1px solid #333;
+					bottom: 1px solid #666;
+				}
+				background: #444;
+				width: 214px;
+				height: 13px;
+				position: absolute;
+				top: 1px;
+				left: 1px;
+				z-index: 5;
+			}
+			
+			.fill {
+				position: absolute;
+				top: 1px;
+				left: 1px;
+				height: 13px;
+				z-index: 10;
+				width: 180px;
+				
+				&.red {
+					background: #a03c3c;
+					border: {
+						top: 1px solid #a03c3c;
+						bottom: 1px solid #a03c3c;
+					}
+				}
+				
+				&.blue {
+					background: #3c60a0;
+					border: {
+						top: 1px solid #3c60a0;
+						bottom: 1px solid #3c60a0;
+					}
+				}
+				
+				&.green {
+					background: #4aa03c;
+					border: {
+						//top: 1px solid #107200;
+						top: 1px solid #4aa03c;
+						bottom: 1px solid #4aa03c;
+					}
+				}
+				
+				&.orange {
+					background: #a0793c;
+					border: {
+						top: 1px solid #a0793c;
+						bottom: 1px solid #a0793c;
+					}
+				}
+				
+				&.yellow {
+					background: #9fa03c;
+					border: {
+						top: 1px solid #9fa03c;
+						bottom: 1px solid #9fa03c;
+					}
+				}
+			}
+		}
+		
+		#companion {
+			.icon {
+				float: left;
+				margin: 3px 0 0 8px;
+			}
+			
+			.row {
+				width: 185px;
+				margin-left: 36px;
+				height: 16px;
+			}
+			
+			.name {
+				font-size: 12px;
+				font-weight: bold;
+			}
+			
+			.switch {
+				margin-right: 4px;
+				margin-top: 2px;
+				float: right;
+			}
+			
+			.type {
+				margin-right: 4px;
+				color: #555;
+				font-size: 9px;
+				font-weight: bold;
+			}
+			
+			.level {
+				margin-right: 4px;
+				color: #666;
+				font-size: 9px;
+				font-weight: bold;
+				float: right;
+			}
+		}
+		
+		#finance {
+			.entry {
+				font-size: 11px;
+				font-weight: bold;
+				width: 50%;
+				text-align: center;
+				float: left;
+			}
+			
+			img {
+				position: relative;
+				top: 2px;
+			}
+		}
+		
+		#navigation {
+			.block {
+				float: left;
+				width: 100px;
+				margin-left: 10px;
+				
+				.header {
+					font-weight: bold;
+					color: #4c3b00;
+					font-size: 12px;
+					color: #999;
+				}
+				
+				a {
+					display: inline-block;
+					margin: 6px 0 0 18px;
+					font-size: 11px;
+					color: #4c3b00;
+				}
+			}
+			
+			.navigation-separator {
+				height: 8px;
+			}
+		}
+	}
+	
+	#content-full {
+		display: inline-block;
+		width: $layout-width;
+		box-sizing: border-box;
+		vertical-align: top;
+	}
+	
+	#content-column {
+		display: inline-block;
+		width: 765px;
+		box-sizing: border-box;
+		vertical-align: top;
+		
+		.padded {
+			padding: 6px 6px;
+		}
 	}
 }

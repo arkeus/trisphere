@@ -8,8 +8,7 @@
 </head>
 <body>
 <%= render :partial => "shared/header" %>
-<%= render :partial => "shared/sidebar" if @user.logged_in? %>
-<div class="bounds"><%= yield %></div>
+<div class="bounds" id="content"><%= render :partial => "shared/sidebar" if @user.logged_in? -%><div id="<%= @user.logged_in? ? "content-column" : "content" -%>"><%= yield %></div></div>
 <%= render :partial => "shared/footer" %>
 </body>
 </html>
