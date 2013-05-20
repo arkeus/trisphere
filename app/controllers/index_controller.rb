@@ -1,4 +1,6 @@
 class IndexController < ApplicationController
+	before_filter :redirect_if_logged_in, :except => [:logout]
+	
 	def index; end
 	
 	def login
@@ -15,5 +17,11 @@ class IndexController < ApplicationController
 	def logout
 		reset_session
 		redirect_to action: :index and return
+	end
+	
+	private
+	
+	def redirect_if_logged_in
+		redirect_to "/character" if @user.logged_in?
 	end
 end
