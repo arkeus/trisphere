@@ -1,0 +1,11 @@
+<%
+	max_width = short ? 103 : 214
+	fill_width = [(min / max) * max_width, 3].max
+%>
+<div class="character-bar<%= " short" if short -%>">
+	<%= image_tag("layout/character_#{image}.png", class: "icon") %>
+	<div class="label"><%= label %></div>
+	<div class="text"><%= show_progress ? "#{min}/#{max}" : value %></div>
+	<div class="unfill"></div>
+	<%= content_tag(:div, nil, style: "width:#{fill_width}px", class: ["fill", color]) -%>
+</div>
