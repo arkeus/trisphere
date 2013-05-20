@@ -1,11 +1,18 @@
 $layout-width: 990px;
+$content-width: 765px;
 
 /* Global Helpers */
 .float-left { float: left; }
 .float-right { float: right; }
-.left { text-align: left; }
-.right { text-align: right; }
-.center { text-align: center; }
+.align-left { text-align: left; }
+.align-right { text-align: right; }
+.align-center { text-align: center; }
+
+/* Link colors */
+$link-color: #3873ba;
+$link-hover-color: #baa938;
+$link-visited-color: #b93838;
+$link-active-color: #51ba38;
 
 /* Clearfix */
 .cf {

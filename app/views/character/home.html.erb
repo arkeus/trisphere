@@ -1,3 +1,68 @@
 <section class="padded">
-	<%= session[:user_id] %>
+	<div id="stats">
+		<%= render partial: "stat_panel", locals: { name: "strength", value: rand(20) + 10 } %>
+		<%= render partial: "stat_panel", locals: { name: "wisdom", value: rand(20) + 10 } %>
+		<%= render partial: "stat_panel", locals: { name: "defense", value: rand(20) + 10 } %>
+		<%= render partial: "stat_panel", locals: { name: "agility", value: rand(20) + 10 } %>
+		<%= render partial: "stat_panel", locals: { name: "stamina", value: rand(20) + 10 } %>
+		<%= render partial: "stat_panel", locals: { name: "spirit", value: rand(20) + 10 } %>
+	</div>
+	<div id="character" class="cf">
+		<div id="character-column-left">
+			<div class="header"><span>Character</span></div>
+			<div class="label-value" data-label="Name">Kal</div>
+			<div class="label-value" data-label="Level"><%= @character.combat_level %></div>
+			
+			<div class="header"><span>Finance</span></div>
+			<div class="label-value" data-label="Gold"><%= @user.gold %></div>
+			<div class="label-value" data-label="Shards"><%= @user.shards %></div>
+			
+			<div class="header"><span>Battle Record</span></div>
+			<div class="label-value" data-label="Wins"><%= @character.wins %></div>
+			<div class="label-value" data-label="Losses"><%= @character.losses %></div>
+			<div class="label-value" data-label="Draws"><%= @character.draws %></div>
+		</div>
+		<div id="character-column-center">
+			<div class="header"><span>Resistances</span></div>
+			<div id="resistances" class="align-center">
+				<div class="resistance"><%= image_tag("icons/resistances/fire.gif") -%> 12</div>
+				<div class="resistance"><%= image_tag("icons/resistances/water.gif") -%> 12</div>
+				<div class="resistance"><%= image_tag("icons/resistances/earth.gif") -%> 12</div>
+				<div class="resistance"><%= image_tag("icons/resistances/air.gif") -%> 12</div>
+				<div class="resistance"><%= image_tag("icons/resistances/light.gif") -%> 12</div>
+				<div class="resistance"><%= image_tag("icons/resistances/dark.gif") -%> 12</div>
+			</div>
+			<div class="header"><span>Statistics</span></div>
+			<div class="statistic-group">
+				<div class="label-value statistic" data-label="Chance To Hit">94%</div>
+				<div class="sub-statistic"><span><strong>30</strong> Accuracy</span>+27.23% hit chance</div>
+			</div>
+			<div class="statistic-group">
+				<div class="label-value statistic" data-label="Experience Gain">104%</div>
+				<div class="sub-statistic"><span><strong>183</strong> Exp Rating</span>+4% experience gain</div>
+			</div>
+			<div class="statistic-group">
+				<div class="label-value statistic" data-label="Experience Gain">189%</div>
+				<div class="sub-statistic"><span><strong>2432</strong> Gold Rating</span>+89% gold gain</div>
+			</div>
+			<div class="statistic-group">
+				<div class="label-value statistic" data-label="Critical Chance">21%</div>
+				<div class="sub-statistic"><span><strong>222</strong> Critical Rating</span>+21% critical chance</div>
+			</div>
+			<div class="statistic-group">
+				<div class="label-value statistic" data-label="Critical Damage">105%</div>
+				<div class="sub-statistic"><span><strong>321</strong> Critical Power</span>+5% critical damage</div>
+			</div>
+		</div>
+		<div id="character-column-right">
+			<div class="header"><span>Professions</span></div>
+			<%= profession_panel("sunsteel_pickaxe", "Mining", 1, 0, 100, "#ffdd00") %>
+			<%= profession_panel("steelP", "Blacksmithing", 1, 34, 100, "#205229") %>
+			<%= profession_panel("mythril_hatchet", "Woodcutting", 1, 34, 100, "#1764aa") %>
+			<%= profession_panel("ash_compositebow", "Crafting", 1, 34, 100, "#b15f00") %>
+			<%= profession_panel("herb_akaleaf", "Herbalism", 1, 34, 100, "#309541") %>
+			<%= profession_panel("potion_strengthS", "Alchemy", 1, 34, 100, "#812121") %>
+			<%= profession_panel("runicorb", "Enchanting", 1, 34, 100, "#474ab8") %>
+		</div>
+	</div>
 </section>

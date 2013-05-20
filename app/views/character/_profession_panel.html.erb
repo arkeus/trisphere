@@ -1,0 +1,5 @@
+<div class="profession-panel cf">
+	<%= image_tag("items/#{image}.gif") %>
+	<div class="name"><strong><%= name %></strong><span>Level <%= level %></span></div>
+	<div class="experience"><%= slotted_bar("", "#{min} / #{max}", color, 122, (min.to_f / max)) %></div>
+</div>

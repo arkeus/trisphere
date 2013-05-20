@@ -5,6 +5,10 @@ module ApplicationHelper
 	end
 	
 	def character_bar(label, image, color, value, min, max, show_progress = false, short = false)
-		render :partial => "shared/character_bar", locals: { label: label, image: image, color: color, value: value, min: min, max: max, show_progress: show_progress, short: short }
+		render partial: "shared/character_bar", locals: { label: label, image: image, color: color, value: value, min: min, max: max, show_progress: show_progress, short: short }
+	end
+	
+	def slotted_bar(name, value, color, width, percent)
+		render partial: "shared/slotted_bar", locals: { name: name, value: value, color: color, width: width, percent: percent }
 	end
 end

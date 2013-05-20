@@ -20,9 +20,11 @@ ActiveRecord::Schema.define(version: 20130519100444) do
     t.integer "energy",                         default: 1000
     t.integer "fatigue",                        default: 1000
     t.integer "strength",                       default: 10
+    t.integer "wisdom",                         default: 10
     t.integer "defense",                        default: 10
     t.integer "agility",                        default: 10
-    t.integer "wisdom",                         default: 10
+    t.integer "stamina",                        default: 10
+    t.integer "spirit",                         default: 10
     t.string  "surclass",                       default: "Peasant"
     t.string  "subclass",                       default: "Peasant"
     t.integer "wins",                           default: 0

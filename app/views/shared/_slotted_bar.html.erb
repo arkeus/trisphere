@@ -1,0 +1,10 @@
+<% full_width = "#{width + 6}px"; width = "#{width}px"; percent = "#{[percent * 100, 4].max}%" %>
+<div class="slotted-bar cf" style="width:<%= full_width -%>">
+	<div class="title" data-name="<%= name -%>" data-value="<%= value -%>"></div>
+	<div class="left"></div>
+	<div class="middle" style="width:<%= width -%>">
+		<div class="color" style="width:<%= percent -%>;background-color:<%= color -%>"></div>
+		<div class="gradient"></div>
+	</div>
+	<div class="right"></div>
+</div>

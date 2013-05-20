@@ -14,11 +14,6 @@ class CreateBase < ActiveRecord::Migration
       t.timestamps
     end
     
-    # Test user with super secret password that you'll never guess, don't even try you'll never crack it
-    # TODO: remove
-    user = User.new(:username => "arkeus", :password => "password", :password_confirmation => "password", :email => "iarkeus@gmail.com", :ip => "134.134.134.134")
-    user.save!
-    
     create_table :characters do |t|
     	t.integer :user_id, null: false
     	t.boolean :active, default: false
@@ -28,9 +23,11 @@ class CreateBase < ActiveRecord::Migration
     	t.integer :fatigue, default: 1000
     	
     	t.integer :strength, default: 10
+    	t.integer :wisdom, default: 10
     	t.integer :defense, default: 10
     	t.integer :agility, default: 10
-    	t.integer :wisdom, default: 10
+    	t.integer :stamina, default: 10
+    	t.integer :spirit, default: 10
     	
     	t.string :surclass, default: "Peasant"
     	t.string :subclass, default: "Peasant"
@@ -72,11 +69,6 @@ class CreateBase < ActiveRecord::Migration
     	t.integer :enchanting_xpc, default: 0
     	t.integer :enchanting_xpm, default: 100
     end
-    
-    # Test character
-    # TODO: remove
-    character = Character.new(:user_id => 1, :active => true, :name => "Arkeus")
-    character.save!
   end
   
   def down

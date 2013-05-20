@@ -1,3 +1,211 @@
-// Place all the styles related to the character controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "global/utils";
+
+#stats {
+	.stat-panel {
+		&:first-child {
+			margin-left: 0;
+		}
+		
+		display: inline-block;
+		width: 112px;
+		margin-left: 12px;
+		background-repeat: no-repeat;
+		background-position: left center;
+		
+		&.strength { background-image: asset-url("images/stats/strength.png"); .name { border-top-color: #d7b0b0; } }
+		&.wisdom { background-image: asset-url("images/stats/wisdom.png"); .name { border-top-color: #b0c6d7; }  }
+		&.defense { background-image: asset-url("images/stats/defense.png"); .name { border-top-color: #b8d7b0; }  }
+		&.agility { background-image: asset-url("images/stats/agility.png"); .name { border-top-color: #e9e495; }  }
+		&.stamina { background-image: asset-url("images/stats/stamina.png"); .name { border-top-color: #c0c0c0; }  }
+		&.spirit { background-image: asset-url("images/stats/spirit.png"); .name { border-top-color: #c0b0d7; }  }
+		
+		.value {
+			float: left;
+			font-size: 18px;
+			font-weight: bold;
+			text-align: left;
+			margin-left: 40px;
+			font-family: verdana;
+			line-height: 18px;
+		}
+		
+		.raw {
+			float: right;
+			text-align: right;
+			font-size: 9px;
+			margin-right: 2px;
+			
+			.base {
+				line-height: 8px;
+			}
+			
+			.add {
+				font-style: italic;
+				color: #555;
+				line-height: 12px;
+				position: relative;
+				left: -1px;
+			}
+		}
+		
+		.name {
+			clear: both;
+			font-size: 12px;
+			font-weight: bold;
+			text-align: center;
+			border-top: 1px solid #aaa;
+			margin-top: 2px;
+			margin-left: 38px;
+			color: #555;
+			font-family: helvetica;
+		}
+	}
+}
+
+#character {
+	width: $content-width;
+	margin-top: 6px;
+	
+	#character-column-left {
+		float: left;
+		width: 20%;
+		box-sizing: border-box;
+	}
+	
+	#character-column-center {
+		float: left;
+		width: 45%;
+		box-sizing: border-box;
+		padding: 0 24px;
+	}
+	
+	#character-column-right {
+		float: left;
+		width: 35%;
+		box-sizing: border-box;
+	}
+	
+	.header {
+		font-family: helvetica;
+		text-align: center;
+		font-size: 14px;
+		height: 10px;
+		border-bottom: 1px solid #ccc;
+		margin: 8px 0 10px 0;
+		color: #4c3b00;
+		font-weight: bold;
+		
+		span {
+			background: #fff;
+			padding: 0 6px;
+		}
+		
+		&:before {
+			content: "";
+			font-size: 16px;
+			color: #aaa;
+			background: #fff;
+			font-weight: normal;
+		}
+		
+		&:after {
+			content: "";
+			font-size: 16px;
+			color: #aaa;
+			background: #fff;
+			font-weight: normal;
+		}
+	}
+	
+	.label-value {
+		text-align: right;
+		margin-bottom: 4px;
+		border-bottom: 1px dashed #f2f2f2;
+		color: #444;
+		font-weight: bold;
+		padding-bottom: 2px;
+		
+		&:before {
+			content: attr(data-label);
+			float: left;
+			font-weight: normal;
+			color: #777;
+		}
+	}
+	
+	.statistic-group {
+		margin-bottom: 8px;
+		
+		.statistic {
+			font-size: 12px;
+			padding-bottom: 2px;
+			margin-bottom: 2px;
+			
+			&:before {
+				color: #555;
+				font-weight: bold;
+			}
+		}
+		
+		.sub-statistic {
+			text-align: right;
+			color: #777;
+			
+			span {
+				float: left;
+				margin-left: 5px;
+			}
+		}
+	}
+	
+	#resistances {
+		padding-top: 4px;
+		
+		.resistance {
+			font-size: 13px;
+			font-weight: bold;
+			margin: 0 4px;
+			display: inline-block;
+			font-family: verdana;
+			
+			img {
+				position: relative;
+				top: 1px;
+			}
+		}
+	}
+	
+	.profession-panel {
+		margin: 2px 0 8px 0;
+		width: 260px;
+		
+		img {
+			float: left;
+			margin: 4px;
+		}
+		
+		.name {
+			float: left;
+			font-weight: bold;
+			width: 110px;
+			
+			strong {
+				display: block;
+				font-size: 11px;
+				color: #222;
+			}
+			
+			span {
+				color: #666;
+				font-size: 10px;
+				position: relative;
+				top: -2px;
+			}
+		}
+			
+		.experience {
+			float: left;
+			width: 122px;
+		}
+	}
+}
