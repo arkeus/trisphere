@@ -1,0 +1,28 @@
+<%= render partial: "forums/partials/header" %>
+
+<table id="categories" class="forum-table">
+	<thead>
+		<th colspan=2>Category</th>
+		<th>Stats</th>
+		<th>Last Post</th>
+	</thead>
+	<tbody>
+		<% @categories.each do |category| %>
+		<tr>
+			<td width=20><%= image_tag "stats/spirit.png", width: 20, height: 20 %></td>
+			<td>
+				<span class="title"><%= link_to category.name, action: "category", category_id: category.id %></span><br>
+				<span class="light"><%= category.description %></span>
+			</td>
+			<td>
+				<%= category.topics %> <span class="light">Topics</span><br>
+				<%= category.replies %> <span class="light">Replies</span>
+			</td>
+			<td>
+				Link<br>
+				<span class="light">By arkeus 320 Days Ago</span>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

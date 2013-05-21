@@ -1,0 +1,29 @@
+<% if @preview_post %>
+	<%= render partial: "forums/partials/post", locals: { post: @preview_post } %>
+<% end %>
+
+<%= form_tag({ action: "make_post" }, method: "POST", id: "post-form", class: "post-form") do %>
+	<div class="post-content">
+		<% unless @topic %>
+			<%= text_field_tag :subject, params[:subject], maxlength: 32, placeholder: "Subject" %>
+		<% end %>
+		<div class="post-actions">
+			<a class="button bold">B</a>
+			<a class="button italic">I</a>
+			<a class="button underline">U</a>
+		</div>
+		<div class="post-message">
+			<%= text_area_tag :message, params[:message], maxlength: 1500, placeholder: "Message" %>
+		</div>
+		<div class="post-submit">
+			<%= hidden_field_tag "preview", nil %>
+			<%= submit_tag "Post #{@topic ? "Reply" : "Topic"}" %>
+			<%= link_to "Preview", "#", class: "button", id: "preview-button" %>
+		</div>
+	</div>
+<% end %>
+
+<%= form_tag({ action: "post" }, method: "POST", id: "preview-form", class: "preview-form") do %>
+	<%= hidden_field_tag "subject", nil %>
+	<%= hidden_field_tag "message", nil %>
+<% end %>

@@ -1,0 +1,39 @@
+<%= render partial: "forums/partials/header" %>
+
+<%= render partial: "forums/partials/category_actions" %>
+
+<table id="topics" class="forum-table">
+	<thead>
+		<th colspan=2>Topic</th>
+		<th>Author</th>
+		<th>Stats</th>
+		<th>Last Reply</th>
+	</thead>
+	<tbody>
+		<% @topics.each do |topic| %>
+		<tr>
+			<td>
+				<%= image_tag "stats/spirit.png", width: 20, height: 20 %>
+			</td>
+			<td>
+				<%= link_to topic.subject, action: "topic", topic_id: topic.id %><br>
+				<span class="light">Headline goes here</span>
+			</td>
+			<td>
+				Username<br>
+				<span class="light">30 Days Ago</span>
+			</td>
+			<td>
+				<%= topic.replies %> <span class="light">Replies</span><br>
+				<%= topic.views %> <span class="light">Views</span>
+			</td>
+			<td>
+				Namelink<br>
+				<span class="light">10 Hours Ago</span>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= render partial: "forums/partials/category_actions" %>

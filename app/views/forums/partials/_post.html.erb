@@ -1,0 +1,22 @@
+<div class="post cf">
+	<div class="author">
+		<span class="username"><%= post.username %></span><br>
+		<%= (image_tag post.avatar + "<br>") unless post.avatar.blank? %>
+		<strong><%= post.posts %></strong> posts
+	</div>
+	<div class="message">
+		<div class="header cf">
+			Posted <%= post.post_date %>
+			<div class="actions float-right">
+				<%= link_to "Edit", action: "index" %>
+				<%= link_to "Delete", action: "index" %>
+			</div>
+		</div>
+		<div class="content">
+			<%= post.message %>
+		</div>
+		<div class="signature">
+			<%= post.signature %>
+		</div>
+	</div>
+</div>

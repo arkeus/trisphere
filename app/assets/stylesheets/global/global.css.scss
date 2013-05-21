@@ -484,6 +484,9 @@ header, footer {
 	}
 }
 
+// Global Utility Classes
+// TODO: Perhaps these can go in a separate file
+
 .slotted-bar {
 	.title {
 		font-weight: bold;
@@ -541,4 +544,18 @@ header, footer {
 		width: 3px;
 		height: 10px;
 	}
+}
+
+a.button {
+		display: inline-block;
+		padding: 4px 8px;
+		background: #fafafa;
+		border-radius: 3px;
+		border: {
+			top: 1px solid #eee;
+			left: 1px solid #eee;
+			right: 1px solid #ccc;
+			bottom: 1px solid #ccc;
+		}
+		font-weight: bold;
 }

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Trisphere</title>
-  <%= stylesheet_link_tag "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+	<title>Trisphere</title>
+	<!-- Controller specific javascript hook -->
+	<script>var controller = "<%= params[:controller] -%>";</script>
+	<%= stylesheet_link_tag "application", media: "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
-<%= render :partial => "shared/header" %>
-<div class="bounds" id="content"><%= render :partial => "shared/sidebar" if @user.logged_in? -%><div id="<%= @user.logged_in? ? "content-column" : "content" -%>"><%= yield %></div></div>
-<%= render :partial => "shared/footer" %>
+	<%= render :partial => "shared/header" %>
+	<div class="bounds" id="content"><%= render :partial => "shared/sidebar" if @user.logged_in? -%><div id="<%= @user.logged_in? ? "content-column" : "content" -%>"><%= yield %></div></div>
+	<%= render :partial => "shared/footer" %>
 </body>
 </html>

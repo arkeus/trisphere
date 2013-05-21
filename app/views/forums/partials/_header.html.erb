@@ -1,0 +1,14 @@
+<div id="forum-header">
+	<%= link_to "Forums", action: "index" %>
+	<% if @category %>
+		&gt;
+		<%= link_to @category.name, action: "category", category_id: @category.id %>
+	<% end %>
+	<% if @topic %>
+		&gt;
+		<%= link_to @topic.subject, action: "topic", category_id: @category.id, topic_id: @topic.id %>
+	<% end %>
+	<% if defined?(ending) && !ending.blank? %>
+		&gt; <%= ending %>
+	<% end %>
+</div>
