@@ -15,12 +15,12 @@
 				<span class="light"><%= category.description %></span>
 			</td>
 			<td>
-				<%= category.topics %> <span class="light">Topics</span><br>
-				<%= category.replies %> <span class="light">Replies</span>
+				<%= category.topics %> <span class="light"><%= "Topic".pluralize(category.topics) -%></span><br>
+				<%= category.replies %> <span class="light"><%= "Reply".pluralize(category.replies) -%></span>
 			</td>
 			<td>
-				Link<br>
-				<span class="light">By arkeus 320 Days Ago</span>
+				<%= category.topic_id ? (link_to "#{'Re: ' if category.topic_id != category.post_id}#{category.subject}", action: "topic", category_id: category.id, topic_id: category.topic_id) : "None" -%><br>
+				<span class="light">By <%= name_link(category.user_id) %> 320 Days Ago</span>
 			</td>
 		</tr>
 		<% end %>

@@ -1,5 +1,13 @@
 <%= render partial: "forums/partials/header" %>
 
-<% @posts.each do |post| %>
-	<%= render partial: "forums/partials/post", locals: { post: post } %>
-<% end %>
+<%= render partial: "forums/partials/topic_actions" %>
+
+<div id="posts">
+	<% @posts.each do |post| %>
+		<%= render partial: "forums/partials/post", locals: { post: post } %>
+	<% end %>
+</div>
+
+<%= render partial: "forums/partials/topic_actions" %>
+
+<%= render partial: "forums/partials/post_form", locals: { hidden: true } %>

@@ -7,6 +7,10 @@ $(function() {
 		$("#preview-form").submit();
 		return false;
 	});
+	
+	$(".quick-reply").click(function() {
+		$("#post-form").toggle();
+	});
 });
 
 /* End Forum Specific Code */ } /* */

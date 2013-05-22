@@ -1,3 +1,5 @@
+@import "global/utils";
+
 .forum-table {
 	border-collapse: separate;
 	border-spacing: 2px 0;
@@ -32,6 +34,24 @@
 	}
 }
 
+#topics tr {
+	td:nth-child(1) {
+		width: 20px;
+	}
+	
+	td:nth-child(3) {
+		width: 100px;
+	}
+	
+	td:nth-child(4) {
+		width: 70px;
+	}
+	
+	td:nth-child(5) {
+		width: 100px;
+	}
+}
+
 .forum-actions {
 	margin: 8px 8px 0 8px;
 	padding-bottom: 8px;
@@ -46,6 +66,10 @@
 }
 
 .post-form {
+	&.hidden {
+		display: none;
+	}
+	
 	.post-content {
 		padding: 8px;
 		
@@ -83,6 +107,107 @@
 	}
 }
 
+.post {
+	margin: 0 8px;
+	padding: 8px 0;
+	border-bottom: 1px solid #bbb;
+	
+	&:first-child {
+		border-top: 1px solid #bbb;
+	}
+	
+	&.topic {
+		background: #fff8f8;
+	}
+	
+	.author {
+		width: 120px;
+		text-align: center;
+		display: inline-block;
+		vertical-align: top;
+		
+		.username {
+			font-size: 12px;
+			font-weight: bold;
+		}
+		
+		.avatar {
+			margin: 2px 0px;
+		}
+	}
+	
+	.message {
+		color: #222;
+		width: 611px;
+		padding: 0 4px;
+		display: inline-block;
+		vertical-align: top;
+		
+		.header {
+			color: #ccc;
+			border-bottom: 1px dotted #ccc;
+			padding-bottom: 2px;
+			margin-bottom: 6px;
+			width: 100%;
+			position: relative;
+			
+			.actions {
+				display: none;
+				position: absolute;
+				right: 0px;
+				top: -4px;
+			}
+		}
+		
+		.content {
+			color: #333;
+		}
+		
+		.signature {
+			color: #aaa;
+			border-top: 1px dotted #ccc;
+			padding-top: 2px;
+			margin-top: 6px;
+			width: 100%;
+		}
+	}
+	
+	&:hover {
+		background: #fafafa;
+		
+		.header {
+			color: #888;
+		}
+		
+		.actions {
+			display: block !important;
+		}
+	}
+}
+
+.pagination {
+	span, em, a {
+		@include button;
+	}
+	
+	.disabled {
+		color: #aaa;
+	}
+	
+	.current {
+		color: #fff;
+		background: #444;
+		font-style: normal;
+		box-shadow: inset 0 -1px #000, inset 0 0 1px #fff;
+		border: {
+			top: 1px solid #555;
+			left: 1px solid #555;
+			right: 1px solid #555;
+			bottom: 1px solid #000;
+		}
+	}
+}
+
 #forum-header {
 	margin: 8px 8px 0px 8px;
 	padding-bottom: 8px;
@@ -94,4 +219,18 @@
 
 .light {
 	color: #999;
+}
+
+.user-tag {
+	img {
+		position: relative;
+		top: 2px;
+		margin-right: 2px;
+	}
+	
+	&.large {
+		img {
+			top: 1px;
+		}
+	}
 }

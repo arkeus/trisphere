@@ -20,16 +20,24 @@
 				<span class="light">Headline goes here</span>
 			</td>
 			<td>
-				Username<br>
-				<span class="light">30 Days Ago</span>
+				<% if topic.user_id %>
+					<%= name_link(topic.user_id) %><br>
+					<span class="light">10 Hours Ago</span>
+				<% else %>
+					<span class="light">No Replies</span>
+				<% end %>
 			</td>
 			<td>
-				<%= topic.replies %> <span class="light">Replies</span><br>
-				<%= topic.views %> <span class="light">Views</span>
+				<%= topic.replies %> <span class="light"><%= "Reply".pluralize(topic.replies) -%></span><br>
+				<%= topic.views %> <span class="light"><%= "View".pluralize(topic.views) -%></span>
 			</td>
 			<td>
-				Namelink<br>
-				<span class="light">10 Hours Ago</span>
+				<% if topic.last_post_user_id %>
+					By <%= name_link(topic.last_post_user_id) %><br>
+					<span class="light">10 Hours Ago</span>
+				<% else %>
+					<span class="light">No Replies</span>
+				<% end %>
 			</td>
 		</tr>
 		<% end %>

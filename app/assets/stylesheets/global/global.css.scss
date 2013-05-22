@@ -40,17 +40,7 @@ html {
 	}
 	
 	input[type="submit"], button {
-		padding: 4px 8px;
-		background: #fafafa;
-		border-radius: 3px;
-		border: {
-			top: 1px solid #eee;
-			left: 1px solid #eee;
-			right: 1px solid #ccc;
-			bottom: 1px solid #ccc;
-		}
-		font-weight: bold;
-		cursor: pointer;
+		@include button;
 	}
 }
 
@@ -79,7 +69,7 @@ header {
 		
 		.nav-tag {
 			padding: 4px 0 0 28px;
-			margin: 2px 16px 0 0;
+			margin: 2px 12px 0 0;
 			background-repeat: no-repeat;
 			background-position: 0 0;
 			display: inline-block;
@@ -143,6 +133,10 @@ footer {
 		color: #aaa;
 		text-align: center;
 	}
+}
+
+#footer-padding {
+	height: 32px;
 }
 
 section {
@@ -547,15 +541,5 @@ header, footer {
 }
 
 a.button {
-		display: inline-block;
-		padding: 4px 8px;
-		background: #fafafa;
-		border-radius: 3px;
-		border: {
-			top: 1px solid #eee;
-			left: 1px solid #eee;
-			right: 1px solid #ccc;
-			bottom: 1px solid #ccc;
-		}
-		font-weight: bold;
+		@include button;
 }

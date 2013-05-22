@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_filter :set_user
+  after_filter :save_user
   
   def set_user
   	if session[:user_id]
@@ -11,5 +12,9 @@ class ApplicationController < ActionController::Base
   	else
   		@user = User.new
   	end
+  end
+  
+  def save_user
+  	@user.save! if @user.changed?
   end
 end

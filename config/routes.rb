@@ -9,12 +9,14 @@ Trisphere::Application.routes.draw do
   get "/character" => "character#home"
   
   # Forums
-  get "/forums" => "forums#index"
-  get "/forums/post/:category_id" => "forums#post"
-  post "/forums/post/:category_id" => "forums#post"
-  post "/forums/make_post/:category_id" => "forums#make_post"
-  get "/forums/:category_id" => "forums#category"
-  get "/forums/:category_id/:topic_id" => "forums#topic"
+  constraints category_id: /\d+/, topic_id: /\d+/ do
+	  get "/forums" => "forums#index"
+	  get "/forums/post/:category_id" => "forums#post"
+	  post "/forums/post/:category_id" => "forums#post"
+	  post "/forums/make_post/:category_id" => "forums#make_post"
+	  get "/forums/:category_id" => "forums#category"
+	  get "/forums/:category_id/:topic_id" => "forums#topic"
+	end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

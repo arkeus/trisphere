@@ -2,7 +2,7 @@
 	<%= render partial: "forums/partials/post", locals: { post: @preview_post } %>
 <% end %>
 
-<%= form_tag({ action: "make_post" }, method: "POST", id: "post-form", class: "post-form") do %>
+<%= form_tag({ action: "make_post" }, method: "POST", id: "post-form", class: "post-form#{defined?(hidden) ? ' hidden' : ''}") do %>
 	<div class="post-content">
 		<% unless @topic %>
 			<%= text_field_tag :subject, params[:subject], maxlength: 32, placeholder: "Subject" %>
@@ -16,7 +16,8 @@
 			<%= text_area_tag :message, params[:message], maxlength: 1500, placeholder: "Message" %>
 		</div>
 		<div class="post-submit">
-			<%= hidden_field_tag "preview", nil %>
+			<%= hidden_field_tag "post_type", @topic ? 1 : 0 %>
+			<%= hidden_field_tag "topic_id", @topic.id if @topic %>
 			<%= submit_tag "Post #{@topic ? "Reply" : "Topic"}" %>
 			<%= link_to "Preview", "#", class: "button", id: "preview-button" %>
 		</div>
@@ -26,4 +27,5 @@
 <%= form_tag({ action: "post" }, method: "POST", id: "preview-form", class: "preview-form") do %>
 	<%= hidden_field_tag "subject", nil %>
 	<%= hidden_field_tag "message", nil %>
+	<%= hidden_field_tag "topic_id", @topic.id if @topic %>
 <% end %>
