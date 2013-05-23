@@ -21,6 +21,7 @@ module ForumsHelper
 	end
 	
 	def duration_ago(time, options = {})
+		time = "#{time} UTC" if time.is_a?(String) && !time.include?("UTC") # TODO: Fix ugly hack
 		duration = Time.now - (time.is_a?(String) ? Time.parse(time) : time)
 		value, tag_class = case
 			when duration > 1.year.seconds then [(duration / 1.year.seconds).floor, :year]
@@ -28,7 +29,7 @@ module ForumsHelper
 			when duration > 1.day.seconds then [(duration / 1.day.seconds).floor, :day]
 			when duration > 1.hour.seconds then [(duration / 1.hour.seconds).floor, :hour]
 			when duration > 1.minute.seconds then [(duration / 1.minute.seconds).floor, :minute]
-			else [duration.floor, :seconds]
+			else [duration.floor, :second]
 		end
 		
 		return "#{value} <span class='duration #{tag_class}'>#{tag_class.to_s.pluralize(value).capitalize}</span> Ago".html_safe

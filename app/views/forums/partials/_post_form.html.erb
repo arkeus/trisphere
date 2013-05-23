@@ -5,7 +5,7 @@
 <%= form_tag({ action: "make_post" }, method: "POST", id: "post-form", class: "post-form#{defined?(hidden) ? ' hidden' : ''}") do %>
 	<div class="post-content">
 		<% unless @topic %>
-			<%= text_field_tag :subject, params[:subject], maxlength: 32, placeholder: "Subject" %>
+			<%= text_field_tag :subject, params[:subject] || @post.try(:subject), maxlength: 32, placeholder: "Subject" %>
 		<% end %>
 		<div class="post-actions">
 			<a class="button bold">B</a>
@@ -13,12 +13,13 @@
 			<a class="button underline">U</a>
 		</div>
 		<div class="post-message">
-			<%= text_area_tag :message, params[:message], maxlength: 1500, placeholder: "Message" %>
+			<%= text_area_tag :message, params[:message] || @post.try(:message), maxlength: 1500, placeholder: "Message" %>
 		</div>
 		<div class="post-submit">
-			<%= hidden_field_tag "post_type", @topic ? 1 : 0 %>
+			<%= hidden_field_tag "post_type", @post ? 2 : @topic ? 1 : 0 %>
 			<%= hidden_field_tag "topic_id", @topic.id if @topic %>
-			<%= submit_tag "Post #{@topic ? "Reply" : "Topic"}" %>
+			<%= hidden_field_tag "post_id", @post.id if @post %>
+			<%= submit_tag "#{@post ? "Edit Post" : @topic ? "Post Reply" : "Post Topic"}" %>
 			<%= link_to "Preview", "#", class: "button", id: "preview-button" %>
 		</div>
 	</div>
@@ -28,4 +29,5 @@
 	<%= hidden_field_tag "subject", nil %>
 	<%= hidden_field_tag "message", nil %>
 	<%= hidden_field_tag "topic_id", @topic.id if @topic %>
+	<%= hidden_field_tag "post_id", @post.id if @post %>
 <% end %>

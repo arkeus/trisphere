@@ -14,6 +14,13 @@ $link-hover-color: #baa938;
 $link-visited-color: #b93838;
 $link-active-color: #51ba38;
 
+/* Rarity colors */
+$item-color-common: #2e2e2e;
+$item-color-uncommon: #20a153;
+$item-color-rare: #0583b2;
+$item-color-mythic: #8a1598;
+$item-color-legendary: #d58f35;
+
 /* Buttons */
 @mixin button {
 	display: inline-block;

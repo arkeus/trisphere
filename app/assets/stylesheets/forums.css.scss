@@ -210,7 +210,7 @@
 
 #forum-header {
 	margin: 8px 8px 0px 8px;
-	padding-bottom: 8px;
+	padding-bottom: 4px;
 	border-bottom: 1px solid #bbb;
 	font-size: 12px;
 	font-weight: bold;
@@ -218,12 +218,12 @@
 }
 
 .duration {
-	.year { color: red; }
-	.month { color: teal; }
-	.day { color: purple; }
-	.hour { color: orange; }
-	.minute { color: blue; }
-	.second { color: green; }
+	&.year { color: $item-color-common; }
+	&.month { color: $item-color-common; }
+	&.day { color: $item-color-uncommon; }
+	&.hour { color: $item-color-rare; }
+	&.minute { color: $item-color-mythic; }
+	&.second { color: $item-color-legendary; }
 }
 
 .light {
@@ -231,6 +231,8 @@
 }
 
 .user-tag {
+	font-weight: bold;
+	
 	img {
 		position: relative;
 		top: 2px;
