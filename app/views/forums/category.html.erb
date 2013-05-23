@@ -22,7 +22,7 @@
 			<td>
 				<% if topic.user_id %>
 					<%= name_link(topic.user_id) %><br>
-					<span class="light">10 Hours Ago</span>
+					<span class="light"><%= duration_ago(topic.post_date) -%></span>
 				<% else %>
 					<span class="light">No Replies</span>
 				<% end %>
@@ -34,7 +34,7 @@
 			<td>
 				<% if topic.last_post_user_id %>
 					By <%= name_link(topic.last_post_user_id) %><br>
-					<span class="light">10 Hours Ago</span>
+					<span class="light"><%= duration_ago(topic.touch_date) -%></span>
 				<% else %>
 					<span class="light">No Replies</span>
 				<% end %>
