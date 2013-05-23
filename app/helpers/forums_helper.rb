@@ -19,4 +19,18 @@ module ForumsHelper
 		classes << options[:class] if options[:class]
 		return link_to name_tag, { action: "index", id: user_id }, class: [classes]
 	end
+	
+	def duration_ago(time, options = {})
+		duration = Time.now - (time.is_a?(String) ? Time.parse(time) : time)
+		value, tag_class = case
+			when duration > 1.year.seconds then [(duration / 1.year.seconds).floor, :year]
+			when duration > 1.month.seconds then [(duration / 1.month.seconds).floor, :month]
+			when duration > 1.day.seconds then [(duration / 1.day.seconds).floor, :day]
+			when duration > 1.hour.seconds then [(duration / 1.hour.seconds).floor, :hour]
+			when duration > 1.minute.seconds then [(duration / 1.minute.seconds).floor, :minute]
+			else [duration.floor, :seconds]
+		end
+		
+		return "#{value} <span class='duration #{tag_class}'>#{tag_class.to_s.pluralize(value).capitalize}</span> Ago".html_safe
+	end
 end

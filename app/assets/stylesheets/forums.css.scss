@@ -217,6 +217,15 @@
 	height: 20px;
 }
 
+.duration {
+	.year { color: red; }
+	.month { color: teal; }
+	.day { color: purple; }
+	.hour { color: orange; }
+	.minute { color: blue; }
+	.second { color: green; }
+}
+
 .light {
 	color: #999;
 }

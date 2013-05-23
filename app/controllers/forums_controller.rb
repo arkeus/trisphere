@@ -5,7 +5,7 @@ class ForumsController < ApplicationController
 	def index
 		@categories = ForumCategory
 			.joins("LEFT OUTER JOIN forum_posts fp1 ON forum_categories.last_post_id = fp1.id LEFT OUTER JOIN forum_posts fp2 ON fp1.topic_id = fp2.id")
-			.select("forum_categories.*, fp1.user_id, fp1.topic_id, fp1.id as post_id, fp2.subject")
+			.select("forum_categories.*, fp1.user_id, fp1.topic_id, fp1.id as post_id, fp1.post_date AS last_post_date, fp2.subject")
 		@users = get_users(@categories.map { |c| c.user_id })
 	end
 	

@@ -9,7 +9,7 @@
 	<tbody>
 		<% @categories.each do |category| %>
 		<tr>
-			<td width=20><%= image_tag "stats/spirit.png", width: 20, height: 20 %></td>
+			<td><%= image_tag "stats/spirit.png", width: 20, height: 20 %></td>
 			<td>
 				<span class="title"><%= link_to category.name, action: "category", category_id: category.id %></span><br>
 				<span class="light"><%= category.description %></span>
@@ -19,8 +19,12 @@
 				<%= category.replies %> <span class="light"><%= "Reply".pluralize(category.replies) -%></span>
 			</td>
 			<td>
-				<%= category.topic_id ? (link_to "#{'Re: ' if category.topic_id != category.post_id}#{category.subject}", action: "topic", category_id: category.id, topic_id: category.topic_id) : "None" -%><br>
-				<span class="light">By <%= name_link(category.user_id) %> 320 Days Ago</span>
+				<% if category.user_id -%>
+					<%= category.topic_id ? (link_to "#{'Re: ' if category.topic_id != category.post_id}#{category.subject}", action: "topic", category_id: category.id, topic_id: category.topic_id) : "None" -%><br>
+					<span class="light">By <%= name_link(category.user_id) %> <%= duration_ago(category.last_post_date) %></span>
+				<% else -%>
+					<span class="light">No Posts</span>
+				<% end -%>
 			</td>
 		</tr>
 		<% end %>
