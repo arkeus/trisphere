@@ -543,3 +543,48 @@ header, footer {
 a.button {
 		@include button;
 }
+
+// TSML
+.tsml {
+	&.small {
+		font-size: 8px;
+	}
+	
+	&.large {
+		font-size: 20px;
+	}
+	
+	&.left {
+		text-align: left;
+	}
+	
+	&.center {
+		text-align: center;
+	}
+	
+	&.right {
+		text-align: right;
+	}
+	
+	&.hr {
+		border: {
+			top: 1px solid #e6e6e6;
+			bottom: 1px solid #f7f7f7;
+		}
+		margin: 4px 0;
+	}
+	
+	&.quote {
+		margin-left: 6px;
+		border-left: 4px solid #ddd;
+		padding-left: 6px;
+	}
+	
+	&.quote-header {
+		font-style: italic;
+		border-bottom: 1px dotted #ddd;
+		color: #777;
+		padding-bottom: 2px;
+		margin-bottom: 2px;
+	}
+}

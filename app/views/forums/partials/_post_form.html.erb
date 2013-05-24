@@ -13,7 +13,7 @@
 			<a class="button underline">U</a>
 		</div>
 		<div class="post-message">
-			<%= text_area_tag :message, params[:message] || @post.try(:message), maxlength: 1500, placeholder: "Message" %>
+			<%= text_area_tag :message, params[:message] || @post.try(:raw_message), maxlength: 1500, placeholder: "Message" %>
 		</div>
 		<div class="post-submit">
 			<%= hidden_field_tag "post_type", @post ? 2 : @topic ? 1 : 0 %>

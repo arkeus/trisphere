@@ -1,3 +1,5 @@
+require "tsml"
+
 class ForumsController < ApplicationController
 	before_filter :set_category#, :only => [:category, :topic, :post, :make_post]
 	before_filter :set_topic#, :only => [:topic, :post]
@@ -40,7 +42,7 @@ class ForumsController < ApplicationController
 	def post	
 		if !params[:message].blank?
 			@preview_post = OpenStruct.new(
-				message: params[:message],
+				message: params[:raw_message],
 				user_id: @user.id,
 				avatar: @user.avatar,
 				posts: @user.posts,
@@ -93,7 +95,7 @@ class ForumsController < ApplicationController
 			raise "Could not find post" unless post
 			raise "You cannot edit this post" unless post.user_id = @user.id
 			post.raw_message = params[:message]
-			post.message = params[:message]
+			post.message = TSML::Parser.parse(params[:message])
 			post.edit_date = Time.now
 		else
 			post = ForumPost.new
@@ -103,7 +105,7 @@ class ForumsController < ApplicationController
 			post.user_id = @user.id
 			post.subject = params[:subject] || nil
 			post.raw_message = params[:message]
-			post.message = params[:message]
+			post.message = TSML::Parser.parse(params[:message])
 			post.post_date = Time.now
 			post.touch_date = Time.now
 		end
