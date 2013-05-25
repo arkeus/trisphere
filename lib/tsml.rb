@@ -48,7 +48,11 @@ module TSML
 			/\r\n|\r|\n/ => "<br>"
 		}.freeze
 		
-		EMOTICONS = {}.freeze # No emoticons? They suck.
+		EMOTICONS = {
+			":)" => "<i class='icon-smile'></i>",
+			":|" => "<i class='icon-meh'></i>",
+			":(" => "<i class='icon-frown'></i>",
+		}.freeze
 		
 		TAGS = {
 			/\[b\](.*?)\[\/b\]/im => "<b>\\1</b>",
@@ -76,16 +80,3 @@ module TSML
 		}.freeze
 	end
 end
-
-=begin
-":)" => image
-":(" => image
-"[b]$1[/b]" => <strong>etc
-[img]
-[u]
-[i]
-[s]
-[color]
-[small][large]
-[left][center][right]
-=end
