@@ -1,4 +1,8 @@
+require "tsml"
+
 module ForumsHelper
+	HEADLINE_LENGTH = 100
+	
 	def format_date(date)
 		date.strftime("%b %e, %Y %l:%m %P")
 	end
@@ -14,7 +18,8 @@ module ForumsHelper
 	
 	def name_link(user_id, options = {})
 		return "Unknown" unless @users[user_id]
-		name_tag = "#{image_tag("badges/blue.png")}#{@users[user_id].username}".html_safe
+		badge = ["blue", "gold", "red"].sample
+		name_tag = "#{image_tag("badges/#{badge}.png")}#{@users[user_id].username}".html_safe
 		classes = ["user-tag"]
 		classes << options[:class] if options[:class]
 		return link_to name_tag, { action: "index", id: user_id }, class: [classes]
@@ -33,5 +38,9 @@ module ForumsHelper
 		end
 		
 		return "#{value} <span class='duration #{tag_class}'>#{tag_class.to_s.pluralize(value).capitalize}</span> Ago".html_safe
+	end
+	
+	def headline(message)
+		message.gsub(/(<|&lt;).*?(>|&gt;)/, " ").gsub(/&.*?;/, "")[0..HEADLINE_LENGTH]
 	end
 end
