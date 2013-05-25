@@ -15,6 +15,8 @@ class CreateForumPosts < ActiveRecord::Migration
       t.integer :views, default: 0
       t.integer :last_view_ip, limit: 8
       t.integer :last_post_user_id
+      t.boolean :sticky, default: false
+      t.boolean :locked, default: false
       
       t.index [:category_id, :post_type]
       t.index [:category_id, :topic_id]
