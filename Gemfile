@@ -32,6 +32,9 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # Pagination
 gem 'will_paginate'
 
+# Font Awesome
+gem "font-awesome-rails"
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
