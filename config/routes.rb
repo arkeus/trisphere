@@ -9,7 +9,7 @@ Trisphere::Application.routes.draw do
   get "/character" => "character#home"
   
   # Forums
-  constraints category_id: /\d+/, topic_id: /\d+/ do
+  constraints category_id: /\d+/, topic_id: /\d+/, post_id: /\d+/ do
 	  get "/forums" => "forums#index"
 	  get "/forums/post/:category_id/(:topic_id)/(:post_id)" => "forums#post"
 	  post "/forums/post/:category_id/(:topic_id)/(:post_id)" => "forums#post"
@@ -17,6 +17,7 @@ Trisphere::Application.routes.draw do
 	  get "/forums/:category_id" => "forums#category"
 	  get "/forums/:category_id/:topic_id" => "forums#topic"
 	  get "/forums/delete/:category_id/:topic_id/:id" => "forums#delete"
+	  get "/forums/:alter_type/:category_id/:topic_id" => "forums#alter", constraints: { alter_type: /sticky|unsticky|lock|unlock/ }
 	end
   
   # The priority is based upon order of creation: first created -> highest priority.

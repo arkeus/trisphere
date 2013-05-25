@@ -13,11 +13,11 @@
 		<% @topics.each do |topic| -%>
 		<tr>
 			<td>
-				<%= image_tag "stats/spirit.png", width: 20, height: 20 %>
+				<%= image_tag "stats/#{topic.icon}.png", width: 20, height: 20 %>
 			</td>
 			<td>
 				<%= link_to topic.subject, action: "topic", topic_id: topic.id %><br>
-				<span class="light">Headline goes here</span>
+				<span class="light headline"><%= headline topic.message %></span>
 			</td>
 			<td>
 				<% if topic.user_id %>

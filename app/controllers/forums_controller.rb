@@ -15,7 +15,7 @@ class ForumsController < ApplicationController
 	def category
 		@topics = ForumPost
 			.where(:category_id => params[:category_id], :post_type => PostType::TOPIC)
-			.order("touch_date DESC")
+			.order("sticky DESC, touch_date DESC")
 			.page(params[:page] || 1)
 			.per_page(15)
 		@users = get_users(@topics.map { |t| [t.user_id, t.last_post_user_id] })
@@ -42,7 +42,7 @@ class ForumsController < ApplicationController
 	def post	
 		if !params[:message].blank?
 			@preview_post = OpenStruct.new(
-				message: params[:raw_message],
+				message: TSML::Parser.parse(params[:message]),
 				user_id: @user.id,
 				avatar: @user.avatar,
 				posts: @user.posts,
@@ -89,6 +89,8 @@ class ForumsController < ApplicationController
 	def make_post
 		raise "You must fill out the entire form" if params[:message].blank? || (params[:subject].blank? && params[:post_type].to_i == PostType::TOPIC)
 		post_type = !params[:post_id].blank? ? PostType::EDIT : @topic ? PostType::REPLY : PostType::TOPIC
+		raise "This topic is locked" if @topic.try(:locked)
+		# TODO: user permissions for edit and posting in locked category
 		
 		if post_type == PostType::EDIT
 			post = @post
@@ -138,6 +140,17 @@ class ForumsController < ApplicationController
 		end
 		
 		redirect_to action: "topic", category_id: @category.id, topic_id: @topic ? @topic.id : post.id and return
+	end
+	
+	def alter
+		# TODO: user permission
+		@topic.sticky = true if params[:alter_type] == "sticky"
+		@topic.sticky = false if params[:alter_type] == "unsticky"
+		@topic.locked = true if params[:alter_type] == "lock"
+		@topic.locked = false if params[:alter_type] == "unlock"
+		@topic.save!
+		
+		redirect_to action: "topic", category_id: @category.id, topic_id: @topic and return
 	end
 	
 	private

@@ -11,6 +11,17 @@
 			<a class="button bold">B</a>
 			<a class="button italic">I</a>
 			<a class="button underline">U</a>
+			<a class="button strikethrough"><del>S</del></a>
+			<a class="button small">small</a>
+			<a class="button large">large</a>
+			<a class="button image"><i class="icon-picture"></i></a>
+			<a class="button link"><i class="icon-link"></i></a>
+			<a class="button left"><i class="icon-align-left"></i></a>
+			<a class="button center"><i class="icon-align-center"></i></a>
+			<a class="button right"><i class="icon-align-right"></i></a>
+			<a class="button hr"><i class="icon-resize-horizontal"></i></a>
+			<a class="button color"><em>c</em><em>o</em><em>l</em><em>o</em><em>r</em></a>
+			<a class="button quote"><i class="icon-quote-right"></i></a>
 		</div>
 		<div class="post-message">
 			<%= text_area_tag :message, params[:message] || @post.try(:raw_message), maxlength: 1500, placeholder: "Message" %>

@@ -542,6 +542,10 @@ header, footer {
 
 a.button {
 		@include button;
+		
+		&.disabled {
+			color: #aaa;
+		}
 }
 
 // TSML
@@ -578,6 +582,7 @@ a.button {
 		margin-left: 6px;
 		border-left: 4px solid #ddd;
 		padding-left: 6px;
+		text-align: left;
 	}
 	
 	&.quote-header {
@@ -586,5 +591,6 @@ a.button {
 		color: #777;
 		padding-bottom: 2px;
 		margin-bottom: 2px;
+		text-align: left;
 	}
 }

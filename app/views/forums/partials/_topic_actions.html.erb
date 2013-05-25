@@ -1,4 +1,8 @@
 <div class="forum-actions cf">
-	<div class="buttons"><%= link_to "Reply", "#post-form", class: "button quick-reply" %></div>
+	<div class="buttons">
+		<%= link_to @topic.locked ? "Locked" : "Reply", "#post-form", class: "button #{@topic.locked ? "disabled" : "quick-reply"}" %>
+		<%= link_to @topic.sticky ? "Unsticky" : "Sticky", { action: :alter, alter_type: @topic.sticky ? :unsticky : :sticky }, class: "button" %>
+		<%= link_to @topic.locked ? "Unlock" : "Lock", { action: :alter, alter_type: @topic.locked ? :unlock : :lock }, class: "button" %>
+	</div>
 	<div class="pagination"><%= will_paginate @posts, pagination_options -%></div>
 </div>

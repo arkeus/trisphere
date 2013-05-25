@@ -32,6 +32,14 @@
 		border-bottom: 1px solid #eee;
 		padding: 6px 8px;
 	}
+	
+	.headline {
+		display: block;
+		width: 360px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
 }
 
 #topics tr {
@@ -95,6 +103,15 @@
 			.underline {
 				text-decoration: underline;
 			}
+			
+			.color em {
+				font-style: normal;
+				&:nth-child(1) { color: #ff0000; }
+				&:nth-child(2) { color: #ffba00; }
+				&:nth-child(3) { color: #6cff00; }
+				&:nth-child(4) { color: #0084ff; }
+				&:nth-child(5) { color: #6600ff; }
+			}
 		}
 		
 		.post-submit {
@@ -110,10 +127,10 @@
 .post {
 	margin: 0 8px;
 	padding: 8px 0;
-	border-bottom: 1px solid #bbb;
+	border-bottom: 1px solid #ddd;
 	
 	&:first-child {
-		border-top: 1px solid #bbb;
+		border-top: 1px solid #ddd;
 	}
 	
 	&.topic {
