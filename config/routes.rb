@@ -8,6 +8,9 @@ Trisphere::Application.routes.draw do
   # Character
   get "/character" => "character#home"
   
+  # Inventory
+  get "/inventory" => "inventory#index"
+  
   # Forums
   constraints category_id: /\d+/, topic_id: /\d+/, post_id: /\d+/ do
 	  get "/forums" => "forums#index"

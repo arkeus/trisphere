@@ -10,7 +10,7 @@
 		<% if @user.logged_in? %>
 			<div class="float-left">
 				<%= navigation_tag({ controller: "character", action: "home" }, "home", "Character")%>
-				<%= navigation_tag({ controller: "character", action: "home" }, "axe", "Inventory")%>
+				<%= navigation_tag({ controller: "inventory", action: "index" }, "axe", "Inventory")%>
 				<%= navigation_tag({ controller: "character", action: "home" }, "crystal", "Skills")%>
 				<%= navigation_tag({ controller: "character", action: "home" }, "shield", "Quests")%>
 				<%= navigation_tag({ controller: "character", action: "home" }, "sword", "Explore")%>
