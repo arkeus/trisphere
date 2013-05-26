@@ -18,7 +18,11 @@ class BaseItem
 	end
 	
 	def image
-		name.gsub(/ /, ")").downcase
+		name.gsub(/ /, "_").downcase
+	end
+	
+	def image_path
+		"items/#{image}.png"
 	end
 	
 	def self.find(id)
@@ -44,14 +48,31 @@ class BaseItem
 	
 	def self.build
 		return if defined?(@@database)
-		
 		@@database = []
-		p "LOG BUILDING ITEM DATABASE"
-		
-		type_id = TIER_ID
 		
 		# Monster Drop Items
-		tiers = [
+		MonsterDrops::TIERS.each do |tier_id, tier, tier_level|
+			MonsterDrops::ITEMS.each do |item_id, name, item_level, type, subtype, data|
+				ilevel = tier_level + item_level
+				data = data.blank? ? {} : data.inject({}) { |acc, map| acc[map[0]] = map[1].call(ilevel); acc }
+				p "LOG #{data}" unless data.blank?
+				@@database << BaseItem.new(TIER_ID + tier_id + item_id, "#{tier} #{name}", ilevel, type, subtype, COMMON, 100, data)
+			end
+		end
+		
+		p "LOG databse length #{@@database.length}"
+		
+		@@database_map = @@database.inject({}) { |acc, item| acc[item.id] = item; acc }
+		@@database_name_map = @@database.inject({}) { |acc, item| acc[item.name] = item; acc }
+	end
+	
+	TIER_ID = 10
+	CRAFTING_ID = 11
+	
+	module MonsterDrops
+		include ItemType, ItemSubtype
+		
+		TIERS = [
 			[10_00, "Dwarven", 0],
 			[11_00, "Scarab", 10],
 			[12_00, "Golem", 20],
@@ -61,9 +82,11 @@ class BaseItem
 			[16_00, "Titan", 60],
 			[17_00, "Dragon", 70],
 			[18_00, "Valkyrie", 80],
-		]
-		
-		items = [
+		].freeze
+	
+		ITEMS = [
+			[22_00_00, "Short Dagger", 1, WEAPON, DAGGER],
+			[23_00_00, "Long Dagger", 6, WEAPON, DAGGER],
 			[10_00_00, "Short Sword", 1, WEAPON, SWORD],
 			[11_00_00, "Long Sword", 3, WEAPON, SWORD],
 			[12_00_00, "Broadsword", 6, WEAPON, SWORD],
@@ -72,16 +95,14 @@ class BaseItem
 			[15_00_00, "Heavy Axe", 3, WEAPON, AXE],
 			[16_00_00, "Crescent Axe", 6, WEAPON, AXE],
 			[17_00_00, "Battle Axe", 8, WEAPON, AXE],
+			[26_00_00, "Short Spear", 1, WEAPON, SPEAR],
+			[27_00_00, "Long Spear", 6, WEAPON, SPEAR],
 			[18_00_00, "Small Wand", 1, WEAPON, STAFF],
 			[19_00_00, "Large Wand", 3, WEAPON, STAFF],
 			[20_00_00, "Long Staff", 6, WEAPON, STAFF],
 			[21_00_00, "Battle Staff", 8, WEAPON, STAFF],
-			[22_00_00, "Short Dagger", 1, WEAPON, DAGGER],
-			[23_00_00, "Long Dagger", 6, WEAPON, DAGGER],
 			[24_00_00, "Light Bow", 1, WEAPON, BOW],
 			[25_00_00, "Heavy Bow", 6, WEAPON, BOW],
-			[26_00_00, "Short Spear", 1, WEAPON, SPEAR],
-			[27_00_00, "Long Spear", 6, WEAPON, SPEAR],
 			
 			[50_00_00, "Light Belt", 1, ARMOR, BELT],
 			[51_00_00, "Heavy Belt", 6, ARMOR, BELT],
@@ -95,6 +116,7 @@ class BaseItem
 			[59_00_00, "Heavy Plate", 6, ARMOR, CHESTPIECE],
 			[60_00_00, "Light Legplates", 1, ARMOR, LEGPLATES],
 			[61_00_00, "Heavy Legplates", 6, ARMOR, LEGPLATES],
+			
 			[62_00_00, "Ruby Ring", 7, ARMOR, RING,     { strength: -> ilevel { (ilevel / 5).floor * 2 } }],
 			[63_00_00, "Sapphire Ring", 7, ARMOR, RING, { wisdom:   -> ilevel { (ilevel / 5).floor * 2 } }],
 			[64_00_00, "Emerald Ring", 7, ARMOR, RING,  { defense:  -> ilevel { (ilevel / 5).floor * 2 } }],
@@ -106,23 +128,6 @@ class BaseItem
 			[90_00_00, "Pickaxe", 1, TOOL, PICKAXE],
 			[91_00_00, "Hatchet", 1, TOOL, HATCHET],
 			[92_00_00, "Spade", 1, TOOL, SPADE],
-		]
-		
-		tiers.each do |tier_id, tier, tier_level|
-			items.each do |item_id, name, item_level, type, subtype, data|
-				ilevel = tier_level + item_level
-				data = data.blank? ? {} : data.inject({}) { |acc, map| acc[map[0]] = map[1].call(ilevel); acc }
-				p "LOG #{data}" unless data.blank?
-				@@database << BaseItem.new(type_id + tier_id + item_id, "#{tier} #{name}", ilevel, type, subtype, COMMON, 100, data)
-			end
-		end
-		
-		p "LOG databse length #{@@database.length}"
-		
-		@@database_map = @@database.inject({}) { |acc, item| acc[item.id] = item; acc }
-		@@database_name_map = @@database.inject({}) { |acc, item| acc[item.name] = item; acc }
+		].freeze
 	end
-	
-	TIER_ID = 10
-	CRAFTING_ID = 11
 end

@@ -35,6 +35,9 @@ gem 'will_paginate'
 # Font Awesome
 gem "font-awesome-rails"
 
+# Image manipulation (sprite scritps)
+gem "chunky_png"
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

@@ -3,8 +3,14 @@ require "affix"
 require "property_handler"
 
 class Item < ActiveRecord::Base
+	serialize :data, Hash
+	
 	def name
 		"#{prefix.name + " " if prefix_id}#{base.name}#{" " + suffix.name if suffix_id}"
+	end
+	
+	def image_path
+		base.image_path
 	end
 	
 	def base
@@ -45,6 +51,10 @@ class Item < ActiveRecord::Base
 	
 	def self.from_id(id)
 		Item.new(base_id: BaseItem.find(id).id)
+	end
+	
+	def as_json(options = {})
+		super(:only => [:data], :methods => [:name, :image_path])
 	end
 	
 	private

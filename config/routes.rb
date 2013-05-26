@@ -10,6 +10,8 @@ Trisphere::Application.routes.draw do
   
   # Inventory
   get "/inventory" => "inventory#index"
+  get "/inventory/list" => "inventory#list"
+  get "/inventory/reset" => "inventory#reset"
   
   # Forums
   constraints category_id: /\d+/, topic_id: /\d+/, post_id: /\d+/ do
