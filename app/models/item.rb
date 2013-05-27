@@ -13,6 +13,14 @@ class Item < ActiveRecord::Base
 		base.image_path
 	end
 	
+	def type
+		base.type
+	end
+	
+	def subtype
+		base.subtype
+	end
+	
 	def base
 		raise "Item is missing base" unless base_id
 		BaseItem.find(base_id)
@@ -54,7 +62,7 @@ class Item < ActiveRecord::Base
 	end
 	
 	def as_json(options = {})
-		super(:only => [:data], :methods => [:name, :image_path])
+		super(:only => [:data, :id], :methods => [:name, :image_path, :type, :subtype])
 	end
 	
 	private

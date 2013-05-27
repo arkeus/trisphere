@@ -1,3 +1,33 @@
-<% @items.each do |item| -%>
-	<%= image_tag item.image_path, title: item.name %>
-<% end -%>
+<section id="inventory" class="padded" ng-controller="InventoryController">
+	<div id="stats">
+		<%= render partial: "stat_panel", locals: { name: "strength" } %>
+		<%= render partial: "stat_panel", locals: { name: "wisdom" } %>
+		<%= render partial: "stat_panel", locals: { name: "defense" } %>
+		<%= render partial: "stat_panel", locals: { name: "agility" } %>
+		<%= render partial: "stat_panel", locals: { name: "stamina" } %>
+		<%= render partial: "stat_panel", locals: { name: "spirit" } %>
+	</div>
+	
+	<div id="columns">
+		<div id="equipped">
+			<div class="header"><span>Equipped</span></div>
+			<div id="doll">
+				<item ng-repeat="item in equipped"></item>
+			</div>
+		</div>
+		
+		<div id="bags">
+			<div class="header"><span>Bags</span></div>
+			<item ng-repeat="item in bags"></item>
+		</div>
+		
+		<div id="amulet">
+			<div class="header"><span>Amulet</span></div>
+			<!--<item ng-repeat="item in items"></item>-->
+		</div>
+	</div>
+</section>
+
+<div class="tooltip" tooltip>
+	{{item.name}}
+</div>

@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20130526020123) do
     t.integer  "prefix_id"
     t.integer  "suffix_id"
     t.integer  "enchant_id"
+    t.boolean  "equipped",     default: false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -10,7 +10,8 @@ Trisphere::Application.routes.draw do
   
   # Inventory
   get "/inventory" => "inventory#index"
-  get "/inventory/list" => "inventory#list"
+  get "/inventory/bags" => "inventory#bags"
+  get "/inventory/equipped" => "inventory#equipped"
   get "/inventory/reset" => "inventory#reset"
   
   # Forums

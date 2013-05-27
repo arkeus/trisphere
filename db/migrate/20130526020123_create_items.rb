@@ -6,6 +6,7 @@ class CreateItems < ActiveRecord::Migration
 			t.integer :prefix_id
 			t.integer :suffix_id
 			t.integer :enchant_id
+			t.boolean :equipped, default: false
 			t.text :data
       t.timestamps
     end

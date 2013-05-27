@@ -1,3 +1,117 @@
-// Place all the styles related to the inventory controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "global/utils";
+
+.item {
+	display: inline-block;
+	border-radius: 3px;
+	padding: 2px;
+	margin: 4px;
+	background: rgba(0, 0, 0, 0.1);
+	width: 20px;
+	height: 20px;
+	border: {
+		top: 1px solid #ccc;
+		left: 1px solid #ccc;
+		right: 1px solid #eee;
+		bottom: 1px solid #eee;
+	}
+	cursor: pointer;
+	
+	&:hover {
+		background: rgba(255, 255, 255, 0.5);
+	}
+}
+
+.tooltip {
+	display: none;
+	position: absolute;
+	width: 240px;
+	border: 1px solid red;
+	padding: 4px;
+	background: rgba(255, 255, 255, 0.7);
+}
+
+#inventory {
+	#columns {
+		width: $content-width;
+		
+		#equipped {
+			float: left;
+			width: 25%;
+			box-sizing: border-box;
+			padding-left: 4px;
+			text-align: center;
+			
+			#doll {
+				width: 170px;
+				height: 166px;
+				background: asset-url("images/misc/paperdoll.png");
+				background-position: -2px 0;
+				margin: 14px auto;
+				position: relative;
+				
+				.item {
+					position: absolute;
+					
+					&.Helmet { left: 66px; top: 5px; }
+					&.Amulet { left: 116px; top: 15px; }
+					&.Tool { left: 16px; top: 15px; }
+					&.Weapon { left: 6px; top: 53px; }
+					&.Weapon.Axe { left: 126px; top: 53px; }
+					&.Shield { left: 126px; top: 53px; }
+					&.Chestpiece { left: 66px; top: 45px; }
+					&.Legplates { left: 66px; top: 80px; }
+					&.Ring { left: 16px; top: 130px; }
+					&.Boots { left: 116px; top: 130px; }
+					&.Belt { left: 28px; top: 93px; }
+					&.Bracers { left: 104px; top: 93px; }
+				}
+			}
+		}
+		
+		#bags {
+			float: left;
+			width: 65%;
+			box-sizing: border-box;
+			padding: 0 24px;
+		}
+		
+		#amulet {
+			float: left;
+			width: 9.9%;
+			box-sizing: border-box;
+			text-align: center;
+		}
+		
+		.header {
+			font-family: helvetica;
+			text-align: center;
+			font-size: 14px;
+			height: 10px;
+			border-bottom: 1px solid #ccc;
+			margin: 8px 0 10px 0;
+			color: #4c3b00;
+			font-weight: bold;
+			
+			span {
+				background: #fff;
+				padding: 0 6px;
+			}
+			
+			&:before {
+				content: "";
+				font-size: 16px;
+				color: #aaa;
+				background: #fff;
+				font-weight: normal;
+			}
+			
+			&:after {
+				content: "";
+				font-size: 16px;
+				color: #aaa;
+				background: #fff;
+				font-weight: normal;
+			}
+		}
+	}
+}

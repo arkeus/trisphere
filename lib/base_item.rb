@@ -55,7 +55,6 @@ class BaseItem
 			MonsterDrops::ITEMS.each do |item_id, name, item_level, type, subtype, data|
 				ilevel = tier_level + item_level
 				data = data.blank? ? {} : data.inject({}) { |acc, map| acc[map[0]] = map[1].call(ilevel); acc }
-				p "LOG #{data}" unless data.blank?
 				@@database << BaseItem.new(TIER_ID + tier_id + item_id, "#{tier} #{name}", ilevel, type, subtype, COMMON, 100, data)
 			end
 		end

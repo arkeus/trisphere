@@ -6,8 +6,13 @@ class InventoryController < ApplicationController
 		@items = Item.where(character_id: @character.id)
 	end
 	
-	def list
+	def bags
 		@items = Item.where(character_id: @character.id)
+		render json: @items
+	end
+	
+	def equipped
+		@items = Item.where(character_id: @character.id, equipped: true)
 		render json: @items
 	end
 	
