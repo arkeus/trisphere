@@ -1,5 +1,6 @@
 require "base_item"
 require "affix"
+require "item_lib"
 require "property_handler"
 
 class Item < ActiveRecord::Base
@@ -19,6 +20,17 @@ class Item < ActiveRecord::Base
 	
 	def subtype
 		base.subtype
+	end
+	
+	def rarity
+		value = 0
+		value += 1 if prefix_id
+		value += 1 if suffix_id
+		return case value
+			when 0 then Rarity::COMMON
+			when 1 then Rarity::UNCOMMON
+			when 2 then Rarity::RARE
+		end
 	end
 	
 	def base
@@ -62,7 +74,7 @@ class Item < ActiveRecord::Base
 	end
 	
 	def as_json(options = {})
-		super(:only => [:data, :id], :methods => [:name, :image_path, :type, :subtype])
+		super(:only => [:data, :id], :methods => [:name, :image_path, :type, :subtype, :rarity])
 	end
 	
 	private

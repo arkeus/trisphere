@@ -14,12 +14,34 @@ $link-hover-color: #baa938;
 $link-visited-color: #b93838;
 $link-active-color: #51ba38;
 
-/* Rarity colors */
-$item-color-common: #2e2e2e;
-$item-color-uncommon: #20a153;
-$item-color-rare: #0583b2;
-$item-color-mythic: #8a1598;
-$item-color-legendary: #d58f35;
+// Rarity Colors
+$common-color-light: #bbb;
+$common-color: #999;
+$common-color-dark: #666;
+$uncommon-color-light: #c5f982;
+$uncommon-color: #93db35;
+$uncommon-color-dark: #8ab355;
+$rare-color-light: #6ea3e8;
+$rare-color: #2475de;
+$rare-color-dark: #2a66b6;
+$mythic-color-light: #b34aff;
+$mythic-color: #8f20de;
+$mythic-color-dark: #6700b1;
+$legendary-color-light: #ff2b2b;
+$legendary-color: #f40e0e;
+$legendary-color-dark: #d30000;
+
+$font-size-small: 10px;
+$font-size-halfsmall: 11px;
+$font-size: 12px;
+$font-size-halflarge: 14px;
+$font-size-large: 16px;
+
+$font-color-light: #ccc;
+$font-color-halflight: #aaa;
+$font-color: #777;
+$font-color-halfdark: #666;
+$font-color-dark: #555;
 
 /* Buttons */
 @mixin button {
@@ -36,6 +58,22 @@ $item-color-legendary: #d58f35;
 	box-shadow: inset 0 -1px #ccc;
 	font-weight: bold;
 	cursor: pointer;
+}
+
+// Make an element unselectable
+@mixin unselectable {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+// Revert to border box sizing
+@mixin box-size {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* Clearfix */

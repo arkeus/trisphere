@@ -21,13 +21,107 @@
 	}
 }
 
-.tooltip {
-	display: none;
-	position: absolute;
-	width: 240px;
-	border: 1px solid red;
-	padding: 4px;
-	background: rgba(255, 255, 255, 0.7);
+#tooltip {
+  @include box-size;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  display: none;
+  background: rgba(0, 0, 0, 0.5);
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+  background:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+  background:     -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+  background:      -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+  background:         linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5));
+  
+  // rarity based border
+  &.common {
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+    background:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+    background:     -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+    background:      -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+    background:         linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5));
+    strong { color: $common-color-dark; }
+  }
+  &.uncommon {
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5)); 
+    background:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5)); 
+    background:     -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5)); 
+    background:      -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5)); 
+    background:         linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5));
+    strong { color: $uncommon-color-dark; }
+  }
+  &.rare {
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5)); 
+    background:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5)); 
+    background:     -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5)); 
+    background:      -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5)); 
+    background:         linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5));
+    strong { color: $rare-color-dark; }
+  }
+  &.mythic {
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5)); 
+    background:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5)); 
+    background:     -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5)); 
+    background:      -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5)); 
+    background:         linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5));
+    strong { color: $mythic-color-dark; }
+  }
+  &.legendary {
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5)); 
+    background:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5)); 
+    background:     -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5)); 
+    background:      -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5)); 
+    background:         linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5));
+    strong { color: $legendary-color-dark; }
+  }
+  
+  #tooltip-content {
+    @include box-size;
+    position: relative;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 3px;
+    padding: 4px;
+    color: $font-color-dark;
+    font-size: $font-size;
+    font-family: verdana;
+    
+    .row {
+      border-bottom: 1px solid #eee;
+      padding-bottom: 1px;
+      font-size: $font-size;
+      
+      &.bottom {
+        border-bottom-width: 0px;
+      }
+    }
+    
+    .effect {
+      float: right;
+      color: $font-color-halflight;
+      font-size: $font-size-small;
+    }
+    
+    .type {
+      color: $font-color-halflight;
+      font-size: $font-size-small;
+    }
+    
+    .attributes {
+      font-size: $font-size-halfsmall;
+    }
+    
+    .price {
+      float: right;
+      color: $font-color-halflight;
+      font-size: $font-size-small;
+    }
+    
+    .level {
+      color: $font-color-halflight;
+      font-size: $font-size-small;
+    }
+  }
 }
 
 #inventory {

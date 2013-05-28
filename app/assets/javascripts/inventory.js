@@ -78,12 +78,11 @@ TSA.directive("item", ["$timeout", "Tooltip", function($timeout, Tooltip) {
 		replace: true,
 		link: function(scope, element, attrs) {
 			$(element).find("img")
-				.attr("src", "images/" + scope.item.image_path)
-				.end()
-				.addClass(scope.item.type)
-				.addClass(scope.item.subtype);
-			
-			$(element).click(function() {
+			.attr("src", "images/" + scope.item.image_path)
+			.end()
+			.addClass(scope.item.type)
+			.addClass(scope.item.subtype)
+			.click(function() {
 				scope.$apply(function() {
 					scope.equip(scope.item);
 				});

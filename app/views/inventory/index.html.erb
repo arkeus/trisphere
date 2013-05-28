@@ -28,6 +28,10 @@
 	</div>
 </section>
 
-<div class="tooltip" tooltip>
-	{{item.name}}
-</div>
+<div id="tooltip" tooltip class="{{item.rarity | lowercase}}"><div id="tooltip-content">
+	<div class="row name"><strong>{{item.name}}</strong></div>
+    <div class="row"><div class="effect">{{item.effect}}</div><div class="type">{{item.type}} ({{item.subtype}})</div></div>
+    <div class="row attributes">
+    	<div ng-repeat="(stat, value) in item.data track by $id($index)" class="attribute">+<strong>{{value}}</strong> {{stat}}</div>
+    <div class="row bottom"><div class="price">{{item.price}}</div><div class="level">{{item.level}}</div></div>
+</div></div>

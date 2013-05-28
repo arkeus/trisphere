@@ -235,12 +235,12 @@
 }
 
 .duration {
-	&.year { color: $item-color-common; }
-	&.month { color: $item-color-common; }
-	&.day { color: $item-color-uncommon; }
-	&.hour { color: $item-color-rare; }
-	&.minute { color: $item-color-mythic; }
-	&.second { color: $item-color-legendary; }
+	&.year { color: $common-color; }
+	&.month { color: $common-color; }
+	&.day { color: $uncommon-color; }
+	&.hour { color: $rare-color; }
+	&.minute { color: $mythic-color; }
+	&.second { color: $legendary-color; }
 }
 
 .light {
