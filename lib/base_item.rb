@@ -25,6 +25,14 @@ class BaseItem
 		"items/#{image}.png"
 	end
 	
+	def effect
+		return case type
+			when ItemType::WEAPON then [10, 7, 90]
+			when ItemType::ARMOR then 5
+			else 0
+		end
+	end
+	
 	def self.find(id)
 		item = id.is_a?(Integer) ? database_map[id] : database_name_map[id]
 		raise "Cannot find item via '#{id}'" unless item

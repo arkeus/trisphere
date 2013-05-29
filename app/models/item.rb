@@ -22,6 +22,10 @@ class Item < ActiveRecord::Base
 		base.subtype
 	end
 	
+	def effect
+		base.effect
+	end
+	
 	def rarity
 		value = 0
 		value += 1 if prefix_id
@@ -74,7 +78,7 @@ class Item < ActiveRecord::Base
 	end
 	
 	def as_json(options = {})
-		super(:only => [:data, :id], :methods => [:name, :image_path, :type, :subtype, :rarity])
+		super(:only => [:data, :id], :methods => [:name, :image_path, :type, :subtype, :rarity, :effect])
 	end
 	
 	private
