@@ -85,42 +85,61 @@
     color: $font-color-dark;
     font-size: $font-size;
     font-family: verdana;
-    min-width: 180px;
+    min-width: 220px;
     
     .row {
       border-bottom: 1px solid #eee;
       padding-bottom: 1px;
       font-size: $font-size;
       
-      &.bottom {
+      &:last-child {
         border-bottom-width: 0px;
       }
     }
     
-    .effect {
-      float: right;
-      color: $font-color-halflight;
-      font-size: $font-size-small;
+    .level, .type, .effect, .attributes{
+    	padding: 2px 0;
+    }
+    
+    .level {
+    	float: right;
+    	color: $font-color-halflight;
+    	font-size: $font-size-small;
     }
     
     .type {
-      color: $font-color-halflight;
+      color: $font-color;
       font-size: $font-size-small;
+    }
+    
+    .effects {
+      color: $font-color;
+      font-size: $font-size-small;
+      
+      .effect {
+      	float: left;
+      	
+      	&.weapon { width: 24.9%; }
+      	&.armor { width: 49.9%; }
+      	&.other { width: 100%; }
+      	
+      	.icon {
+      		width: 12px;
+      		height: 12px;
+      		display: inline-block;
+      		vertical-align: top;
+      		
+      		&.damage { background-image: asset-url("images/icons/tooltip_damage.gif"); }
+      		&.mdamage { background-image: asset-url("images/icons/tooltip_magic.gif"); }
+      		&.accuracy { background-image: asset-url("images/icons/tooltip_accuracy.gif"); }
+      		&.price { background-image: asset-url("images/icons/tooltip_price.gif"); }
+      		&.armor { background-image: asset-url("images/icons/tooltip_armor.gif"); }
+      	}
+      }
     }
     
     .attributes {
       font-size: $font-size-halfsmall;
-    }
-    
-    .price {
-      float: right;
-      color: $font-color-halflight;
-      font-size: $font-size-small;
-    }
-    
-    .level {
-      color: $font-color-halflight;
-      font-size: $font-size-small;
     }
   }
 }

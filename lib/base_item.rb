@@ -4,12 +4,12 @@ require "item_lib"
 class BaseItem
 	include ItemType, ItemSubtype, Rarity
 	
-	attr_reader :id, :name, :ilevel, :type, :subtype, :rarity, :chance, :data
+	attr_reader :id, :name, :level, :type, :subtype, :rarity, :chance, :data
 	
-	def initialize(id, name, ilevel, type, subtype, rarity, chance, data = {})
+	def initialize(id, name, level, type, subtype, rarity, chance, data = {})
 		@id = id
 		@name = name
-		@ilevel = ilevel
+		@level = level
 		@type = type
 		@subtype = subtype
 		@rarity = rarity
@@ -29,7 +29,7 @@ class BaseItem
 		return case type
 			when ItemType::WEAPON then [10, 7, 90]
 			when ItemType::ARMOR then 5
-			else 0
+			else data[:effect] || 0
 		end
 	end
 	
@@ -61,9 +61,9 @@ class BaseItem
 		# Monster Drop Items
 		MonsterDrops::TIERS.each do |tier_id, tier, tier_level|
 			MonsterDrops::ITEMS.each do |item_id, name, item_level, type, subtype, data|
-				ilevel = tier_level + item_level
-				data = data.blank? ? {} : data.inject({}) { |acc, map| acc[map[0]] = map[1].call(ilevel); acc }
-				@@database << BaseItem.new(TIER_ID + tier_id + item_id, "#{tier} #{name}", ilevel, type, subtype, COMMON, 100, data)
+				level = tier_level + item_level
+				data = data.blank? ? {} : data.inject({}) { |acc, map| acc[map[0]] = map[1].call(level); acc }
+				@@database << BaseItem.new(TIER_ID + tier_id + item_id, "#{tier} #{name}", level, type, subtype, COMMON, 100, data)
 			end
 		end
 		
@@ -124,12 +124,12 @@ class BaseItem
 			[60_00_00, "Light Legplates", 1, ARMOR, LEGPLATES],
 			[61_00_00, "Heavy Legplates", 6, ARMOR, LEGPLATES],
 			
-			[62_00_00, "Ruby Ring", 7, ARMOR, RING,     { strength: -> ilevel { (ilevel / 5).floor * 2 } }],
-			[63_00_00, "Sapphire Ring", 7, ARMOR, RING, { wisdom:   -> ilevel { (ilevel / 5).floor * 2 } }],
-			[64_00_00, "Emerald Ring", 7, ARMOR, RING,  { defense:  -> ilevel { (ilevel / 5).floor * 2 } }],
-			[65_00_00, "Topaz Ring", 7, ARMOR, RING,    { agility:  -> ilevel { (ilevel / 5).floor * 2 } }],
-			[66_00_00, "Diamond Ring", 7, ARMOR, RING,  { stamina:  -> ilevel { (ilevel / 5).floor * 2 } }],
-			[67_00_00, "Amethyst Ring", 7, ARMOR, RING, { spirit:   -> ilevel { (ilevel / 5).floor * 2 } }],
+			[62_00_00, "Ruby Ring", 7, ARMOR, RING,     { strength: -> level { (level / 5).floor * 2 } }],
+			[63_00_00, "Sapphire Ring", 7, ARMOR, RING, { wisdom:   -> level { (level / 5).floor * 2 } }],
+			[64_00_00, "Emerald Ring", 7, ARMOR, RING,  { defense:  -> level { (level / 5).floor * 2 } }],
+			[65_00_00, "Topaz Ring", 7, ARMOR, RING,    { agility:  -> level { (level / 5).floor * 2 } }],
+			[66_00_00, "Diamond Ring", 7, ARMOR, RING,  { stamina:  -> level { (level / 5).floor * 2 } }],
+			[67_00_00, "Amethyst Ring", 7, ARMOR, RING, { spirit:   -> level { (level / 5).floor * 2 } }],
 			[68_00_00, "Amulet", 7, ARMOR, AMULET],
 			
 			[90_00_00, "Pickaxe", 1, TOOL, PICKAXE],

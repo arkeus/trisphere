@@ -26,6 +26,14 @@ class Item < ActiveRecord::Base
 		base.effect
 	end
 	
+	def level
+		base.level
+	end
+	
+	def price
+		150
+	end
+	
 	def rarity
 		value = 0
 		value += 1 if prefix_id
@@ -78,14 +86,14 @@ class Item < ActiveRecord::Base
 	end
 	
 	def as_json(options = {})
-		super(:only => [:data, :id], :methods => [:name, :image_path, :type, :subtype, :rarity, :effect])
+		super(:only => [:data, :id], :methods => [:name, :image_path, :type, :subtype, :rarity, :effect, :level, :price])
 	end
 	
 	private
 	
 	def merge_stats!(stats, merge, property_handler)
 		merge.each do |key, value|
-			value = property_handler.handle(value, self.base.ilevel)
+			value = property_handler.handle(value, self.base.level)
 			if stats[key]
 				stats[key] += value
 			else
