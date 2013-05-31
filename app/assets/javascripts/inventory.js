@@ -82,6 +82,7 @@ TSA.directive("item", ["$timeout", "Tooltip", function($timeout, Tooltip) {
 			.end()
 			.addClass(scope.item.type)
 			.addClass(scope.item.subtype)
+			.addClass(scope.item.rarity)
 			.click(function() {
 				scope.$apply(function() {
 					scope.equip(scope.item);

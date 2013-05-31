@@ -2,19 +2,27 @@
 
 .item {
 	display: inline-block;
-	border-radius: 3px;
 	padding: 2px;
 	margin: 4px;
 	background: rgba(0, 0, 0, 0.1);
 	width: 20px;
 	height: 20px;
-	border: {
-		top: 1px solid #ccc;
-		left: 1px solid #ccc;
-		right: 1px solid #eee;
-		bottom: 1px solid #eee;
-	}
 	cursor: pointer;
+	
+  border: {
+    top: 1px solid #ccc;
+    left: 2px solid #ccc;
+    right: 2px solid #eee;
+    bottom: 1px solid #eee;
+    radius: 3px;
+  }
+  
+	// Rarities
+  &.Common { border-color: $common-color-dark $common-color-light $common-color-light $common-color-dark; }
+  &.Uncommon { border-color: $uncommon-color-dark $uncommon-color-light $uncommon-color-light $uncommon-color-dark; }
+  &.Rare { border-color: $rare-color-dark $rare-color-light $rare-color-light $rare-color-dark; }
+  &.Mythic { border-color: $mythic-color-dark $mythic-color-light $mythic-color-light $mythic-color-dark; }
+  &.Legendary { border-color: $legendary-color-dark $legendary-color-light $legendary-color-light $legendary-color-dark ; }
 	
 	&:hover {
 		background: rgba(255, 255, 255, 0.5);
