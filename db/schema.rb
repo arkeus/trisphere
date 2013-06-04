@@ -118,10 +118,12 @@ ActiveRecord::Schema.define(version: 20130526020123) do
     t.integer  "posts",                      default: 0
     t.string   "avatar"
     t.string   "signature"
+    t.datetime "active_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "users", ["active_at"], name: "index_users_on_active_at"
   add_index "users", ["username"], name: "index_users_on_username"
 
 end
