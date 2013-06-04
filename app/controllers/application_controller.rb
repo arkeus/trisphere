@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   	if session[:user_id]
   		@user = User.find(session[:user_id])
   		@user.logged_in = true
+  		@user.active_at = Time.now
   		@character = Character.where(user_id: @user.id, active: true).first
   	else
   		@user = User.new

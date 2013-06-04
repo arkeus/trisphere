@@ -10,10 +10,11 @@ class CreateUsers < ActiveRecord::Migration
     	t.integer :posts, default: 0
     	t.string :avatar
     	t.string :signature
+    	t.datetime :active_at
+    	t.timestamps
     	
     	t.index :username
-    	
-      t.timestamps
+    	t.index :active_at
     end
   end
 end
