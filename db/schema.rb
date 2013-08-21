@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130526020123) do
+ActiveRecord::Schema.define(version: 20130604034709) do
 
   create_table "characters", force: true do |t|
     t.integer  "user_id",                                            null: false
@@ -95,6 +95,13 @@ ActiveRecord::Schema.define(version: 20130526020123) do
 
   add_index "forum_posts", ["category_id", "post_type"], name: "index_forum_posts_on_category_id_and_post_type"
   add_index "forum_posts", ["category_id", "topic_id"], name: "index_forum_posts_on_category_id_and_topic_id"
+
+  create_table "friendships", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "friend_id",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "items", force: true do |t|
     t.integer  "character_id"

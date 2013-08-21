@@ -55,9 +55,15 @@ $font-color-dark: #555;
 		right: 1px solid #ccc;
 		bottom: 1px solid #ccc;
 	}
-	box-shadow: inset 0 -1px #ccc;
+	box-shadow: inset 0 -1px #ccc, inset 0 1px #fff;
 	font-weight: bold;
 	cursor: pointer;
+	vertical-align: top;
+	
+	&:active {
+		box-shadow: inset 0 1px #f6f6f6;
+		padding: 5px 8px 3px 8px;
+	}
 }
 
 // Make an element unselectable

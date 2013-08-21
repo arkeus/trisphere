@@ -6,24 +6,35 @@ Trisphere::Application.routes.draw do
   get "/logout" => "index#logout"
   
   # Character
-  get "/character" => "character#home"
+  scope "/character" do
+  	get "/" => "character#home"
+ 	end
+  
+  # Friends
+  scope "/friends" do
+  	get "/" => "friends#index"
+  end
   
   # Inventory
-  get "/inventory" => "inventory#index"
-  get "/inventory/bags" => "inventory#bags"
-  get "/inventory/equipped" => "inventory#equipped"
-  get "/inventory/reset" => "inventory#reset"
+  scope "/inventory" do
+	  get "/" => "inventory#index"
+	  get "/bags" => "inventory#bags"
+	  get "/equipped" => "inventory#equipped"
+	  get "/reset" => "inventory#reset"
+	end
   
   # Forums
-  constraints category_id: /\d+/, topic_id: /\d+/, post_id: /\d+/ do
-	  get "/forums" => "forums#index"
-	  get "/forums/post/:category_id/(:topic_id)/(:post_id)" => "forums#post"
-	  post "/forums/post/:category_id/(:topic_id)/(:post_id)" => "forums#post"
-	  post "/forums/make_post/:category_id" => "forums#make_post"
-	  get "/forums/:category_id" => "forums#category"
-	  get "/forums/:category_id/:topic_id" => "forums#topic"
-	  get "/forums/delete/:category_id/:topic_id/:id" => "forums#delete"
-	  get "/forums/:alter_type/:category_id/:topic_id" => "forums#alter", constraints: { alter_type: /sticky|unsticky|lock|unlock/ }
+  scope "/forums" do
+	  constraints category_id: /\d+/, topic_id: /\d+/, post_id: /\d+/ do
+		  get "/" => "forums#index"
+		  get "/post/:category_id/(:topic_id)/(:post_id)" => "forums#post"
+		  post "/post/:category_id/(:topic_id)/(:post_id)" => "forums#post"
+		  post "/make_post/:category_id" => "forums#make_post"
+		  get "/:category_id" => "forums#category"
+		  get "/:category_id/:topic_id" => "forums#topic"
+		  get "/delete/:category_id/:topic_id/:id" => "forums#delete"
+		  get "/:alter_type/:category_id/:topic_id" => "forums#alter", constraints: { alter_type: /sticky|unsticky|lock|unlock/ }
+		end
 	end
   
   # The priority is based upon order of creation: first created -> highest priority.

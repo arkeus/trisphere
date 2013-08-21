@@ -92,6 +92,8 @@
 		}
 		
 		.post-actions {
+			@include unselectable;
+			
 			.bold {
 				font-weight: bold;
 			}

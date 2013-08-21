@@ -12,4 +12,13 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def create_user(params = {})
+  	password = SecureRandom.hex
+  	return User.create!({
+  		username: SecureRandom.hex,
+  		password: password,
+  		password_confirmation: password,
+  		email: SecureRandom.hex,
+  	}.merge!(params))
+  end
 end
