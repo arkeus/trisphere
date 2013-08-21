@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -33,10 +33,10 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'will_paginate'
 
 # Font Awesome
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 
-# Image manipulation (sprite scritps)
-gem "chunky_png"
+# Image manipulation (sprite scripts)
+gem 'chunky_png'
 
 # Use unicorn as the app server
 # gem 'unicorn'
