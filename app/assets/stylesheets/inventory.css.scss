@@ -9,20 +9,20 @@
 	height: 20px;
 	cursor: pointer;
 	
-  border: {
-    top: 1px solid #ccc;
-    left: 2px solid #ccc;
-    right: 2px solid #eee;
-    bottom: 1px solid #eee;
-    radius: 3px;
-  }
-  
+	border: {
+		top: 1px solid #ccc;
+		left: 2px solid #ccc;
+		right: 2px solid #eee;
+		bottom: 1px solid #eee;
+		radius: 3px;
+	}
+	
 	// Rarities
-  &.Common { border-color: $common-color-dark $common-color-light $common-color-light $common-color-dark; }
-  &.Uncommon { border-color: $uncommon-color-dark $uncommon-color-light $uncommon-color-light $uncommon-color-dark; }
-  &.Rare { border-color: $rare-color-dark $rare-color-light $rare-color-light $rare-color-dark; }
-  &.Mythic { border-color: $mythic-color-dark $mythic-color-light $mythic-color-light $mythic-color-dark; }
-  &.Legendary { border-color: $legendary-color-dark $legendary-color-light $legendary-color-light $legendary-color-dark ; }
+	&.Common { border-color: $common-color-dark $common-color-light $common-color-light $common-color-dark; }
+	&.Uncommon { border-color: $uncommon-color-dark $uncommon-color-light $uncommon-color-light $uncommon-color-dark; }
+	&.Rare { border-color: $rare-color-dark $rare-color-light $rare-color-light $rare-color-dark; }
+	&.Mythic { border-color: $mythic-color-dark $mythic-color-light $mythic-color-light $mythic-color-dark; }
+	&.Legendary { border-color: $legendary-color-dark $legendary-color-light $legendary-color-light $legendary-color-dark ; }
 	
 	&:hover {
 		background: rgba(255, 255, 255, 0.5);
@@ -30,127 +30,127 @@
 }
 
 #tooltip {
-  @include box-size;
-  border-radius: 5px;
-  padding: 5px;
-  position: absolute;
-  display: none;
-  background: rgba(0, 0, 0, 0.5);
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
-  background:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
-  background:     -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
-  background:      -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
-  background:         linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5));
-  
-  // rarity based border
-  &.common {
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
-    background:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
-    background:     -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
-    background:      -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
-    background:         linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5));
-    strong { color: $common-color-dark; }
-  }
-  &.uncommon {
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5)); 
-    background:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5)); 
-    background:     -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5)); 
-    background:      -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5)); 
-    background:         linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5));
-    strong { color: $uncommon-color-dark; }
-  }
-  &.rare {
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5)); 
-    background:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5)); 
-    background:     -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5)); 
-    background:      -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5)); 
-    background:         linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5));
-    strong { color: $rare-color-dark; }
-  }
-  &.mythic {
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5)); 
-    background:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5)); 
-    background:     -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5)); 
-    background:      -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5)); 
-    background:         linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5));
-    strong { color: $mythic-color-dark; }
-  }
-  &.legendary {
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5)); 
-    background:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5)); 
-    background:     -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5)); 
-    background:      -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5)); 
-    background:         linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5));
-    strong { color: $legendary-color-dark; }
-  }
-  
-  #tooltip-content {
-    @include box-size;
-    position: relative;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 3px;
-    padding: 4px;
-    color: $font-color-dark;
-    font-size: $font-size;
-    font-family: verdana, helvetica, sans-serif;
-    min-width: 220px;
-    
-    .row {
-      border-bottom: 1px solid #eee;
-      padding-bottom: 1px;
-      font-size: $font-size;
-      line-height: 14px;
-      
-      &:last-child {
-        border-bottom-width: 0px;
-      }
-    }
-    
-    .level, .type, .effect, .attributes{
-    	padding: 2px 0;
-    }
-    
-    .level {
-    	float: right;
-    	color: $font-color-halflight;
-    	font-size: $font-size-small;
-    }
-    
-    .type {
-      color: $font-color;
-      font-size: $font-size-small;
-    }
-    
-    .effects {
-      color: $font-color;
-      font-size: $font-size-small;
-      
-      .effect {
-      	float: left;
-      	
-      	&.weapon { width: 24.9%; }
-      	&.armor { width: 49.9%; }
-      	&.other { width: 100%; }
-      	
-      	.icon {
-      		width: 12px;
-      		height: 12px;
-      		display: inline-block;
-      		vertical-align: top;
-      		
-      		&.damage { background-image: asset-url("images/icons/tooltip_damage.gif"); }
-      		&.mdamage { background-image: asset-url("images/icons/tooltip_magic.gif"); }
-      		&.accuracy { background-image: asset-url("images/icons/tooltip_accuracy.gif"); }
-      		&.price { background-image: asset-url("images/icons/tooltip_price.gif"); }
-      		&.armor { background-image: asset-url("images/icons/tooltip_armor.gif"); }
-      	}
-      }
-    }
-    
-    .attributes {
-      font-size: $font-size-halfsmall;
-    }
-  }
+	@include box-size;
+	border-radius: 5px;
+	padding: 5px;
+	position: absolute;
+	display: none;
+	background: rgba(0, 0, 0, 0.5);
+	background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+	background:		-moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+	background:		 -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+	background:			-o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+	background:				 linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5));
+	
+	// rarity based border
+	&.common {
+		background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+		background:		-moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+		background:		 -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+		background:			-o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+		background:				 linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5));
+		strong { color: $common-color-dark; }
+	}
+	&.uncommon {
+		background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5)); 
+		background:		-moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5)); 
+		background:		 -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5)); 
+		background:			-o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5)); 
+		background:				 linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(147, 219, 53, 0.5));
+		strong { color: $uncommon-color-dark; }
+	}
+	&.rare {
+		background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5)); 
+		background:		-moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5)); 
+		background:		 -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5)); 
+		background:			-o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5)); 
+		background:				 linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(36, 117, 222, 0.5));
+		strong { color: $rare-color-dark; }
+	}
+	&.mythic {
+		background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5)); 
+		background:		-moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5)); 
+		background:		 -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5)); 
+		background:			-o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5)); 
+		background:				 linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(143, 32, 222, 0.5));
+		strong { color: $mythic-color-dark; }
+	}
+	&.legendary {
+		background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5)); 
+		background:		-moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5)); 
+		background:		 -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5)); 
+		background:			-o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5)); 
+		background:				 linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(244, 14, 14, 0.5));
+		strong { color: $legendary-color-dark; }
+	}
+	
+	#tooltip-content {
+		@include box-size;
+		position: relative;
+		background: rgba(255, 255, 255, 0.95);
+		border-radius: 3px;
+		padding: 4px;
+		color: $font-color-dark;
+		font-size: $font-size;
+		font-family: verdana, helvetica, sans-serif;
+		min-width: 220px;
+		
+		.row {
+			border-bottom: 1px solid #eee;
+			padding-bottom: 1px;
+			font-size: $font-size;
+			line-height: 14px;
+			
+			&:last-child {
+				border-bottom-width: 0px;
+			}
+		}
+		
+		.level, .type, .effect, .attributes{
+			padding: 2px 0;
+		}
+		
+		.level {
+			float: right;
+			color: $font-color-halflight;
+			font-size: $font-size-small;
+		}
+		
+		.type {
+			color: $font-color;
+			font-size: $font-size-small;
+		}
+		
+		.effects {
+			color: $font-color;
+			font-size: $font-size-small;
+			
+			.effect {
+				float: left;
+				
+				&.weapon { width: 24.9%; }
+				&.armor { width: 49.9%; }
+				&.other { width: 100%; }
+				
+				.icon {
+					width: 12px;
+					height: 12px;
+					display: inline-block;
+					vertical-align: top;
+					
+					&.damage { background-image: asset-url("images/icons/tooltip_damage.gif"); }
+					&.mdamage { background-image: asset-url("images/icons/tooltip_magic.gif"); }
+					&.accuracy { background-image: asset-url("images/icons/tooltip_accuracy.gif"); }
+					&.price { background-image: asset-url("images/icons/tooltip_price.gif"); }
+					&.armor { background-image: asset-url("images/icons/tooltip_armor.gif"); }
+				}
+			}
+		}
+		
+		.attributes {
+			font-size: $font-size-halfsmall;
+		}
+	}
 }
 
 #inventory {
