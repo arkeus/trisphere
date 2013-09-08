@@ -109,10 +109,13 @@ TSA.directive("tooltip", [function() {
 		link: function(scope, element, attrs) {
 			scope.$on("showTooltip", function(event, item, target) {
 				var position = $(target).offset();
+				var left = position.left + $(target).outerWidth() + 4;
+				var top = position.top;
+				
 				scope.item = item;
 				$(element).css({
-					left: position.left + $(target).outerWidth() + 4,
-					top: position.top
+					left: left,
+					top: top
 				}).show();
 			});
 			
