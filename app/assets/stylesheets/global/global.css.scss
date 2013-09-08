@@ -10,7 +10,7 @@ html {
 	}
 	
 	body, input, textarea {
-		font-family: verdana, sans-serif;
+		font-family: verdana, helvetica, sans-serif;
 		font-size: 11px;
 	}
 	
@@ -436,7 +436,7 @@ header, footer {
 				}
 				
 				a {
-					display: inline-block;
+					display: block;
 					margin-top: 6px;
 					padding-left: 18px;
 					font-size: 11px;
