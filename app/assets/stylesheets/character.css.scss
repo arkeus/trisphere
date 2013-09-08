@@ -1,6 +1,8 @@
 @import "global/utils";
 
 #stats {
+	text-align: center;
+	
 	.stat-panel {
 		&:first-child {
 			margin-left: 0;
@@ -64,7 +66,7 @@
 
 #character {
 	width: $content-width;
-	margin-top: 6px;
+	margin-top: 2px;
 	
 	#character-column-left {
 		float: left;
