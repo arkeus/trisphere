@@ -101,6 +101,9 @@ TSA.directive("item", ["$timeout", "Tooltip", function($timeout, Tooltip) {
 }]);
 
 TSA.directive("tooltip", [function() {
+	var WINDOW_PADDING = 20;
+	var ITEM_PADDING = 4;
+	
 	return {
 		restrict: "A",
 		controller: ["$scope", function($scope) {
@@ -109,8 +112,16 @@ TSA.directive("tooltip", [function() {
 		link: function(scope, element, attrs) {
 			scope.$on("showTooltip", function(event, item, target) {
 				var position = $(target).offset();
-				var left = position.left + $(target).outerWidth() + 4;
+				var left = position.left + $(target).outerWidth() + ITEM_PADDING;
 				var top = position.top;
+				var width = $(element).width();
+				var height = $(element).height();
+				var windowWidth = $(window).width();
+				var windowHeight = $(window).height();
+				
+				if (left + width > windowWidth - WINDOW_PADDING) {
+					left = left - ITEM_PADDING * 2 - 38 - width;
+				}
 				
 				scope.item = item;
 				$(element).css({
