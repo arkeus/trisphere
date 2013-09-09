@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20130604034709) do
   create_table "friendships", force: true do |t|
     t.integer  "user_id",    null: false
     t.integer  "friend_id",  null: false
+    t.string   "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
