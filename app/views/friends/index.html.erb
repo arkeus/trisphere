@@ -1,3 +1,6 @@
 <section id="friends" class="padded">
-	thar be friends here
+	<% @friendships.each do |friendship| %>
+		<% friend = friendship.friend %>
+		<%= friend.username %> - Active At <%= friend.active_at || "Unknown" %> <%= "(#{friendship.note})" if friendship.note %><br>
+	<% end %>
 </section>

@@ -1,3 +1,5 @@
 class FriendsController < ApplicationController
-	def index; end
+	def index
+		@friendships = @user.friendships.includes(:friend)
+	end
 end
