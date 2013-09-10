@@ -82,8 +82,8 @@ $font-color-dark: #555;
   box-sizing: border-box;
 }
 
-/* Clearfix */
-.cf {
+// Clearfix
+@mixin clearfix {
 	&:before, &:after {
 		content: " ";
 		display: table;
@@ -94,4 +94,9 @@ $font-color-dark: #555;
 	}
 	
 	*zoom: 1;
+}
+
+// Helper class to include clearfix
+.cf {
+	@include clearfix;
 }
