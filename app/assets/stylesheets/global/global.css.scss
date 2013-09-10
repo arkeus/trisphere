@@ -10,12 +10,12 @@ html {
 		overflow-y: scroll;
 	}
 	
-	body, input, textarea {
+	body, input, textarea, button {
 		font-family: verdana, helvetica, sans-serif;
 		font-size: 11px;
 	}
 	
-	a, input[type="submit"] {
+	a, input[type="submit"], button[type="submit"] {
 		text-decoration: none;
 		color: #3873ba;
 		&:visited { color: #b93838; }
@@ -103,7 +103,7 @@ header {
 				margin-right: 3px;
 			}
 			
-			input[type="submit"] {
+			input[type="submit"], button[type="submit"] {
 				padding: 2px 6px 3px 6px;
 				color: #ffffff;
 				text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
@@ -486,6 +486,14 @@ header, footer {
 		.padded {
 			padding: 6px 6px;
 		}
+	}
+	
+	.page-header {
+		margin: 8px 8px 0px 8px;
+		padding-bottom: 4px;
+		border-bottom: 1px solid #bbb;
+		font-size: 12px;
+		font-weight: bold;
 	}
 }
 
