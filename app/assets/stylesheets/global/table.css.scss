@@ -1,0 +1,33 @@
+.tri-table {
+	border-collapse: separate;
+	border-spacing: 2px 0;
+	width: 751px;
+	margin: 0 7px;
+	font-size: 10px;
+	
+	th {
+		font-size: 12px;
+		font-weight: bold;
+		border: {
+			bottom: 1px solid #ddd;
+			top: 1px solid #eee;
+		}
+		padding: 6px 0;
+		background: #fafafa;
+	}
+	
+	tr {
+		&:hover {
+			background: #f8f8ff;
+			
+			td {
+				background: transparent !important;
+			}
+		}
+	}
+	
+	td {
+		border-bottom: 1px solid #eee;
+		padding: 6px 8px;
+	}
+}
