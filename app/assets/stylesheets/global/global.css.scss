@@ -1,4 +1,5 @@
 @import "global/utils";
+@import url(http://fonts.googleapis.com/css?family=Redressed);
 
 // TODO: Make it work outside of chrome dev at some point
 html {
@@ -52,6 +53,15 @@ header {
 		
 		#logo {
 			padding: 7px 0px 0px 2px;
+		}
+		
+		#game-title {
+			font-size: 24px;
+			line-height: 24px;
+			padding-top: 3px;
+			color: #ccc;
+			font-family: 'Redressed', cursive;
+			text-shadow: -1px -1px 0 #eee, 1px 1px 0 #000;
 		}
 		
 		#notifications {
