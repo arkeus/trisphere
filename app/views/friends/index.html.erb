@@ -1,6 +1,38 @@
-<section id="friends" class="padded">
-	<% @friendships.each do |friendship| %>
-		<% friend = friendship.friend %>
-		<%= friend.username %> - Active At <%= friend.active_at || "Unknown" %> <%= "(#{friendship.note})" if friendship.note %><br>
-	<% end %>
-</section>
+<div id="friends-header" class="page-header grid">
+	<div class="col-3" id="friends-title"><a>Friends List</a></div>
+	<div class="col-9 align-right">
+		<%= form_tag "/" do %>
+			<%= text_field_tag "username", nil, placeholder: "username" %>
+			<%= button_tag icon("plus") + " Add Friend", type: :submit %>
+		<% end %>
+	</div>
+</div>
+
+<table id="friends-table" class="tri-table">
+	<colgroup>
+		<col span=1 class="status-column"></col>
+		<col span=1 class="name-column"></col>
+		<col span=1 class="active-column"></col>
+		<col span=1 class="note-column"></col>
+		<col span=1 class="actions-column"></col>
+	</colgroup>
+	<thead>
+		<th></th>
+		<th>Username</th>
+		<th>Last Seen</th>
+		<th>Note</th>
+		<th>Actions</th>
+	</thead>
+	<tbody>
+		<% @friendships.each do |friendship| %>
+			<% friend = friendship.friend %>
+			<tr>
+				<td class="status"><%= image_tag "stats/spirit.png", width: 20, height: 20 %></td>
+				<td class="name"><%= name_link(friend.id) %></td>
+				<td class="active"><%= duration_ago(friend.active_at) || "Unknown" %></td>
+				<td class="note"><%= friendship.note %></td>
+				<td class="actions"><%= icon("remove") %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

@@ -1,3 +1,25 @@
-// Place all the styles related to the friends controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#friends-header {
+	height: 28px;
+	
+	#friends-title {
+		line-height: 26px;
+	}
+}
+
+#friends-table {
+	colgroup {
+		.status-column { white-space: nowrap; }
+		.name-column { width: 15%; }
+		.active-column { width: 15%; }
+		.note-column { width: 55%; }
+		.actions-column { width: 15%; }
+	}
+	
+	.name {
+		background: #fcfcfc;
+	}
+	
+	.actions {
+		text-align: center;
+	}
+}
