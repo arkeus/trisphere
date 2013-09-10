@@ -1,0 +1,30 @@
+@import "global/utils";
+
+$grid-columns: 12;
+$column-width: 8.33%;
+
+.grid {
+	@include clearfix;
+	
+	margin: 0;
+	padding: 0;
+	
+	[class*="col-"] {
+		float: left;
+		padding: 0;
+		margin: 0;
+	}
+	
+	.col-1 { width: $column-width * 1; }
+	.col-2 { width: $column-width * 2; }
+	.col-3 { width: $column-width * 3; }
+	.col-4 { width: $column-width * 4; }
+	.col-5 { width: $column-width * 5; }
+	.col-6 { width: $column-width * 6; }
+	.col-7 { width: $column-width * 7; }
+	.col-8 { width: $column-width * 8; }
+	.col-9 { width: $column-width * 9; }
+	.col-10 { width: $column-width * 10; }
+	.col-11 { width: $column-width * 11; }
+	.col-12 { width: $column-width * 12; }
+}
