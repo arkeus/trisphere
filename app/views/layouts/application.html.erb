@@ -10,8 +10,8 @@
 	<%= csrf_meta_tags %>
 </head>
 <body ng-app="trisphere">
-	<%= render :partial => "shared/header" %>
-	<div class="bounds" id="content"><%= render :partial => "shared/sidebar" if @user.logged_in? -%><div id="<%= @user.logged_in? ? "content-column" : "content" -%>"><%= yield %></div></div>
-	<%= render :partial => "shared/footer" %>
+	<%= render partial: "shared/header" %>
+	<div class="bounds" id="content"><%= render :partial => "shared/sidebar" if @user.logged_in? -%><div id="<%= @user.logged_in? ? "content-column" : "content" -%>"><%= render partial: "shared/flash" %><%= yield %></div></div>
+	<%= render partial: "shared/footer" %>
 </body>
 </html>

@@ -1,0 +1,4 @@
+<% [:info, :warn, :error].each do |level| %>
+	<% next unless flash[level] %>
+	<div class="flash <%= level %>"><%= flash[level] %></div>
+<% end %>
