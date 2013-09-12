@@ -1,0 +1,10 @@
+@import "global/utils";
+
+.rarity {
+	&.common { color: $common-color-dark; }
+	&.uncommon { color: $uncommon-color-dark; }
+	&.rare { color: $rare-color-dark; }
+	&.mythic { color: $mythic-color-dark; }
+	&.legendary { color: $legendary-color-dark; }
+	&.artifact { color: $artifact-color-dark; }
+}
