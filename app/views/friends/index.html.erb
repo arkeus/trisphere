@@ -1,8 +1,9 @@
 <div id="friends-header" class="page-header grid">
 	<div class="col-3" id="friends-title"><a>Friends List</a></div>
 	<div class="col-9 align-right">
-		<%= form_tag "/" do %>
-			<%= text_field_tag "username", nil, placeholder: "username" %>
+		<%= form_tag add_friend_path do %>
+			<%= text_field_tag "username", nil, placeholder: "username", size: 12 %>
+			<%= text_field_tag "note", nil, placeholder: "note (optional)", size: 24 %>
 			<%= button_tag icon("plus") + " Add Friend", type: :submit %>
 		<% end %>
 	</div>
@@ -29,9 +30,9 @@
 			<tr>
 				<td class="status"><%= image_tag "stats/spirit.png", width: 20, height: 20 %></td>
 				<td class="name"><%= name_link(friend.id) %></td>
-				<td class="active"><%= duration_ago(friend.active_at) || "Unknown" %></td>
+				<td class="active"><%= friend.online? ? content_tag(:span, "Online", class: "online-tag") : duration_ago(friend.active_at) || "Unknown" %></td>
 				<td class="note"><%= friendship.note %></td>
-				<td class="actions"><%= icon("remove") %></td>
+				<td class="actions"><%= link_to "#{icon("remove")} Remove".html_safe, remove_friend_path(username: friend.username), class: "button" %></td>
 			</tr>
 		<% end %>
 	</tbody>

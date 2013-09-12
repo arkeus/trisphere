@@ -11,19 +11,29 @@ class User < ActiveRecord::Base
 		@logged_in = false
 	end
 	
+	# Returns whether this user is authenticated within the current request to be logged in.
   def logged_in?
     @logged_in
   end
   
+  # Returns whether this user is online or not. Threshold: Action taken within the last 5 minutes.
+  def online?
+  	self.active_at > 5.minutes.ago
+  end
+  
+  # Adds a friend to this user's friendlist with an optional note.
   def befriend(user, note = nil)
     raise "Expected 'User' class, got '#{user.class}'" unless user.is_a?(User)
+    raise "Cannote add friend, '#{user.username}' is already a friend!" if friendships.find { |u| u.friend_id == user.id }
     Friendship.create(user_id: self.id, friend_id: user.id, note: note)
   end
   
+  # Removes a friend from this user's friendlist.
   def unfriend(user)
     friends.delete(user)
   end
   
+  # Edits the note of a user who is already on this user's friendlist.
   def set_friend_note(user, note)
     raise "Expected 'User' class, got '#{user.class}'" unless user.is_a?(User)
     friendship = friendships.find { |u| u.friend_id == user.id }

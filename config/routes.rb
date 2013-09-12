@@ -12,7 +12,9 @@ Trisphere::Application.routes.draw do
   
   # Friends
   scope "/friends" do
-  	get "/" => "friends#index"
+  	get "/" => "friends#index", as: "friends"
+  	post "/add" => "friends#add", as: "add_friend"
+  	get "/remove/:username" => "friends#remove", as: "remove_friend"
   end
   
   # Inventory
@@ -35,6 +37,11 @@ Trisphere::Application.routes.draw do
 		  get "/delete/:category_id/:topic_id/:id" => "forums#delete"
 		  get "/:alter_type/:category_id/:topic_id" => "forums#alter", constraints: { alter_type: /sticky|unsticky|lock|unlock/ }
 		end
+	end
+	
+	# Test
+	scope "/test" do
+		get "/" => "test#index"
 	end
   
   # The priority is based upon order of creation: first created -> highest priority.
