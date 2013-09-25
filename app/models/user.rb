@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 	has_many :friends, through: :friendships, class_name: "User"
 	
 	after_initialize :init
+	before_save :before_save
 	attr_writer :logged_in
 	
 	def init
@@ -18,7 +19,7 @@ class User < ActiveRecord::Base
   
   # Returns whether this user is online or not. Threshold: Action taken within the last 5 minutes.
   def online?
-  	self.active_at > 5.minutes.ago
+  	self.active_at && self.active_at > 5.minutes.ago
   end
   
   # Adds a friend to this user's friendlist with an optional note.
@@ -40,5 +41,15 @@ class User < ActiveRecord::Base
     raise "Could not find friend '#{user.username}'" unless friendship
     friendship.note = note
     friendship.save!
+  end
+  
+  # Initializes any values that need to be set before save.
+  def before_save
+  	self.active_at ||= Time.now if new_record?
+  end
+  
+  # The string representation of a user is the username.
+  def to_s
+  	self.username
   end
 end

@@ -32,7 +32,7 @@
 				<td class="name"><%= name_link(friend.id) %></td>
 				<td class="active"><%= friend.online? ? content_tag(:span, "Online", class: "online-tag") : duration_ago(friend.active_at) || "Unknown" %></td>
 				<td class="note"><%= friendship.note %></td>
-				<td class="actions"><%= link_to "#{icon("remove")} Remove".html_safe, remove_friend_path(username: friend.username), class: "button" %></td>
+				<td class="actions"><%= link_to "#{icon("remove")} Remove".html_safe, remove_friend_path(username: friend.username), class: "button", confirm: "Remove friend #{friend}?" %></td>
 			</tr>
 		<% end %>
 	</tbody>
