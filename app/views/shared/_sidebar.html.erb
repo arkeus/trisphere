@@ -1,6 +1,6 @@
 <div id="sidebar">
 	<div id="character-panel" class="cf">
-		<div id="avatar"><%= image_tag("class/knight_stand.png") -%></div>
+		<div id="avatar"><%= image_tag("class/knight_stand.png") %></div>
 		<div class="row">
 			<span id="name"><%= @character.name %></span>
 			<div id="switch" class="switch-button">SWITCH</div>
@@ -23,7 +23,7 @@
 	</div>
 	<div class="separator"></div>
 	<div id="companion" class="cf">
-		<%= image_tag("items/old/taming_crystal_minor.gif", class: "icon") -%>
+		<%= image_tag("items/old/taming_crystal_minor.gif", class: "icon") %>
 		<div class="row">
 			<span class="name">Noah the Wise</span>
 			<div class="switch-button switch">SWITCH</div>
@@ -35,8 +35,8 @@
 	</div>
 	<div class="separator"></div>
 	<div id="finance" class="cf">
-		<span class="entry"><%= image_tag("layout/icon_coin.png") -%> 123</span>
-		<span class="entry"><%= image_tag("layout/icon_shard.png") -%> 123</span>
+		<span class="entry"><%= image_tag("layout/icon_coin.png") %> <%= @user.gold %></span>
+		<span class="entry"><%= image_tag("layout/icon_shard.png") %> <%= @user.shards %></span>
 	</div>
 	<div class="separator"></div>
 	<div id="navigation">
@@ -44,21 +44,21 @@
 			<div class="block">
 				<div class="header">CHARACTER</div>
 				<div class="links">
-					<%= link_to("Statistics", controller: "character", action: "home") -%>
-					<%= link_to("Inventory", controller: "inventory", action: "index") -%>
-					<%= link_to("Stables", controller: "character", action: "home") -%>
-					<%= link_to("Skills", controller: "character", action: "home") -%>
-					<%= link_to("Achievements", controller: "character", action: "home") -%>
+					<%= link_to("Statistics", controller: "character", action: "home") %>
+					<%= link_to("Inventory", controller: "inventory", action: "index") %>
+					<%= link_to("Stables", controller: "character", action: "home") %>
+					<%= link_to("Skills", controller: "character", action: "home") %>
+					<%= link_to("Achievements", controller: "character", action: "home") %>
 				</div>
 			</div>
 			<div class="block">
 				<div class="header">WORLD</div>
 				<div class="links">
-					<%= link_to("Quests", controller: "character", action: "home") -%>
-					<%= link_to("Rinau", controller: "character", action: "home") -%>
-					<%= link_to("Sazaru", controller: "character", action: "home") -%>
-					<%= link_to("Alaer", controller: "character", action: "home") -%>
-					<%= link_to("Explore", controller: "character", action: "home") -%>
+					<%= link_to("Quests", controller: "character", action: "home") %>
+					<%= link_to("Rinau", controller: "character", action: "home") %>
+					<%= link_to("Sazaru", controller: "character", action: "home") %>
+					<%= link_to("Alaer", controller: "character", action: "home") %>
+					<%= link_to("Explore", controller: "character", action: "home") %>
 				</div>
 			</div>
 		</div>
@@ -67,19 +67,19 @@
 			<div class="block">
 				<div class="header">COMMUNITY</div>
 				<div class="links">
-					<%= link_to("Friends", controller: "friends", action: "index") -%>
-					<%= link_to("Forums", controller: "forums", action: "index") -%>
-					<%= link_to("Marketplace", controller: "character", action: "home") -%>
-					<%= link_to("Trading Post", controller: "character", action: "home") -%>
-					<%= link_to("Trimail", controller: "character", action: "home") -%>
+					<%= link_to("Friends", controller: "friends", action: "index") %>
+					<%= link_to("Forums", controller: "forums", action: "index") %>
+					<%= link_to("Marketplace", controller: "character", action: "home") %>
+					<%= link_to("Trading Post", controller: "character", action: "home") %>
+					<%= link_to("Trimail", controller: "character", action: "home") %>
 				</div>
 			</div>
 			<div class="block">
 				<div class="header">MISC</div>
 				<div class="links">
-					<%= link_to("Rankings", controller: "character", action: "home") -%>
-					<%= link_to("Help", controller: "character", action: "home") -%>
-					<%= link_to("Referrals", controller: "character", action: "home") -%>
+					<%= link_to("Rankings", controller: "character", action: "home") %>
+					<%= link_to("Help", controller: "character", action: "home") %>
+					<%= link_to("Referrals", controller: "character", action: "home") %>
 				</div>
 			</div>
 		</div>
