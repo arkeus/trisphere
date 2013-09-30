@@ -97,16 +97,19 @@
 		
 		.row {
 			border-bottom: 1px solid #eee;
-			padding-bottom: 1px;
 			font-size: $font-size;
 			line-height: 14px;
 			
 			&:last-child {
 				border-bottom-width: 0px;
 			}
+			
+			&.name {
+				padding-bottom: 1px;
+			}
 		}
 		
-		.level, .type, .effect, .attributes{
+		.level, .type, .effect, .attributes {
 			padding: 2px 0;
 		}
 		
@@ -137,6 +140,8 @@
 					height: 12px;
 					display: inline-block;
 					vertical-align: top;
+					position: relative;
+					top: 1px;
 					
 					&.damage { background-image: asset-url("images/icons/tooltip_damage.gif"); }
 					&.mdamage { background-image: asset-url("images/icons/tooltip_magic.gif"); }
@@ -149,6 +154,11 @@
 		
 		.attributes {
 			font-size: $font-size-halfsmall;
+			
+			.attribute {
+				strong {
+				}
+			}
 		}
 	}
 }
