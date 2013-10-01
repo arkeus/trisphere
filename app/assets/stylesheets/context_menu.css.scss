@@ -1,0 +1,34 @@
+@import "global/utils";
+
+.context-menu {
+	@include unselectable;
+	
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 5px;
+	border: 2px solid #444;
+	border-left-width: 4px;
+	border-right-width: 4px;
+	box-shadow: 0 0 8px #000;
+	position: absolute;
+	left: 610px;
+	top: 279px;
+	
+	.context-item {
+		display: block;
+		font-weight: bold;
+		cursor: pointer;
+		padding: 2px 8px;
+		font-size: 14px;
+		color: #444;
+		
+		&:hover {
+			background: #444;
+			color: #fff;
+			text-shadow: -1px -1px 0px #222;
+		}
+		
+		&:active {
+			color: $link-active-color;
+		}
+	}
+}
