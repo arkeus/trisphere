@@ -1,0 +1,28 @@
+TSA.factory("ContextMenu", ["$rootScope", "ContextMenuBuilder", function($rootScope, ContextMenuBuilder) {
+	var module = {};
+	
+	module.show = function(event, type, source) {
+		event.preventDefault();
+		console.info("Context", event, type, source);
+	};
+	
+	return module;
+}]);
+
+TSA.factory("ContextMenuBuilder", [function() {
+	var module = {};
+	
+	var builders = {
+		item: function(item) {
+			var options = [];
+			options.push("Equip");
+			return options;
+		}
+	};
+	
+	module.build = function(type, source) {
+		return builders[type](source);
+	};
+	
+	return module;
+}]);

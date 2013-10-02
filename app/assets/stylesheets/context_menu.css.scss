@@ -24,11 +24,36 @@
 		&:hover {
 			background: #444;
 			color: #fff;
-			text-shadow: -1px -1px 0px #222;
+			text-shadow: -1px -1px 0 #222;
+			
+			.icon {
+				-webkit-transform: rotate(90deg);
+				-moz-transform: rotate(90deg);
+				transform: rotate(90deg);
+				
+				i {
+					color: #fff;
+				}
+			}
 		}
 		
 		&:active {
 			color: $link-active-color;
+			
+			.icon {
+				
+			}
+		}
+		
+		.icon {
+			display: inline-block;
+			width: 14px;
+			text-align: center;
+			-webkit-transition: all .2s ease-in-out;
+			
+			i {
+				color: #666;
+			}
 		}
 	}
 }

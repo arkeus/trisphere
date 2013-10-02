@@ -68,7 +68,7 @@ TSA.factory("Tooltip", ["$rootScope", function($rootScope) {
 // DIRECTIVES
 //
 
-TSA.directive("item", ["$timeout", "Tooltip", function($timeout, Tooltip) {
+TSA.directive("item", ["$timeout", "Tooltip", "ContextMenu", function($timeout, Tooltip, ContextMenu) {
 	return {
 		restrict: "E",
 		controller: ["$scope", "$element", "$attrs", function($scope, $element, $attrs) {
@@ -95,6 +95,8 @@ TSA.directive("item", ["$timeout", "Tooltip", function($timeout, Tooltip) {
 				scope.$apply(function() {
 					Tooltip.hide();
 				});
+			}).on("contextmenu", function(event) {
+				ContextMenu.show(event, "item", scope.item);
 			});
 		}
 	};
@@ -134,6 +136,15 @@ TSA.directive("tooltip", [function() {
 				$(element).hide();
 			});
 		}
+	};
+}]);
+
+TSA.directive("contextMenu", [function() {
+	return {
+		restrict: "A",
+		controller: ["$scope", function($scope) {
+			
+		}],
 	};
 }]);
 
