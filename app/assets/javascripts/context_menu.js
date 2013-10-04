@@ -4,7 +4,6 @@ TSA.factory("ContextMenu", ["$rootScope", "ContextMenuBuilder", function($rootSc
 	module.show = function(event, type, source) {
 		event.preventDefault();
 		var options = ContenxtMenuBuilder.build(type, source);
-		console.info("Context", event, type, source);
 	};
 	
 	return module;
