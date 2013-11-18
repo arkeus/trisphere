@@ -17,6 +17,16 @@
 		.actions-column { width: 15%; }
 	}
 	
+	.status {
+		img.online {
+			
+		}
+		
+		img.offline {
+			opacity: 0.4;
+		}
+	}
+	
 	.name {
 		background: #fcfcfc;
 	}

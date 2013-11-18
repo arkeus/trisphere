@@ -28,7 +28,7 @@
 		<% @friendships.each do |friendship| %>
 			<% friend = friendship.friend %>
 			<tr>
-				<td class="status"><%= image_tag "stats/spirit.png", width: 20, height: 20 %></td>
+				<td class="status"><%= image_tag "stats/spirit.png", width: 20, height: 20, class: friend.online? ? "online" : "offline" %></td>
 				<td class="name"><%= name_link(friend.id) %></td>
 				<td class="active"><%= friend.online? ? content_tag(:span, "Online", class: "online-tag") : duration_ago(friend.active_at) || "Unknown" %></td>
 				<td class="note"><%= friendship.note %></td>
