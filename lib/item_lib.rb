@@ -26,7 +26,7 @@ module ItemSubtype
 	# Professions
 	PICKAXE = "Pickaxe"
 	HATCHET = "Hatchet"
-	SPADE = "Space"
+	SPADE = "Spade"
 end
 
 module Rarity
