@@ -4,7 +4,7 @@
 // APPLICATION
 //
 	
-TSA.run(["$rootScope", function($rootScope) {
+app.run(["$rootScope", function($rootScope) {
 	
 }]);
 
@@ -12,7 +12,7 @@ TSA.run(["$rootScope", function($rootScope) {
 // CONTROLLERS
 //
 
-TSA.controller("InventoryController", ["$scope", "Inventory", function($scope, Inventory) {
+app.controller("InventoryController", ["$scope", "Inventory", function($scope, Inventory) {
 	$scope.bags = Inventory.bags();
 	$scope.equipped = Inventory.equipped();
 	
@@ -43,14 +43,14 @@ TSA.controller("InventoryController", ["$scope", "Inventory", function($scope, I
 // SERVICES
 //
 
-TSA.factory("Inventory", ["$rootScope", "$resource", function($rootScope, $resource) {
+app.factory("Inventory", ["$rootScope", "$resource", function($rootScope, $resource) {
 	return $resource("/inventory/:action", {}, {
 		bags: { method: "GET", params: { action: "bags" }, isArray: true },
 		equipped: { method: "GET", params: { action: "equipped" }, isArray: true }
 	});
 }]);
 
-TSA.factory("Tooltip", ["$rootScope", function($rootScope) {
+app.factory("Tooltip", ["$rootScope", function($rootScope) {
 	var module = {};
 	
 	module.show = function(item, element) {
@@ -68,7 +68,7 @@ TSA.factory("Tooltip", ["$rootScope", function($rootScope) {
 // DIRECTIVES
 //
 
-TSA.directive("item", ["$timeout", "Tooltip", "ContextMenu", function($timeout, Tooltip, ContextMenu) {
+app.directive("item", ["$timeout", "Tooltip", "ContextMenu", function($timeout, Tooltip, ContextMenu) {
 	return {
 		restrict: "E",
 		controller: ["$scope", "$element", "$attrs", function($scope, $element, $attrs) {
@@ -102,7 +102,7 @@ TSA.directive("item", ["$timeout", "Tooltip", "ContextMenu", function($timeout, 
 	};
 }]);
 
-TSA.directive("tooltip", [function() {
+app.directive("tooltip", [function() {
 	var WINDOW_PADDING = 20;
 	var ITEM_PADDING = 4;
 	
@@ -139,7 +139,7 @@ TSA.directive("tooltip", [function() {
 	};
 }]);
 
-TSA.directive("contextMenu", [function() {
+app.directive("contextMenu", [function() {
 	return {
 		restrict: "A",
 		controller: ["$scope", function($scope) {
@@ -152,7 +152,7 @@ TSA.directive("contextMenu", [function() {
 // FILTERS
 //
 
-TSA.filter("displayEffect", function() {
+app.filter("displayEffect", function() {
 	return function(item) {
 		if (!item) {
 			return;

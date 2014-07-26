@@ -1,2 +1,2 @@
-/** TSA is our global TriSphereAngular application shared between pages. */
-var TSA = angular.module("trisphere", ["ngResource", "ngSanitize"]);
+/** "app" is our global application shared between pages. */
+var app = angular.module("trisphere", ["ngResource", "ngSanitize"]);

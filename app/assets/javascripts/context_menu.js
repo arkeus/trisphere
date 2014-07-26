@@ -1,4 +1,4 @@
-TSA.factory("ContextMenu", ["$rootScope", "ContextMenuBuilder", function($rootScope, ContextMenuBuilder) {
+app.factory("ContextMenu", ["$rootScope", "ContextMenuBuilder", function($rootScope, ContextMenuBuilder) {
 	var module = {};
 	
 	module.show = function(event, type, source) {
@@ -9,7 +9,7 @@ TSA.factory("ContextMenu", ["$rootScope", "ContextMenuBuilder", function($rootSc
 	return module;
 }]);
 
-TSA.factory("ContextMenuBuilder", [function() {
+app.factory("ContextMenuBuilder", [function() {
 	var module = {};
 	
 	var builders = {

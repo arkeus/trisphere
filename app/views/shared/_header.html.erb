@@ -3,7 +3,7 @@
 		<% if @user.logged_in? %>
 			<div id="notifications"><%= link_to "logout", "/logout" -%></div>
 		<% end %>
-		<div id="game-title">Trisphere</div>
+		<%= image_tag "layout/logo.png", id: "game-title" %>
 	</div></div>
 	<div class="color-bar"></div>
 	<nav><div class="bounds cf">
@@ -13,7 +13,7 @@
 				<%= navigation_tag({ controller: "inventory", action: "index" }, "axe", "Inventory")%>
 				<%= navigation_tag({ controller: "character", action: "home" }, "crystal", "Skills")%>
 				<%= navigation_tag({ controller: "character", action: "home" }, "shield", "Quests")%>
-				<%= navigation_tag({ controller: "character", action: "home" }, "sword", "Explore")%>
+				<%= navigation_tag({ controller: "world", action: "index" }, "sword", "Explore")%>
 				<%= navigation_tag({ controller: "character", action: "home" }, "orb", "Market")%>
 				<%= navigation_tag({ controller: "forums", action: "index" }, "scroll", "Forums")%>
 			</div>

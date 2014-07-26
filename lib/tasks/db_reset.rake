@@ -9,5 +9,5 @@ namespace :db do
 		# load File.join(Rails.root, "db", "seeds.rb")
 	# end
 	
-	task kill: ["environment", "db:reset", "db:migrate", "db:seed"]
+	task kill: ["environment", "db:drop", "db:create", "db:migrate", "db:seed"]
 end

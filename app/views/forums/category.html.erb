@@ -16,7 +16,7 @@
 				<%= image_tag "stats/#{topic.icon}.png", width: 20, height: 20 %>
 			</td>
 			<td>
-				<%= link_to topic.subject, action: "topic", topic_id: topic.id %><br>
+				<%= link_to topic.subject, { action: "topic", topic_id: topic.id }, class: "topic-name" %><br>
 				<span class="light headline"><%= headline topic.message %></span>
 			</td>
 			<td>

@@ -15,9 +15,9 @@
 		</div>
 	</div>
 	<div id="stat-bars" class="cf">
-		<%= character_bar("Level", "level", "green", @character.combat_level, @character.combat_xpc, @character.combat_xpm) %>
-		<%= character_bar("HP", "heart", "red", nil, @character.hpc, @character.hpm, true) %>
-		<%= character_bar("MP", "mana", "blue", nil, @character.mpc, @character.mpm, true) %>
+		<%= character_bar("Level", "level", "green", @character.level, @character.xp, @character.xpm) %>
+		<%= character_bar("HP", "heart", "red", nil, @character.hp, @character.hpm, true) %>
+		<%= character_bar("MP", "mana", "blue", nil, @character.mp, @character.mpm, true) %>
 		<%= character_bar("Energy", "energy", "yellow", @character.energy, @character.energy, 1000, false, true) %>
 		<%= character_bar("Fatigue", "fatigue", "orange", @character.fatigue, @character.fatigue, 1000, false, true) %>
 	</div>

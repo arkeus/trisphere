@@ -1,0 +1,16 @@
+<div id="battle" ng-controller="BattleController">
+	<div id="player-battler" class="battler" ng-show="player">
+		{{player.name}} - Level {{player.level}}<br>
+		HP: {{player.hp}} / {{player.hpm}}
+	</div>
+	<div id="enemy-battler" class="battler" ng-show="enemy">
+		{{enemy.name}} - Level {{enemy.level}}<br>
+		HP: {{enemy.hp}} / {{enemy.hpm}}
+	</div>
+	<div id="battle-log">
+		
+	</div>
+	<div id="battle-actions">
+		<div ng-click="explore()">Explore</div>
+	</div>
+</div>

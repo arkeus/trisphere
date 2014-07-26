@@ -23,14 +23,14 @@ class CreateCharacters < ActiveRecord::Migration
     	t.integer :losses, default: 0
     	t.integer :draws, default: 0
     	
-    	t.integer :hpc, default: 100
+    	t.integer :hp, default: 100
     	t.integer :hpm, default: 100
-    	t.integer :mpc, default: 100
+    	t.integer :mp, default: 100
     	t.integer :mpm, default: 100
     	
-    	t.integer :combat_level, default: 1
-    	t.integer :combat_xpc, default: 0
-    	t.integer :combat_xpm, default: 100
+    	t.integer :level, default: 1
+    	t.integer :xp, default: 0
+    	t.integer :xpm, default: 100
     	
     	t.integer :mining_level, default: 1
     	t.integer :mining_xpc, default: 0
