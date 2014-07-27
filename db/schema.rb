@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130604034709) do
+ActiveRecord::Schema.define(version: 20140727021355) do
+
+  create_table "battles", force: true do |t|
+    t.integer "user_id", null: false
+    t.text    "player",  null: false
+    t.text    "enemy",   null: false
+  end
+
+  add_index "battles", ["user_id"], name: "index_battles_on_user_id"
 
   create_table "characters", force: true do |t|
     t.integer  "user_id",                                            null: false
