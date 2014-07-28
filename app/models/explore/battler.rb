@@ -1,4 +1,4 @@
-require "statistics" # TODO: Why does deserialization fail without this?
+require "statistics" # Force load before deserialization
 
 class Battler
 	attr_accessor :level, :name

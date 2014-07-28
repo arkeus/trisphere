@@ -4,16 +4,35 @@ class ExploreController < ApplicationController
 	end
 	
 	def explore
-		render json: Enemy.find
+		battle = Battle.find_by user_id: @user.id
+		log = BattleLog.new
+		
+		if battle
+			log.add "You returned to your battle with #{battle.enemy.name}"
+		else
+			player = Battler.new @character
+			enemy = Battler.new Enemy.find
+			battle = Battle.new user_id: @user.id, player: player, enemy: enemy
+			battle.setup! log
+			battle.save!
+		end
+		
+		render json: { battle: battle.as_json, messages: log.formatted_messages }
 	end
 	
 	def attack
 		battle = Battle.find_by user_id: @user.id
 		raise "Not in battle" unless battle
 		
-		battle.process!
-		battle.save!
+		log = BattleLog.new
+		battle.process! log
 		
-		render json: { battle: battle.as_json, messages: ["something here"] }
+		if battle.complete?
+			battle.destroy
+		else
+			battle.save!
+		end
+		
+		render json: { battle: battle.as_json, messages: log.formatted_messages, complete: battle.complete? }
 	end
 end

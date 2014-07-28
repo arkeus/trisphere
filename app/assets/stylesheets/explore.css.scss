@@ -2,6 +2,7 @@
 
 #battle {
 	padding: 8px;
+	position: relative;
 	
 	#battle-status {
 		@include clearfix;
@@ -30,12 +31,26 @@
 		}
 	}
 	
-	#battle-actions {
-		padding: 8px;
-		border: 1px solid #aaa;
-		margin: 8px;
-		padding-top: 0px;
-		margin-top: 0px;
+	#battle-actions, #post-battle-actions {
+		.battle-action {
+			display: inline-block;
+			vertical-align: middle;
+			padding: 3px;
+			border: 4px solid #aaa;
+			border-top-width: 1px;
+			border-bottom-width: 1px;
+			border-radius: 7px;
+			height: 20px;
+			cursor: pointer;
+			
+			&:hover {
+				border-color: #666;
+			}
+			
+			&:active {
+				border-color: #000;
+			}
+		}
 	}
 	
 	#battle-log {
@@ -43,21 +58,11 @@
 		border-top: 1px solid #eee;
 		border-bottom: 1px solid #eee;
 		padding: 4px 0;
-		height: 100px;
+		height: 102px;
   	overflow: hidden;
 		
 		&:hover {
 	    overflow: auto;
-	  }
-	  
-	  .message {
-	    transition: all 300ms ease-out;
-	    cursor: default;
-	    
-	    &:hover {
-	      box-shadow: 0 0 5px #aaa;
-	      text-shadow: 0 0 5px #aaa;
-	    }
 	  }
 	}
 	
@@ -148,6 +153,35 @@
 			.title {
 				display: block;
 			}
+		}
+	}
+	
+	#battle-complete {
+		@include box-size;
+		border-radius: 10px;
+		padding: 8px;
+		position: absolute;
+		top: 70px;
+		left: 50%;
+		margin-left: -200px;
+		
+		background: rgba(0, 0, 0, 0.5);
+		background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+		background:		-moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+		background:		 -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+		background:			-o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5)); 
+		background:				 linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.5));
+		
+		.content {
+			@include box-size;
+			position: relative;
+			background: rgba(255, 255, 255, 0.95);
+			border-radius: 3px;
+			padding: 6px;
+			color: #000;
+			font-size: 12px;
+			font-family: verdana, helvetica, sans-serif;
+			width: 400px;
 		}
 	}
 }

@@ -1,4 +1,6 @@
 app.controller("BattleController", ["$scope", "$http", function($scope, $http) {
+	$scope.inBattle = false;
+	$scope.complete = false;
 	$scope.player = new Battler();
 	$scope.enemy = new Battler();
 	$scope.log = ["what", "is", "this"];
@@ -9,11 +11,13 @@ app.controller("BattleController", ["$scope", "$http", function($scope, $http) {
 	
 	$scope.exploreSuccess = function(data, status, headers, config) {
 		console.log("Engaged data", data, "with status", status, "and headers", headers, "and config", config);
-		$scope.enemy.update(data);
+		processUpdate(data);
+		$scope.inBattle = true;
+		$scope.complete = false;
 	};
 	
 	$scope.exploreFail = function(data, status, headers, config) {
-		console.log("Failed to explore", data, status, headers, config);
+		console.log("Failed to explore", status, headers, config);
 	};
 	
 	$scope.attack = function() {
@@ -22,19 +26,26 @@ app.controller("BattleController", ["$scope", "$http", function($scope, $http) {
 	
 	$scope.attackSuccess = function(data, status, headers, config) {
 		console.log("Attacked data", data, "with status", status, "and headers", headers, "and config", config);
-		$scope.player.hp = data.battle.player.hp;
-		$scope.enemy.hp = data.battle.enemy.hp;
-		$.each(data.messages, function(index, message) {
-			$scope.log.push(message);
-		});
+		processUpdate(data);
+		if (data.complete) {
+			$scope.complete = true;
+		}
 	};
 	
 	$scope.attackFail = function(data, status, headers, config) {
-		console.log("Failed to attack", data, status, headers, config);
+		console.log("Failed to attack", status, headers, config);
 	};
 	
 	$scope.loadPlayer = function(data, status, headers, config) {
 		$scope.player.update(data);
+	};
+	
+	var processUpdate = function(data) {
+		$scope.enemy.update(data.battle.enemy);
+		$scope.player.update(data.battle.player);
+		$.each(data.messages, function(index, message) {
+			$scope.log.push(message);
+		});
 	};
 	
 	$scope.player.update($("#initial-battler").data("player"));
