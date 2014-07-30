@@ -43,9 +43,14 @@ app.controller("BattleController", ["$scope", "$http", function($scope, $http) {
 	var processUpdate = function(data) {
 		$scope.enemy.update(data.battle.enemy);
 		$scope.player.update(data.battle.player);
-		$.each(data.messages, function(index, message) {
+		logMessages(data.messages);
+	};
+	
+	var logMessages = function(messages) {
+		$.each(messages, function(index, message) {
 			$scope.log.push(message);
 		});
+		$scope.$broadcast("log-message");
 	};
 	
 	$scope.player.update($("#initial-battler").data("player"));
