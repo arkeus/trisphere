@@ -46,7 +46,7 @@ Trisphere::Application.routes.draw do
 	
 	# Explore
 	scope "/explore" do
-		get "/" => "explore#index"
+		get "/" => "explore#index", as: "explore"
 		get "/explore" => "explore#explore"
 		get "/attack" => "explore#attack"
 	end
