@@ -1,0 +1,7 @@
+<div class="padded">
+	Generated in <%= @time %>s<br>
+	
+	<% @images.each do |image| %>
+		<%= image_tag image, style: "padding:5px" %>
+	<% end %>
+</div>

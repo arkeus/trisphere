@@ -37,6 +37,7 @@ gem 'font-awesome-rails'
 
 # Image manipulation (sprite scripts)
 gem 'chunky_png'
+gem 'colormath'
 
 # Use unicorn as the app server
 # gem 'unicorn'

@@ -54,6 +54,7 @@ Trisphere::Application.routes.draw do
 	# Test
 	scope "/test" do
 		get "/" => "test#index"
+		get "/colorize" => "test#colorize"
 	end
   
   # The priority is based upon order of creation: first created -> highest priority.
