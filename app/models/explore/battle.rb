@@ -33,10 +33,6 @@ class Battle < ActiveRecord::Base
 	def post_process
 		return unless complete?
 		
-		@log.add "You defeated the #{enemy.name}"
-		@log.add "You gained 17 experience"
-		@log.add "You found 4 gold"
-		
 		@log.defeat_enemy enemy
 		@log.gain_experience 17
 		@log.find_gold 4

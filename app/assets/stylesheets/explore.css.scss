@@ -43,6 +43,13 @@
 			height: 20px;
 			cursor: pointer;
 			
+			&.text-action {
+				font-size: 12px;
+				font-weight: bold;
+				color: #444;
+				padding: 5px 6px 1px 6px;
+			}
+			
 			&:hover {
 				border-color: #666;
 			}
@@ -67,6 +74,8 @@
 	  }
 	  
 	  .message {
+	  	color: #555;
+	  	
 	  	em {
 	  		font-style: normal;
 	  	}

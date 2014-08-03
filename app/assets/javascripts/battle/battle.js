@@ -3,7 +3,7 @@ app.controller("BattleController", ["$scope", "$http", function($scope, $http) {
 	$scope.complete = false;
 	$scope.player = new Battler();
 	$scope.enemy = new Battler();
-	$scope.log = ["what", "is", "this"];
+	$scope.log = [];
 	
 	$scope.explore = function() {
 		$http.get("/explore/explore").success($scope.exploreSuccess).error($scope.exploreFail);
