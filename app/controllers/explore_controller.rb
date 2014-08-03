@@ -17,7 +17,7 @@ class ExploreController < ApplicationController
 			battle.save!
 		end
 		
-		render json: { battle: battle.as_json, messages: log.formatted_messages }
+		render json: { battle: battle.as_json, messages: log.messages }
 	end
 	
 	def attack
@@ -33,6 +33,6 @@ class ExploreController < ApplicationController
 			battle.save!
 		end
 		
-		render json: { battle: battle.as_json, messages: log.formatted_messages, complete: battle.complete? }
+		render json: { battle: battle.as_json, messages: log.messages, complete: battle.complete? }
 	end
 end

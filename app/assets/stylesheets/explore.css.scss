@@ -65,6 +65,16 @@
 		&:hover {
 	    overflow: auto;
 	  }
+	  
+	  .message {
+	  	em {
+	  		font-style: normal;
+	  	}
+	  	
+	  	.enemy { color: #f00; }
+	  	.exp { color: #66c500; }
+	  	.gold { color: #e5b215; }
+	  }
 	}
 	
 	.battler {		

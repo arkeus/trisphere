@@ -10,7 +10,6 @@ app.directive("log", ["$timeout", function($timeout) {
             };
             
             scope.$on("log-message", function() {
-            	console.log("SCROLLING", $(element).scrollTop(), $(element)[0].scrollHeight - $(element).outerHeight());
             	var scrolledToBottom = $(element).scrollTop() >= $(element)[0].scrollHeight - $(element).outerHeight();
                 if (scrolledToBottom) {
                     // Set a timeout, because otherwise it scrolls to the bottom before the page

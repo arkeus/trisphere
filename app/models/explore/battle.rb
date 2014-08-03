@@ -2,8 +2,6 @@ class Battle < ActiveRecord::Base
 	serialize :player, Battler
 	serialize :enemy, Battler
 	
-	attr_accessor :messages
-	
 	def setup!(log)
 		@log = log
 		@log.add "You encountered a #{enemy.name}"
@@ -38,5 +36,9 @@ class Battle < ActiveRecord::Base
 		@log.add "You defeated the #{enemy.name}"
 		@log.add "You gained 17 experience"
 		@log.add "You found 4 gold"
+		
+		@log.defeat_enemy enemy
+		@log.gain_experience 17
+		@log.find_gold 4
 	end
 end
