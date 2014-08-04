@@ -20,8 +20,6 @@ app.directive("log", ["$timeout", function($timeout) {
                 }
             });
             
-            scope.$watch(function() { return scope.log.length; }, onScroll);
-            
             $(window).focus(function() {
                 $(element).stop(true, false).scrollTop($(element)[0].scrollHeight - $(element).outerHeight());
             });

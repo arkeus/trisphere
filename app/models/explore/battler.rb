@@ -1,7 +1,7 @@
 require "statistics" # Force load before deserialization
 
 class Battler
-	attr_accessor :level, :name
+	attr_accessor :level, :name, :type
 	attr_accessor :hp, :hpm, :mp, :mpm
 	attr_accessor :stats
 	
@@ -11,6 +11,14 @@ class Battler
 		when Enemy then set_enemy(source)
 		end
 	end
+	
+	def attack(target, log)
+		damage = 10
+		target.hp -= damage
+		log.attack self, target, damage
+	end
+	
+	private
 
 	def set_character(character)
 		@level = character.level
@@ -20,6 +28,7 @@ class Battler
 		@mp = character.mp
 		@mpm = character.mpm
 		@stats = Statistics.new character.stats
+		@type = :player
 	end
 
 	def set_enemy(enemy)
@@ -28,5 +37,6 @@ class Battler
 		@hp = @hpm = 20
 		@mp = @mpm = 20
 		@stats = Statistics.new enemy.stats
+		@type = :enemy
 	end
 end

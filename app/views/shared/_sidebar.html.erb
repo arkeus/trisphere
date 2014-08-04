@@ -1,4 +1,4 @@
-<div id="sidebar">
+<div id="sidebar" ng-controller="CharacterController" ng-init="initialize(<%= @user.gold %>, <%= @user.shards %>, <%= @character.to_sidebar_json %>)">
 	<div id="character-panel" class="cf">
 		<div id="avatar"><%= image_tag("class/knight_stand.png") %></div>
 		<div class="row">
@@ -15,11 +15,16 @@
 		</div>
 	</div>
 	<div id="stat-bars" class="cf">
+		<bar source="character" current="xp" max="xpm" color="#7ed036" label="XP" width="216" instant="true"></bar>
+		<bar source="character" current="energy" max="1000" color="#9fa03c" label="EN" width="216" instant="true"></bar>
+		<bar source="character" current="fatigue" max="1000" color="#a0793c" label="FA" width="216" instant="true"></bar>
+		<% if false %>
 		<%= character_bar("Level", "level", "green", @character.level, @character.xp, @character.xpm) %>
 		<%= character_bar("HP", "heart", "red", nil, @character.hp, @character.hpm, true) %>
 		<%= character_bar("MP", "mana", "blue", nil, @character.mp, @character.mpm, true) %>
 		<%= character_bar("Energy", "energy", "yellow", @character.energy, @character.energy, 1000, false, true) %>
 		<%= character_bar("Fatigue", "fatigue", "orange", @character.fatigue, @character.fatigue, 1000, false, true) %>
+		<% end %>
 	</div>
 	<div class="separator"></div>
 	<div id="companion" class="cf">
@@ -35,8 +40,8 @@
 	</div>
 	<div class="separator"></div>
 	<div id="finance" class="cf">
-		<span class="entry"><%= image_tag("layout/icon_coin.png") %> <%= @user.gold %></span>
-		<span class="entry"><%= image_tag("layout/icon_shard.png") %> <%= @user.shards %></span>
+		<span class="entry"><%= image_tag("layout/icon_coin.png") %> {{gold}}</span>
+		<span class="entry"><%= image_tag("layout/icon_shard.png") %> {{shards}}</span>
 	</div>
 	<div class="separator"></div>
 	<div id="navigation">

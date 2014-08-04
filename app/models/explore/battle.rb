@@ -2,9 +2,11 @@ class Battle < ActiveRecord::Base
 	serialize :player, Battler
 	serialize :enemy, Battler
 	
+	attr_accessor :rewards
+	
 	def setup!(log)
 		@log = log
-		@log.add "You encountered a #{enemy.name}"
+		@log.encounter_enemy enemy
 	end
 	
 	def process!(log)
@@ -21,17 +23,19 @@ class Battle < ActiveRecord::Base
 	private 
 	
 	def process_player
+		player.attack enemy, @log
 		enemy.hp -= 10
-		@log.add "You attack the #{enemy.name} for 10 damage"
 	end
 	
 	def process_enemy
+		enemy.attack player, @log
 		player.hp -= 5
-		@log.add "The #{enemy.name} attacks you for 5 damage"
 	end
 	
 	def post_process
 		return unless complete?
+		
+		@rewards = { gold: 4, xp: 17, items: [] }
 		
 		@log.defeat_enemy enemy
 		@log.gain_experience 17

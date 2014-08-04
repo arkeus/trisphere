@@ -26,13 +26,23 @@ class ExploreController < ApplicationController
 		
 		log = BattleLog.new
 		battle.process! log
+		update = nil
 		
 		if battle.complete?
+		  update = handle_rewards battle.rewards
 			battle.destroy
 		else
 			battle.save!
 		end
 		
-		render json: { battle: battle.as_json, messages: log.messages, complete: battle.complete? }
+		render json: { battle: battle.as_json, messages: log.messages, complete: battle.complete?, update: update }
+	end
+	
+	private
+	
+	def handle_rewards(rewards)
+		@user.gain_gold rewards[:gold] if rewards[:gold]
+		@character.gain_xp rewards[:xp] if rewards[:xp]
+		{ gold: @user.gold, xp: @character.xp, xpm: @character.xpm }
 	end
 end

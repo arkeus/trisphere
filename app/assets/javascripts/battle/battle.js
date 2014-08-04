@@ -1,4 +1,4 @@
-app.controller("BattleController", ["$scope", "$http", function($scope, $http) {
+app.controller("BattleController", ["$rootScope", "$scope", "$http", function($rootScope, $scope, $http) {
 	$scope.inBattle = false;
 	$scope.complete = false;
 	$scope.player = new Battler();
@@ -10,7 +10,6 @@ app.controller("BattleController", ["$scope", "$http", function($scope, $http) {
 	};
 	
 	$scope.exploreSuccess = function(data, status, headers, config) {
-		console.log("Engaged data", data, "with status", status, "and headers", headers, "and config", config);
 		processUpdate(data);
 		$scope.inBattle = true;
 		$scope.complete = false;
@@ -25,10 +24,10 @@ app.controller("BattleController", ["$scope", "$http", function($scope, $http) {
 	};
 	
 	$scope.attackSuccess = function(data, status, headers, config) {
-		console.log("Attacked data", data, "with status", status, "and headers", headers, "and config", config);
 		processUpdate(data);
 		if (data.complete) {
 			$scope.complete = true;
+			$rootScope.$broadcast("update-character", data.update);
 		}
 	};
 	

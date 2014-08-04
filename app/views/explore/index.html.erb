@@ -6,8 +6,8 @@
 					<span class="level">Level <span class="value">{{player.level}}</span></span>
 					<span class="name">{{player.name}}</span>
 				</div>
-				<bar source="player" current="hp" max="hpm" color="#d0363a" label="HP"></bar>
-				<bar source="player" current="mp" max="mpm" color="#3686d0" label="MP"></bar>
+				<bar source="player" current="hp" max="hpm" color="#d0363a" label="HP" width="330"></bar>
+				<bar source="player" current="mp" max="mpm" color="#3686d0" label="MP" width="330"></bar>
 				<div class="status-effects">NO STATUS</div>
 			</div>
 			<div id="enemy-battler" class="battler" ng-show="enemy.name">
@@ -15,8 +15,8 @@
 					<span class="level">Level <span class="value">{{enemy.level}}</span></span>
 					<span class="name">{{enemy.name}}</span>
 				</div>
-				<bar source="enemy" current="hp" max="hpm" color="#d0363a" label="HP"></bar>
-				<bar source="enemy" current="mp" max="mpm" color="#3686d0" label="MP"></bar>
+				<bar source="enemy" current="hp" max="hpm" color="#d0363a" label="HP" width="330"></bar>
+				<bar source="enemy" current="mp" max="mpm" color="#3686d0" label="MP" width="330"></bar>
 				<div class="status-effects">NO STATUS</div>
 			</div>
 			<div id="battle-environment">

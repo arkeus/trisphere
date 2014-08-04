@@ -42,6 +42,11 @@ class User < ActiveRecord::Base
     friendship.note = note
     friendship.save!
   end
+	
+	# Adds gold to account
+	def gain_gold(gold)
+		self.gold += gold
+	end
   
   # Initializes any values that need to be set before save.
   def before_save

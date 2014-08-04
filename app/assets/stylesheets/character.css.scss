@@ -212,3 +212,53 @@
 		}
 	}
 }
+
+.bar {
+	display: block;
+	position: relative;
+	margin-bottom: 2px;
+	
+	.label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		color: #f00;
+		float: left;
+		font-size: 11px;
+		width: 20px;
+		font-weight: bold;
+		position: relative;
+		top: -1px;
+	}
+	
+	.title {
+		 position: absolute;
+		 top: 0px;
+		 right: 6px;
+		 font-size: 9px;
+		 font-weight: bold;
+		 display: none;
+	}
+	
+	.unfill {
+		position: absolute;
+		top: 0;
+		right: 0;
+				
+		background-color: #eee;
+		height: 12px;
+		border-radius: 6px;
+	
+		.fill {
+			background-color: #f00;
+			height: 12px;
+			border-radius: 6px;
+		}
+	}
+	
+	&:hover {
+		.title {
+			display: block;
+		}
+	}
+}

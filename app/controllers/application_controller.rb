@@ -17,5 +17,6 @@ class ApplicationController < ActionController::Base
   
   def save_user
   	@user.save! if @user.changed?
+  	@character.save! if @character.changed?
   end
 end
