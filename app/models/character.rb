@@ -4,7 +4,7 @@ class Character < ActiveRecord::Base
 	end
 	
 	def to_sidebar_json
-		to_json only: [:energy, :fatigue, :xp, :xpm]
+		to_json only: [:energy, :fatigue, :level, :xp, :xpm]
 	end
 	
 	def gain_xp(xp_gain)
@@ -19,6 +19,6 @@ class Character < ActiveRecord::Base
 	private
 	
 	def calculate_xpm
-		100 + 10 * self.level
+		50 #100 + 10 * self.level
 	end
 end

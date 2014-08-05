@@ -43,6 +43,6 @@ class ExploreController < ApplicationController
 	def handle_rewards(rewards)
 		@user.gain_gold rewards[:gold] if rewards[:gold]
 		@character.gain_xp rewards[:xp] if rewards[:xp]
-		{ gold: @user.gold, xp: @character.xp, xpm: @character.xpm }
+		{ gold: @user.gold, level: @character.level, xp: @character.xp, xpm: @character.xpm }
 	end
 end
