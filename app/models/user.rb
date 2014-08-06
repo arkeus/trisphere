@@ -47,6 +47,11 @@ class User < ActiveRecord::Base
 	def gain_gold(gold)
 		self.gold += gold
 	end
+	
+	# Json representation for sidebar data
+	def to_sidebar_json
+		to_json only: [:gold, :shards]
+	end
   
   # Initializes any values that need to be set before save.
   def before_save

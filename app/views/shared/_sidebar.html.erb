@@ -1,4 +1,4 @@
-<div id="sidebar" ng-controller="CharacterController" ng-init="initialize(<%= @user.gold %>, <%= @user.shards %>, <%= @character.to_sidebar_json %>)">
+<div id="sidebar" ng-controller="CharacterController" ng-init="initialize(<%= @user.to_sidebar_json %>, <%= @character.to_sidebar_json %>)">
 	<div id="character-panel" class="cf">
 		<div id="avatar"><%= image_tag("class/knight_stand.png") %></div>
 		<div class="row">
@@ -40,8 +40,8 @@
 	</div>
 	<div class="separator"></div>
 	<div id="finance" class="cf">
-		<span class="entry"><%= image_tag("layout/icon_coin.png") %> {{gold}}</span>
-		<span class="entry"><%= image_tag("layout/icon_shard.png") %> {{shards}}</span>
+		<span class="entry"><%= image_tag("layout/icon_coin.png") %> {{user.gold}}</span>
+		<span class="entry"><%= image_tag("layout/icon_shard.png") %> {{user.shards}}</span>
 	</div>
 	<div class="separator"></div>
 	<div id="navigation">
