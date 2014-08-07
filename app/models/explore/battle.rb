@@ -16,6 +16,7 @@ class Battle < ActiveRecord::Base
 		post_process
 	end
 	
+	# Returns whether or not the battle is over
 	def complete?
 		return player.hp <= 0 || enemy.hp <= 0
 	end
