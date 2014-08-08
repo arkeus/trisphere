@@ -4,11 +4,13 @@ class Battle < ActiveRecord::Base
 	
 	attr_accessor :rewards
 	
+	# Sets up a battle before the first turn
 	def setup!(log)
 		@log = log
 		@log.encounter_enemy enemy
 	end
 	
+	# Processes a single turn in the battle
 	def process!(log)
 		@log = log
 		process_player
@@ -23,16 +25,19 @@ class Battle < ActiveRecord::Base
 	
 	private 
 	
+	# Processes the player's attack this turn
 	def process_player
 		player.attack enemy, @log
 		enemy.hp -= 10
 	end
 	
+	# Processes the enemy's attack this turn
 	def process_enemy
 		enemy.attack player, @log
 		player.hp -= 5
 	end
 	
+	# Runs processing that only occurs after the last turn of a battle
 	def post_process
 		return unless complete?
 		
