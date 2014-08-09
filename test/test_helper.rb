@@ -14,11 +14,13 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
   def create_user(params = {})
   	password = SecureRandom.hex
-  	return User.create!({
+  	user = User.new({
   		username: SecureRandom.hex,
   		password: password,
   		password_confirmation: password,
   		email: SecureRandom.hex,
   	}.merge!(params))
+  	user.save!
+  	user
   end
 end
