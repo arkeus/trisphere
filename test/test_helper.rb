@@ -23,4 +23,13 @@ class ActiveSupport::TestCase
   	user.save!
   	user
   end
+  
+  def rand_int(min = 1, max = 2 ** 31)
+  	rand(min..max)
+  end
+  
+  def assert_raise_message(type, message, &block)
+  	error = assert_raise(type, &block)
+  	assert_equal message, error.message
+  end
 end

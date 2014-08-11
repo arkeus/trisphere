@@ -5,17 +5,17 @@ class TestController < ApplicationController
 	
 	def colorize
 		start = Time.now
-		grays = Image.from_file("C:/Dev/Workspace/Rails/Trisphere/public/images/misc/sword.png").grayscale!
+		grays = Image.from_file("C:/Dev/Workspace/Rails/Trisphere/public/images/misc/lunar_wand.png").grayscale!
 
 		@images = []
 		50.times do
 			color1 = Color.rgb(rand_int, rand_int, rand_int)
 			color2 = Color.rgb(rand_int, rand_int, rand_int)
 			color3 = Color.rgb(rand_int, rand_int, rand_int)
-			colors = Image.from_file("C:/Dev/Workspace/Rails/Trisphere/public/images/misc/template.png")
+			colors = Image.from_file("C:/Dev/Workspace/Rails/Trisphere/public/images/misc/lunar_template.png")
 			colors.change_theme_color! Color.from_hex("d59bf2"), color1
 			colors.change_theme_color! Color.from_hex("9bf2a9"), color2
-			colors.change_theme_color! Color.from_hex("000"), color3
+			colors.change_theme_color! Color.from_hex("9bb8f2"), color3
 			
 			result = Image.new 20, 20
 			0.upto(grays.width - 1) do |x|

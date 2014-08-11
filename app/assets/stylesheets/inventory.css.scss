@@ -1,6 +1,8 @@
 @import "global/utils";
 
 .item {
+	@include unselectable;
+	
 	display: inline-block;
 	padding: 2px;
 	margin: 4px;
@@ -17,6 +19,11 @@
 		radius: 3px;
 	}
 	
+	img {
+		width: 20px;
+		height: 20px;
+	}
+	
 	// Rarities
 	&.Common { border-color: $common-color-dark $common-color-light $common-color-light $common-color-dark; }
 	&.Uncommon { border-color: $uncommon-color-dark $uncommon-color-light $uncommon-color-light $uncommon-color-dark; }
@@ -26,6 +33,10 @@
 	
 	&:hover {
 		background: rgba(255, 255, 255, 0.5);
+	}
+	
+	&.placeholder {
+		opacity: 0.2;
 	}
 }
 
@@ -169,50 +180,92 @@
 		
 		#equipped {
 			float: left;
-			width: 25%;
+			width: 20%;
 			box-sizing: border-box;
 			padding-left: 4px;
 			text-align: center;
 			
 			#doll {
-				width: 170px;
-				height: 166px;
-				background: asset-url("images/misc/paperdoll.png");
-				background-position: -2px 0;
+				width: 140px;
+				height: 210px;
+				background: asset-url("images/class/knight_stand_transparent.png");
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: 9px 0;
 				margin: 14px auto;
 				position: relative;
 				
 				.item {
 					position: absolute;
 					
-					&.Helmet { left: 66px; top: 5px; }
-					&.Amulet { left: 116px; top: 15px; }
-					&.Tool { left: 16px; top: 15px; }
-					&.Weapon { left: 6px; top: 53px; }
-					&.Weapon.Axe { left: 126px; top: 53px; }
-					&.Shield { left: 126px; top: 53px; }
-					&.Chestpiece { left: 66px; top: 45px; }
-					&.Legplates { left: 66px; top: 80px; }
-					&.Ring { left: 16px; top: 130px; }
-					&.Boots { left: 116px; top: 130px; }
-					&.Belt { left: 28px; top: 93px; }
-					&.Bracers { left: 104px; top: 93px; }
+					&.Weapon { left: 0px; top: 0px; }
+					&.Helmet { left: 0px; top: 35px; }
+					&.Chestpiece { left: 0px; top: 70px; }
+					&.Legplates { left: 0px; top: 105px; }
+					&.Belt { left: 0px; top: 140px; }
+					&.Boots { left: 0px; top: 175px; }
+					
+					
+					&.Shield { left: 116px; top: 0px; }
+					&.Bracers { left: 116px; top: 35px; }
+					&.Amulet { left: 116px; top: 70px; }
+					&.Ring { left: 116px; top: 105px; }
+					&.Tool { left: 116px; top: 140px; }
+					&.SomethingElse { left: 116px; top: 175px; }
 				}
 			}
 		}
 		
 		#bags {
 			float: left;
-			width: 65%;
+			width: 54%;
 			box-sizing: border-box;
 			padding: 0 24px;
 		}
 		
-		#amulet {
+		#stats {
 			float: left;
-			width: 9.9%;
+			width: 25.9%;
 			box-sizing: border-box;
 			text-align: center;
+			
+			.stat {
+				@include clearfix;
+				box-sizing: border-box;
+				margin-bottom: 6px;
+				
+				.label {
+					box-sizing: border-box;
+					float: left;
+					width: 70%;
+					text-align: left;
+					font-family: helvetica;
+					font-size: 12px;
+					font-weight: bold;
+					color: #555;
+					
+					img {
+						width: 11px;
+						height: 11px;
+						position: relative;
+						top: 1px;
+					}
+				}
+				
+				.value {
+					box-sizing: border-box;
+					float: right;
+					width: 30%;
+					text-align: right;
+					font-family: verdana;
+				}
+			}
+			
+			.divider {
+				height: 1px;
+				background-color: #eee;
+				margin: 8px 0;
+			}
 		}
 		
 		.header {

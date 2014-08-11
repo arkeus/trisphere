@@ -19,4 +19,24 @@ class ApplicationController < ActionController::Base
   	@user.save! if @user.changed?
   	@character.save! if @character.changed?
   end
+  
+  protected
+  
+  def optional(*names)
+  	get_params(false, *names)
+  end
+  
+  def required(*names)
+  	get_params(true, *names)
+  end
+  
+  private
+  
+  def get_params(required, *names)
+  	filered_params = names.map do |name|
+  		next params.require(name) if required
+  		next params[name]
+  	end
+  	filered_params.length == 1 ? filered_params.first : filered_params
+  end
 end

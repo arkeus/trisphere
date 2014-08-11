@@ -23,6 +23,9 @@ Trisphere::Application.routes.draw do
 	  get "/bags" => "inventory#bags"
 	  get "/equipped" => "inventory#equipped"
 	  get "/reset" => "inventory#reset"
+	  post "/equip" => "inventory#equip"
+	  post "/unequip" => "inventory#unequip"
+	  get "/stats" => "inventory#stats"
 	end
   
   # Forums

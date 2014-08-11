@@ -3,11 +3,20 @@ require "affix"
 require "item_lib"
 require "property_handler"
 
+# Example of use:
+#   item = Item.new
+#   item.base = base_object
+#   item.prefix = prefix_object
+#   item.character_id = 1
+#   item.save
 class Item < ActiveRecord::Base
 	serialize :data, Hash
 	
+	after_find :after_find
+	before_save :before_save
+	
 	def name
-		"#{prefix.name + " " if prefix_id}#{base.name}#{" " + suffix.name if suffix_id}"
+		"#{prefix.name + " " if prefix}#{base.name}#{" " + suffix.name if suffix}"
 	end
 	
 	def image_path
@@ -46,34 +55,47 @@ class Item < ActiveRecord::Base
 	end
 	
 	def base
-		raise "Item is missing base" unless base_id
-		BaseItem.find(base_id)
+		raise "missing base" unless @base
+		@base
 	end
 	
 	def prefix
-		Affix.find(prefix_id)
+		@prefix
 	end
 	
 	def suffix
-		Affix.find(suffix_id)
+		@suffix
 	end
 	
 	def stats
 		self.data ||= {}
 	end
 	
+	def armor
+		return 0 if type != ItemType::ARMOR
+		base.effect
+	end
+	
+	def weapon_damage
+		return 0 if type != ItemType::WEAPON
+		base.effect.first
+	end
+	
 	def base=(base)
-		self.base_id = base.id
+		raise "Item already has base" if @base
+		@base = base
 		merge_stats!(stats, base.data, PROPERTY_HANDLER)
 	end
 	
 	def prefix=(prefix)
-		self.prefix_id = prefix.id
+		raise "Item already has prefix" if @prefix
+		@prefix = prefix
 		merge_stats!(stats, prefix.data, AFFIX_PROPERTY_HANDLER)
 	end
 	
 	def suffix=(suffix)
-		self.suffix_id = suffix.id
+		raise "Item already has suffix" if @suffix
+		@suffix = suffix
 		merge_stats!(stats, suffix.data, AFFIX_PROPERTY_HANDLER)
 	end
 	
@@ -86,7 +108,37 @@ class Item < ActiveRecord::Base
 	end
 	
 	def as_json(options = {})
-		super(:only => [:data, :id], :methods => [:name, :image_path, :type, :subtype, :rarity, :effect, :level, :price])
+		super(:only => [:data, :id, :equipped], :methods => [:name, :image_path, :type, :subtype, :rarity, :effect, :level, :price])
+	end
+	
+	def equippable?
+		base.equippable?
+	end
+	
+	def equip
+		self.equipped = true
+	end
+	
+	def unequip
+		self.equipped = false
+	end
+	
+	def slot
+		return case type
+		 when ItemType::WEAPON then type
+		 when ItemType::ARMOR then subtype
+		 else nil
+		end
+	end
+	
+	# finders
+	
+	def self.equipped(character)
+		where(character_id: character.id, equipped: true)
+	end
+	
+	def self.unequipped(character)
+		where(character_id: character.id, equipped: false)
 	end
 	
 	private
@@ -100,6 +152,20 @@ class Item < ActiveRecord::Base
 				stats[key] = value
 			end
 		end
+	end
+	
+	def before_save
+		raise "missing base for save" unless @base
+		self.base_id = @base.id
+		self.prefix_id = @prefix.id if @prefix
+		self.suffix_id = @suffix.id if @suffix
+	end
+	
+	def after_find
+		raise "missing base after find" unless base_id
+		@base = BaseItem.find(base_id)
+		@prefix = Affix.find(prefix_id) if prefix_id
+		@suffix = Affix.find(suffix_id) if suffix_id
 	end
 	
 	PROPERTY_HANDLER = PropertyHandler.new

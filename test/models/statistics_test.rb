@@ -15,7 +15,7 @@ class StatisticsTest < ActiveSupport::TestCase
 		assert_equal 4, statistics.agility
 		assert_equal 5, statistics.stamina
 		assert_equal 6, statistics.spirit
-		assert_nil statistics.gold_rating
+		assert_equal 0, statistics.gold_rating
 	end
 	
 	test "empty" do
@@ -43,10 +43,26 @@ class StatisticsTest < ActiveSupport::TestCase
 	
 	test "increment rating" do
 		statistics = Statistics.empty
-		assert_nil statistics.accuracy
+		assert_equal 0, statistics.accuracy
 		statistics.increment :accuracy, 1
 		assert_equal 1, statistics.accuracy
 		statistics.increment :accuracy, 1
 		assert_equal 2, statistics.accuracy
+	end
+	
+	test "merge" do
+		stats1 = Statistics.empty
+		stats1.set(:strength, 1)
+		stats1.set(:defense, 2)
+		
+		stats2 = Statistics.empty
+		stats2.set(:defense, 1)
+		stats2.set(:gold_rating, 2)
+		
+		stats1.merge! stats2
+		assert_equal 0, stats1.get(:wisdom)
+		assert_equal 1, stats1.get(:strength)
+		assert_equal 3, stats1.get(:defense)
+		assert_equal 2, stats1.get(:gold_rating)
 	end
 end

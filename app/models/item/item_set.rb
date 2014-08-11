@@ -7,14 +7,15 @@ class ItemSet
 	end
 	
 	def stat(name)
-		@stats
+		@stats.get(name)
 	end
 	
 	private
 	
 	def add(item)
-		item.stats do |stat, value|
+		item.stats.each do |stat, value|
 			@stats.increment stat, value
 		end
+		@stats.increment :armor, item.armor
 	end
 end

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 	after_initialize :init
 	before_save :before_save
 	attr_writer :logged_in
+	
 	def init
 		@logged_in = false
 	end

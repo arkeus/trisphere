@@ -16,6 +16,12 @@ class Character < ActiveRecord::Base
 		end
 	end
 	
+	def full_stats
+		items = Item.equipped(self)
+		stats = Statistics.new self.stats
+		ItemSet.new(items).stats.merge!(stats)
+	end
+	
 	private
 	
 	def calculate_xpm

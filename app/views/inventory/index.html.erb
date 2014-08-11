@@ -1,18 +1,10 @@
 <section id="inventory" class="padded" ng-controller="InventoryController">
-	<div id="stats">
-		<%= render partial: "stat_panel", locals: { name: "strength" } %>
-		<%= render partial: "stat_panel", locals: { name: "wisdom" } %>
-		<%= render partial: "stat_panel", locals: { name: "defense" } %>
-		<%= render partial: "stat_panel", locals: { name: "agility" } %>
-		<%= render partial: "stat_panel", locals: { name: "stamina" } %>
-		<%= render partial: "stat_panel", locals: { name: "spirit" } %>
-	</div>
-	
 	<div id="columns">
 		<div id="equipped">
 			<div class="header"><span>Equipped</span></div>
 			<div id="doll">
 				<item ng-repeat="item in equipped"></item>
+				<item ng-repeat="item in placeholders"></item>
 			</div>
 		</div>
 		
@@ -21,9 +13,24 @@
 			<item ng-repeat="item in bags"></item>
 		</div>
 		
-		<div id="amulet">
-			<div class="header"><span>Amulet</span></div>
-			<!--<item ng-repeat="item in items"></item>-->
+		<div id="stats">
+			<div class="header"><span>Statistics</span></div>
+			<div class="stat"><div class="label"><%= image_tag "stats/strength.png" %> Strength</div><div class="value">{{stats.strength}}</div></div>
+			<div class="stat"><div class="label"><%= image_tag "stats/wisdom.png" %> Wisdom</div><div class="value">{{stats.wisdom}}</div></div>
+			<div class="stat"><div class="label"><%= image_tag "stats/defense.png" %> Defense</div><div class="value">{{stats.defense}}</div></div>
+			<div class="stat"><div class="label"><%= image_tag "stats/agility.png" %> Agility</div><div class="value">{{stats.agility}}</div></div>
+			<div class="stat"><div class="label"><%= image_tag "stats/stamina.png" %> Stamina</div><div class="value">{{stats.stamina}}</div></div>
+			<div class="stat"><div class="label"><%= image_tag "stats/spirit.png" %> Spirit</div><div class="value">{{stats.spirit}}</div></div>
+			<div class="divider"></div>
+			<div class="stat"><div class="label"><%= image_tag "stats/defense.png" %> Armor</div><div class="value">{{stats.armor}}</div></div>
+			<div class="stat"><div class="label"><%= image_tag "stats/stamina.png" %> Hit Points</div><div class="value">{{stats.hp}}</div></div>
+			<div class="stat"><div class="label"><%= image_tag "stats/wisdom.png" %> Mana Regen</div><div class="value">{{stats.mpr}}</div></div>
+			<div class="divider"></div>
+			<div class="stat"><div class="label"><%= image_tag "stats/strength.png" %> Accuracy</div><div class="value">{{stats.accuracy}}</div></div>
+			<div class="stat"><div class="label"><%= image_tag "stats/wisdom.png" %> Exp Rating</div><div class="value">{{stats.exp_rating}}</div></div>
+			<div class="stat"><div class="label"><%= image_tag "stats/defense.png" %> Gold Rating</div><div class="value">{{stats.gold_rating}}</div></div>
+			<div class="stat"><div class="label"><%= image_tag "stats/agility.png" %> Critical Rating</div><div class="value">{{stats.critical_rating}}</div></div>
+			<div class="stat"><div class="label"><%= image_tag "stats/spirit.png" %> Critical Power</div><div class="value">{{stats.critical_power}}</div></div>
 		</div>
 	</div>
 </section>

@@ -12,31 +12,102 @@ app.run(["$rootScope", function($rootScope) {
 // CONTROLLERS
 //
 
-app.controller("InventoryController", ["$scope", "Inventory", function($scope, Inventory) {
+app.controller("InventoryController", ["$scope", "$http", "Inventory", function($scope, $http, Inventory) {
 	$scope.bags = Inventory.bags();
-	$scope.equipped = Inventory.equipped();
+	$scope.equipped = Inventory.equipped({}, function() { updatePlaceholders(); });
+	$scope.placeholders = [];
+	$scope.stats = null;
 	
 	$scope.equip = function(item) {
+		if (item.equipped || !isEquippable(item)) {
+			return;
+		}
 		var equipped = getEquippedByType(item.type, item.subtype);
-		console.log(equipped);
-		if (equipped != null) {
-			$scope.equipped.splice($scope.equipped.indexOf(equipped), 1);
-			$scope.bags.push(equipped);
+		unequipItem(equipped);
+		equipItem(item);
+		updatePlaceholders();
+		$http.post("/inventory/equip", { id: item.id }).error(function(data, status) {
+			equipItem(equipped);
+			unequipItem(item);
+			console.error("Could not equip item", item, "got status", status);
+			updatePlaceholders();
+		}).success(updateStats);
+	};
+	
+	$scope.unequip = function(item) {
+		if (!item.equipped || !isEquippable(item)) {
+			return;
+		}
+		unequipItem(item);
+		updatePlaceholders();
+		$http.post("/inventory/unequip", { id: item.id }).error(function(data, status) {
+			equipItem(item);
+			console.error("Could not unequip item", item, "got status", status);
+			updatePlaceholders();
+		}).success(updateStats);
+	};
+	
+	var equipItem = function(item) {
+		if (item == null) {
+			return;
 		}
 		$scope.bags.splice($scope.bags.indexOf(item), 1);
 		$scope.equipped.push(item);
+		item.equipped = true;
+		updatePlaceholders();
+	};
+	
+	var unequipItem = function(item) {
+		if (item == null) {
+			return;
+		}
+		$scope.equipped.splice($scope.equipped.indexOf(item), 1);
+		$scope.bags.push(item);
+		item.equipped = false;
 	};
 	
 	var getEquippedByType = function(type, subtype) {
 		for (var i = 0; i < $scope.equipped.length; i++) {
 			var item = $scope.equipped[i];
-			console.warn(item, item.type, type);
 			if (item.type == type && (item.type == "Weapon" || item.subtype == subtype)) {
 				return item;
 			}
 		}
 		return null;
 	};
+	
+	var isEquippable = function(item) {
+		return item.type == "Weapon" || item.type == "Armor";
+	};
+	
+	var updateStats = function(data) {
+		$scope.stats = data.stats;
+	};
+	
+	var TYPES = ["Weapon", "Helmet", "Chestpiece", "Legplates", "Belt", "Boots", "Shield", "Bracers", "Amulet", "Ring", "Tool"];
+	var updatePlaceholders = function() {
+		$scope.placeholders = [];
+		var equipTypes = {};
+		$.each($scope.equipped, function(index, item) {
+			var type = item.type == "Weapon" ? item.type : item.subtype;
+			equipTypes[type] = true;
+		});
+		$.each(TYPES, function(index, type) {
+			if (!equipTypes[type]) {
+				var image = "items/placeholder_" + type.toLowerCase() + ".png";
+				$scope.placeholders.push({
+					image_path: image,
+					type: type,
+					subtype: type,
+					rarity: "Common",
+					placeholder: true,
+				});
+			}
+		});
+	};
+	
+	// Initialize
+	$http.get("/inventory/stats").success(updateStats);
 }]);
 
 //
@@ -77,7 +148,7 @@ app.directive("item", ["$timeout", "Tooltip", "ContextMenu", function($timeout, 
 		template: "<div class=\"item\"><img></img></div>",
 		replace: true,
 		link: function(scope, element, attrs) {
-			$(element).find("img")
+			element.find("img")
 			.attr("src", "images/" + scope.item.image_path)
 			.end()
 			.addClass(scope.item.type)
@@ -85,12 +156,19 @@ app.directive("item", ["$timeout", "Tooltip", "ContextMenu", function($timeout, 
 			.addClass(scope.item.rarity)
 			.click(function() {
 				scope.$apply(function() {
-					scope.equip(scope.item);
+					if (scope.item.equipped) {
+						scope.unequip(scope.item);
+					} else {
+						scope.equip(scope.item);
+					}
+					Tooltip.hide();
 				});
 			}).hover(function() {
-				scope.$apply(function() {
-					Tooltip.show(scope.item, element);
-				});
+				if (!scope.item.placeholder) {
+					scope.$apply(function() {
+						Tooltip.show(scope.item, element);
+					});
+				}
 			}, function() {
 				scope.$apply(function() {
 					Tooltip.hide();
@@ -98,6 +176,9 @@ app.directive("item", ["$timeout", "Tooltip", "ContextMenu", function($timeout, 
 			}).on("contextmenu", function(event) {
 				ContextMenu.show(event, "item", scope.item);
 			});
+			if (scope.item.placeholder) {
+				element.addClass("placeholder");
+			}
 		}
 	};
 }]);
