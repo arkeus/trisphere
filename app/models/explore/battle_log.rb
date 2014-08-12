@@ -1,3 +1,5 @@
+require "statistics" # Force load before deserialization
+
 class BattleLog
 	def initialize
 		@messages = []
@@ -29,19 +31,21 @@ class BattleLog
 		add "You encounted a {enemy}#{enemy.name}{/}"
 	end
 	
-	def attack(source, target, weapon, damage)
+	def attack(source, target, weapon, damage, critical)
 		case source.type
-		when :player then player_attack source, target, weapon, damage
-		when :enemy then enemy_attack source, target, weapon, damage
+		when :player then player_attack source, target, weapon, damage, critical
+		when :enemy then enemy_attack source, target, weapon, damage, critical
 		end
 	end
 	
-	def player_attack(source, target, weapon, damage)
-		add "You attack the {enemy}#{target.name}{/} with your {rarity #{weapon[:rarity]}}#{weapon[:name]}{/} for {damage}#{damage}{/} damage"
+	def player_attack(source, target, weapon, damage, critical)
+		type = critical ? "{critical}critically hit{/}" : "attack"
+		add "You #{type} the {enemy}#{target.name}{/} with your {rarity #{weapon[:rarity]}}#{weapon[:name]}{/} for {damage}#{damage}{/} damage"
 	end
 	
-	def enemy_attack(source, target, weapon, damage)
-		add "The {enemy}#{source.name}{/} attacks you for {damage}#{damage}{/} damage"
+	def enemy_attack(source, target, weapon, damage, critical)
+		type = critical ? "{critical}critically hits{/}" : "attacks"
+		add "The {enemy}#{source.name}{/} #{type} you for {damage}#{damage}{/} damage"
 	end
 	
 	def debug(message)

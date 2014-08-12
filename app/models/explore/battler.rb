@@ -14,30 +14,56 @@ class Battler
 	end
 	
 	def attack(target, log)
-		weapon_attack target, log
+		@log = log
+		@log.debug "#{type} ->"
+		weapon_attack target
 	end
 	
 	private
 	
-	def weapon_attack(target, log)
-		damage = calculate_weapon_damage target, log
+	def weapon_attack(target)
+		critical = roll_critical target
+		damage = calculate_weapon_damage target, critical
 		target.hp -= damage
-		log.attack self, target, { name: @weapon, rarity: @weapon_rarity }, damage
+		@log.attack self, target, { name: @weapon, rarity: @weapon_rarity }, damage, critical
 	end
 	
-	def calculate_weapon_damage(target, log)
+	def calculate_weapon_damage(target, critical)
 		damage = @weapon_damage
 		difference = (@stats.get(:strength) - target.stats.get(:defense)) / 50.0
-		log.debug "Strength #{@stats.get(:strength)} Defense #{target.stats.get(:defense)} Difference #{difference} Base Damage #{damage}"
+		@log.debug "Strength #{@stats.get(:strength)} Defense #{target.stats.get(:defense)} Difference #{difference} Base Damage #{damage}"
 		damage += @stats.get(:strength) / 4.0
 		if difference > 0
 			damage *= 1 + difference
 		else
 			damage /= (-1 + difference).abs
 		end
+		damage *= 1.5 if critical
 		damage = damage.ceil
-		log.debug "Adjusted damage #{damage}"
+		@log.debug "Adjusted damage #{damage}"
 		damage
+	end
+	
+	def skill_attack(target)
+		
+	end
+	
+	def calculate_skill_damage(target)
+		
+	end
+	
+	def roll_critical(target)
+		chance = 5
+		difference = @stats.get(:agility) - target.stats.get(:agility)
+		@log.debug "Difference is #{difference}"
+		if difference > 0
+			chance = chance + difference
+		else
+			chance /= (1 + difference.abs / 5)
+			chance = [1, chance].max
+		end
+		@log.debug "Critical chance #{chance}%"
+		(rand * 100) <= chance
 	end
 
 	def set_character(character)

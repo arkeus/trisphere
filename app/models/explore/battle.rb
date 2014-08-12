@@ -1,3 +1,5 @@
+require "statistics" # Force load before deserialization
+
 class Battle < ActiveRecord::Base
 	serialize :player, Battler
 	serialize :enemy, Battler
