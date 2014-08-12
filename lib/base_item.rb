@@ -27,10 +27,26 @@ class BaseItem
 	
 	def effect
 		return case type
-			when ItemType::WEAPON then [10, 7, 90]
-			when ItemType::ARMOR then 5
+			when ItemType::WEAPON then [weapon_damage, magic_damage, accuracy]
+			when ItemType::ARMOR then armor
 			else data[:effect] || 0
 		end
+	end
+	
+	def weapon_damage
+		EquipmentHelper.weapon_damage(@level, @subtype)
+	end
+	
+	def magic_damage
+		EquipmentHelper.magic_damage(@level, @subtype)
+	end
+	
+	def accuracy
+		EquipmentHelper.accuracy(@level, @subtype)
+	end
+	
+	def armor
+		EquipmentHelper.armor(@level, @subtype)
 	end
 	
 	def equippable?

@@ -9,8 +9,7 @@ html {
 		overflow-y: scroll;
 	}
 	
-	body, input, textarea, button {
-		font-family: verdana, helvetica, sans-serif;
+	body, input, textarea, button {		font-family: verdana, helvetica, sans-serif;
 		font-size: 11px;
 	}
 	
@@ -606,4 +605,13 @@ a.button {
 		margin-bottom: 2px;
 		text-align: left;
 	}
+}
+
+// Item Rarity Colors
+.rarity {
+	&.Common { color: $common-color-dark; }
+	&.Uncommon { color: $uncommon-color-dark; }
+	&.Rare { color: $rare-color-dark; }
+	&.Mythic { color: $mythic-color-dark; }
+	&.Legendary { color: $legendary-color-dark; }
 }

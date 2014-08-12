@@ -80,9 +80,11 @@
 	  		font-style: normal;
 	  	}
 	  	
-	  	.enemy { color: #e07575; }
+	  	.enemy { color: #555; }
+	  	.enemyRED { color: #e07575; }
 	  	.exp { color: #66c500; }
 	  	.gold { color: #e5b215; }
+	  	.debug { color: #ccc; font-weight: normal !important; }
 	  }
 	}
 	
@@ -151,5 +153,11 @@
 			font-family: verdana, helvetica, sans-serif;
 			width: 400px;
 		}
+	}
+	
+	#battle-debug {
+		padding: 20px 8px;
+		color: #aaa;
+		word-wrap: break-word;
 	}
 }

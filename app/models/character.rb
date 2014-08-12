@@ -17,9 +17,13 @@ class Character < ActiveRecord::Base
 	end
 	
 	def full_stats
-		items = Item.equipped(self)
+		items = equipped_items
 		stats = Statistics.new self.stats
 		ItemSet.new(items).stats.merge!(stats)
+	end
+	
+	def equipped_items
+		@equipped_items ||= Item.equipped(self)
 	end
 	
 	private

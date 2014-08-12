@@ -3,6 +3,7 @@ app.controller("BattleController", ["$rootScope", "$scope", "$http", function($r
 	$scope.complete = false;
 	$scope.player = new Battler();
 	$scope.enemy = new Battler();
+	$scope.debug = null;
 	$scope.log = [];
 	
 	$scope.explore = function() {
@@ -42,6 +43,7 @@ app.controller("BattleController", ["$rootScope", "$scope", "$http", function($r
 	var processUpdate = function(data) {
 		$scope.enemy.update(data.battle.enemy);
 		$scope.player.update(data.battle.player);
+		$scope.debug = data.battle.player;
 		logMessages(data.messages);
 	};
 	

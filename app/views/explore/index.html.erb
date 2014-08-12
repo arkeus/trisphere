@@ -40,6 +40,9 @@
 	<div id="out-battle" ng-show="!inBattle">
 		<div ng-click="explore()">Explore</div>
 	</div>
+	<div id="battle-debug" ng-show="inBattle">
+		{{debug}}
+	</div>
 </div>
 
 <%= content_tag(:span, nil, id: "initial-battler", data: { player: @character_battler }) %>

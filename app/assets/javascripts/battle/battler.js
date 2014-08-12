@@ -5,6 +5,7 @@ var Battler = function(source) {
 	this.hpm = 0;
 	this.mp = 0;
 	this.mpm = 0;
+	this.stats = {};
 	this.status = [];
 	
 	this.update = function(source) {
@@ -14,5 +15,6 @@ var Battler = function(source) {
 		this.hpm = source.hpm;
 		this.mp = source.mp;
 		this.mpm = source.mpm;
+		this.stats = source.stats;
 	};
 };

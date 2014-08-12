@@ -241,7 +241,7 @@ app.filter("displayEffect", function() {
 		if (item.type == "Weapon") {
 			return "<div class='weapon effect'><div class='damage icon'></div> " + item.effect[0] + "</div>" +
 			"<div class='weapon effect align-center'><div class='mdamage icon'></div> " + item.effect[1] + "</div>" +
-			"<div class='weapon effect align-center'><div class='accuracy icon'></div> " + item.effect[2] + "</div>" +
+			"<div class='weapon effect align-center'><div class='accuracy icon'></div> " + item.effect[2] + "%</div>" +
 			"<div class='weapon effect align-right'><div class='price icon'></div> " + item.price + "</div>";
 		} else if (item.type == "Armor") {
 			return "<div class='armor effect'><div class='armor icon'></div> " + item.effect + "</div>" +

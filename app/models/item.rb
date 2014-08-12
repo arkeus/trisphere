@@ -73,12 +73,22 @@ class Item < ActiveRecord::Base
 	
 	def armor
 		return 0 if type != ItemType::ARMOR
-		base.effect
+		base.armor
 	end
 	
 	def weapon_damage
 		return 0 if type != ItemType::WEAPON
-		base.effect.first
+		base.weapon_damage
+	end
+	
+	def magic_damage
+		return 0 if type != ItemType::WEAPON
+		base.magic_damage
+	end
+	
+	def accuracy
+		return 0 if type != ItemType::WEAPON
+		base.accuracy
 	end
 	
 	def base=(base)
