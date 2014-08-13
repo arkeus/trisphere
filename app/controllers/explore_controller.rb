@@ -1,6 +1,6 @@
 class ExploreController < ApplicationController
 	def index
-		@character_battler = @character.as_json(only: [:name, :level, :hp, :hpm, :mp, :mpm])
+		@character_battler = @character.as_json(only: [:name, :level, :hp, :hpm, :mp, :mpm], methods: [:skills])
 	end
 	
 	def explore
@@ -21,12 +21,28 @@ class ExploreController < ApplicationController
 	end
 	
 	def attack
+		handle_attack do |battle, log|
+			battle.process! log
+		end
+	end
+	
+	def skill
+		id = required(:id)
+		
+		handle_attack do |battle, log|
+			battle.process! log
+			log.add "Really should be skill #{id}"
+		end
+	end
+	
+	private
+	
+	def handle_attack
 		battle = Battle.find_by user_id: @user.id
 		raise "Not in battle" unless battle
 		
 		log = BattleLog.new
-		battle.process! log
-		update = nil
+		yield battle, log
 		
 		if battle.complete?
 		  update = handle_rewards battle.rewards
@@ -37,8 +53,6 @@ class ExploreController < ApplicationController
 		
 		render json: { battle: battle.as_json, messages: log.messages, complete: battle.complete?, update: update }
 	end
-	
-	private
 	
 	def handle_rewards(rewards)
 		@user.gain_gold rewards[:gold] if rewards[:gold]
