@@ -27,8 +27,9 @@
 			<div class="message" ng-repeat="message in log track by $index" ng-bind-html="message"></div>
 		</log>
 		<div id="battle-actions" ng-show="inBattle && !complete">
-			<div class="battle-action" ng-click="attack()"><%= image_tag "items/demon_heavy_axe.png" %></div>
-			<div class="battle-action text-action">Auto</div>
+			<div class="battle-action" ng-click="attack()"><%= image_tag "items/demon_heavy_axe.png" %></div><!--
+			--><div ng-repeat="skill in player.skills" class="battle-action" ng-click="useSkill(skill)"><%= image_tag nil, { "ng-src" => "images/{{skill.image}}" } %></div><!--
+			--><div class="battle-action text-action">Auto</div>
 		</div>
 		<div id="post-battle-actions" ng-show="inBattle && complete">
 			<div class="battle-action text-action" ng-click="explore()">Explore Again</div>

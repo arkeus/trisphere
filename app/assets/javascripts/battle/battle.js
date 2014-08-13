@@ -24,6 +24,10 @@ app.controller("BattleController", ["$rootScope", "$scope", "$http", function($r
 		$http.get("/explore/attack", {}).success($scope.attackSuccess).error($scope.attackFail);
 	};
 	
+	$scope.useSkill = function(skill) {
+		$http.get("/explore/skill?id=" + skill.id, {}).success($scope.attackSuccess).error($scope.attackFail);
+	};
+	
 	$scope.attackSuccess = function(data, status, headers, config) {
 		processUpdate(data);
 		if (data.complete) {

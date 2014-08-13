@@ -7,6 +7,7 @@ var Battler = function(source) {
 	this.mpm = 0;
 	this.stats = {};
 	this.status = [];
+	this.skills = [];
 	
 	this.update = function(source) {
 		this.name = source.name;
@@ -16,5 +17,8 @@ var Battler = function(source) {
 		this.mp = source.mp;
 		this.mpm = source.mpm;
 		this.stats = source.stats;
+		if (source.skills) {
+			this.skills = source.skills;
+		}
 	};
 };
