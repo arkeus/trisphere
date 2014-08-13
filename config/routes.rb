@@ -52,6 +52,7 @@ Trisphere::Application.routes.draw do
 		get "/" => "explore#index", as: "explore"
 		get "/explore" => "explore#explore"
 		get "/attack" => "explore#attack"
+		get "/skill" => "explore#skill"
 	end
 	
 	# Test
