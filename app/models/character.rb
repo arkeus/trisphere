@@ -26,6 +26,20 @@ class Character < ActiveRecord::Base
 		@equipped_items ||= Item.equipped(self)
 	end
 	
+	def skills
+		[{
+			id: 1,
+			name: "Leafo Moon Power",
+			description: "Moon healing escalation.",
+			image: "items/dragon_amulet.png"
+		}, {
+			id: 2,
+			name: "Leafo Crescent Beam",
+			description: "Mars star power.",
+			image: "items/demon_amulet.png"
+		}]
+	end
+	
 	private
 	
 	def calculate_xpm
