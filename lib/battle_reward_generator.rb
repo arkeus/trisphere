@@ -19,13 +19,13 @@ class BattleRewardGenerator
 		rand(min..max).ceil
 	end
 	
-	def generate_exp
+	def generate_xp
 		min = (@enemy.level / 2) ** 3
 		max = min * 1.1 + 1
 		rand(min..max).ceil
 	end
 	
-	def generate_item
+	def generate_items
 		max = @enemy.level + 2
 		min = case
 			when @enemy.level < 11 then 1
@@ -33,6 +33,7 @@ class BattleRewardGenerator
 			when @enemy.level < 40 then @enemy.level - 20
 			else @enemy.level / 2
 		end
-		ItemGenerator.new.equipment(min, max)
+		item = ItemGenerator.equipment(min, max)
+		item.nil? ? [] : [item]
 	end
 end

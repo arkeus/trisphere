@@ -27,6 +27,18 @@ class BattleLog
 		add "You found {gold}#{gold}{/} gold"
 	end
 	
+	def find_items(items)
+		(items || []).each do |item|
+			add %Q{
+				<div class="item-find cf">
+					<div class="item #{item.rarity}">#{ActionController::Base.helpers.image_tag item.image_path}</div>
+					<div class="top">Item Found</div>
+					<div class="bottom rarity #{item.rarity}">#{item.name}</div>
+				</div>
+			}
+		end
+	end
+	
 	def encounter_enemy(enemy)
 		add "You encounted a {enemy}#{enemy.name}{/}"
 	end

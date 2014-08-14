@@ -43,10 +43,17 @@ class Battle < ActiveRecord::Base
 	def post_process
 		return unless complete?
 		
-		@rewards = { gold: 4, xp: 17, items: [] }
+		rewarder = BattleRewardGenerator.new enemy
+		
+		@rewards = {
+			gold: rewarder.generate_gold,
+			xp: rewarder.generate_xp,
+			items: rewarder.generate_items
+		}
 		
 		@log.defeat_enemy enemy
-		@log.gain_experience 17
-		@log.find_gold 4
+		@log.gain_experience @rewards[:xp]
+		@log.find_gold @rewards[:gold]
+		@log.find_items @rewards[:items]
 	end
 end

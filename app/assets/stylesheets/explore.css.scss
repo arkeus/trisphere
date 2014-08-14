@@ -87,6 +87,31 @@
 	  	.gold { color: #e5b215; }
 	  	.debug { color: #ccc; font-weight: normal !important; }
 	  	.critical { color: #000; }
+	  	
+	  	.item-find {
+	  		font-weight: bold;
+	  		
+	  		.item {
+	  			float: left;
+	  			margin: 3px 6px 2px 0;
+	  			
+		  		img {
+		  			width: 20px;
+		  			height: 20px;
+		  		}
+		  	}
+		  	
+		  	.top {
+		  		padding-top: 2px;
+		  		font-variant: small-caps;
+		  		color: #999;
+		  	}
+	  		
+	  		.bottom {
+	  			display: block;
+	  			margin-left: 26px;
+	  		}
+	  	}
 	  }
 	}
 	

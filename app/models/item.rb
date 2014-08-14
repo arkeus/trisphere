@@ -45,8 +45,8 @@ class Item < ActiveRecord::Base
 	
 	def rarity
 		value = 0
-		value += 1 if prefix_id
-		value += 1 if suffix_id
+		value += 1 if prefix
+		value += 1 if suffix
 		return case value
 			when 0 then Rarity::COMMON
 			when 1 then Rarity::UNCOMMON

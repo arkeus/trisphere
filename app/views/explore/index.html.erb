@@ -24,7 +24,7 @@
 			</div>
 		</div>
 		<log id="battle-log" log="log">
-			<div class="message" ng-repeat="message in log track by $index" ng-bind-html="message"></div>
+			<div class="message" ng-repeat="message in log track by $index" ng-bind-html-unsafe="message"></div>
 		</log>
 		<div id="battle-actions" ng-show="inBattle && !complete">
 			<div class="battle-action" ng-click="attack()"><%= image_tag "items/demon_heavy_axe.png" %></div><!--

@@ -53,6 +53,7 @@ app.controller("BattleController", ["$rootScope", "$scope", "$http", function($r
 	
 	var logMessages = function(messages) {
 		$.each(messages, function(index, message) {
+			console.log(message);
 			$scope.log.push(message);
 		});
 		$scope.$broadcast("log-message");
