@@ -141,6 +141,11 @@ class Item < ActiveRecord::Base
 		end
 	end
 	
+	def give(character)
+		self.character_id = character.id
+		save!
+	end
+	
 	# finders
 	
 	def self.equipped(character)
