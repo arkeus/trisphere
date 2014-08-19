@@ -87,8 +87,6 @@ class BaseItem
 			end
 		end
 		
-		#p "LOG databse length #{@@database.length}"
-		
 		@@database_map = @@database.inject({}) { |acc, item| acc[item.id] = item; acc }
 		@@database_name_map = @@database.inject({}) { |acc, item| acc[item.name] = item; acc }
 	end
