@@ -1,6 +1,6 @@
 class MemoryDatabase
 	def initialize
-		@data = validate generate_data
+		@data = validate generate_data.freeze
 		@id_map = @data.inject({}) { |acc, entry| acc[entry.id] = entry; acc }
 		@name_map = @data.inject({}) { |acc, entry| acc[entry.name] = entry; acc }
 	end
@@ -9,6 +9,10 @@ class MemoryDatabase
 		entry = target.is_a?(Integer) ? @id_map[target] : @name_map[target]
 		raise "Cannot find memory database entry via '#{target}'" unless entry
 		entry
+	end
+	
+	def size
+		@data.size
 	end
 	
 	protected
