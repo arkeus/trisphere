@@ -1,0 +1,3 @@
+class SkillDatabase
+	
+end
