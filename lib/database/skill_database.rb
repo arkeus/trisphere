@@ -1,3 +1,3 @@
-class SkillDatabase
+class SkillDatabase < MemoryDatabase
 	
 end
