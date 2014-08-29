@@ -14,4 +14,19 @@ class SkillDatabase < MemoryDatabase
 	ARCHER_ID = 14_00_00
 	
 	TIER_ID = 10_00
+	
+	SKILLS = {
+		knight: [
+			# Tier 1
+			[
+				{ name: "Slash", description: "Slashes your opponent for increased damage." },
+				{ name: "Bash", description: "Bashes your opponent with your weapon, dealing damage and sometimes stunning them." },
+			],
+			# Tier 2
+			[
+				{ name: "T2a Knight" },
+				{ name: "T2b Knight" },
+			]
+		]
+	}
 end
