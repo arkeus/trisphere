@@ -27,6 +27,34 @@ class SkillDatabase < MemoryDatabase
 				{ name: "T2a Knight" },
 				{ name: "T2b Knight" },
 			]
+		],
+		rogue: [
+			# Tier 1
+			[
+				{ name: "T1a Rogue" },
+				{ name: "T1b Rogue" },
+			]
+		],
+		wizard: [
+			# Tier 1
+			[
+				{ name: "T1a Rogue" },
+				{ name: "T1b Rogue" },
+			]
+		],
+		cleric: [
+			# Tier 1
+			[
+				{ name: "T1a Rogue" },
+				{ name: "T1b Rogue" },
+			]
+		],
+		archer: [
+			# Tier 1
+			[
+				{ name: "T1a Rogue" },
+				{ name: "T1b Rogue" },
+			]
 		]
 	}
 end
