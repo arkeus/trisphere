@@ -2,7 +2,11 @@ class SkillDatabase < MemoryDatabase
 	protected
 	
 	def generate_data
+		data = []
 		
+		SKILLS.each do |klass, skills|
+			
+		end
 	end
 	
 	private
@@ -13,7 +17,15 @@ class SkillDatabase < MemoryDatabase
 	CLERIC_ID = 13_00_00
 	ARCHER_ID = 14_00_00
 	
-	TIER_ID = 10_00
+	TIER_ID = 01_00
+	
+	IDS = {
+		knight: KNIGHT_ID,
+		rogue: ROGUE_ID,
+		wizard: WIZARD_ID,
+		cleric: CLERIC_ID,
+		archer: ARCHER_ID,
+	}
 	
 	SKILLS = {
 		knight: [
