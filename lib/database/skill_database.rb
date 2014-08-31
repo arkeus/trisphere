@@ -31,7 +31,12 @@ class SkillDatabase < MemoryDatabase
 		knight: [
 			# Tier 1
 			[
-				{ name: "Slash", description: "Slashes your opponent for increased damage." },
+				{
+					name: "Slash",
+					description: "Slashes your opponent for increased damage.",
+					weapon: -> level { 111 + level },
+					mp: 5
+				},
 				{ name: "Bash", description: "Bashes your opponent with your weapon, dealing damage and sometimes stunning them." },
 			],
 			# Tier 2
