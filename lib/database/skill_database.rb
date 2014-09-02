@@ -37,7 +37,13 @@ class SkillDatabase < MemoryDatabase
 					weapon: { physical: -> level { 111 + level } },
 					mp: 5
 				},
-				{ name: "Bash", description: "Bashes your opponent with your weapon, dealing damage and sometimes stunning them." },
+				{
+					name: "Bash",
+					description: "Bashes your opponent with your weapon, dealing damage and sometimes stunning them.",
+					effects: [
+						:stun, -> level { 30 + 5 * level }
+					]
+				},
 			],
 			# Tier 2
 			[
